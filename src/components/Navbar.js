@@ -5,20 +5,11 @@ import { withAuth } from '../providers/AuthProvider';
 
 class Navbar extends Component {
 	render() {
-		const { user, isLoggedIn, logout } = this.props;
 		return (
-			<div>
-				{isLoggedIn ? (
-					<>
-						<p>username: {user.username}</p>
-						<button onClick={logout}>Logout</button>
-					</>
-				) : (
-					<>
-						<Link to="/login">Login</Link>
-						<Link to="/signup">Signup</Link>
-					</>
-				)}
+			<div className="container mx-auto flex" >
+				<Link to="/">Home</Link>
+				<Link to="/login">Login</Link>
+				<Link to="/signup">Signup</Link>
 			</div>
 		);
 	}

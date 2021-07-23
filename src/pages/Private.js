@@ -4,7 +4,7 @@ class Private extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Welcome username</h1>
+				<h1>Manager Dashboard</h1>
 			</div>
 		);
 	}

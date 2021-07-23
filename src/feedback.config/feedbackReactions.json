@@ -1,0 +1,42 @@
+[
+  {
+   "dimension": "servicio",
+    "subdimension": ["top","max top","",""],
+    "isPositive": true
+  },
+  {
+    "dimension": "servicio",
+    "subdimension": ["despistado","mal servicio","",""],
+    "isPositive": false
+  },
+  {
+    "dimension": "comida",
+    "subdimension": ["buena","","",""],
+    "isPositive": true
+  },
+  {
+    "dimension": "comida",
+    "subdimension": ["fría","","",""],
+    "isPositive": false
+  },
+  {
+    "dimension": "ambiente",
+    "subdimension": ["buena musica","","",""],
+    "isPositive": true
+  },
+  {
+    "dimension": "ambiente",
+    "subdimension": ["mala musica","","",""],
+    "isPositive": false
+  },
+  {
+    "dimension": "local",
+    "subdimension": ["limpio","","",""],
+    "isPositive": true
+  },
+  {
+    "dimension": "local",
+    "subdimension": ["sucio","","",""],
+    "isPositive": false
+  }
+]

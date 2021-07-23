@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../providers/AuthProvider";
+import Navbar from "../components/Navbar";
 
 class Signup extends Component {
   constructor(props) {
@@ -25,7 +26,8 @@ class Signup extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div>
+      <>
+        <Navbar />
         <form onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
           <input
@@ -47,7 +49,7 @@ class Signup extends Component {
           Already have account?
           <Link to={"/login"}> Login</Link>
         </p>
-      </div>
+      </>
     );
   }
 }

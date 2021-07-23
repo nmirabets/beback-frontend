@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withAuth } from "../providers/AuthProvider";
+import Navbar from "../components/Navbar";
 
 
 class Login extends Component {
@@ -28,23 +29,26 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <form onSubmit={this.handleFormSubmit}>
-        <label>Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={this.handleChange}
-        />
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={this.handleChange}
-        />
-        <input type="submit" value="Login" />
-      </form>
+      <div className="container mx-auto place-content-center">
+        <Navbar />
+        <form onSubmit={this.handleFormSubmit}>
+          <input
+            type="text"
+            name="username"
+            placeholder="e-mail address"
+            value={username}
+            onChange={this.handleChange}
+          />
+           <input
+            type="password"
+            name="password"
+            placeholder="password"
+            value={password}
+            onChange={this.handleChange}
+          />
+          <input type="submit" value="Login" />
+        </form>
+      </div>
     );
   }
 }
