@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import apiClient from "../../services/apiClient";
+import PoweredByFooter from "../../components/PoweredByFooter";
+import BotNavBar from "../../components/manager/BotNavBar";
 import { withAuth } from "../../providers/AuthProvider";
 // import { Link } from "react-router-dom";
 
@@ -9,14 +10,6 @@ class Dashboard extends Component {
     this.state = {
       menu: {},
   };
-  }
-
-  componentDidMount() {
-    const { restaurantId } = this.props.match.params;
-    apiClient.findActiveMenu(restaurantId).then((res) => {
-      console.log(res);
-      this.setState({ })
-    });
   }
 
   // handleFormSubmit = event => {
@@ -33,10 +26,11 @@ class Dashboard extends Component {
   render() {
     // const { menu } = this.state;
     return (
-      <div className="container mx-auto flex-row">
+      <div className="container min-h-screen bg-gray-900 mx-auto flex-row">
         <h1 className="text-xl" >Dashboard</h1>
-        <p></p>
-        <footer className="text-xs" >powered by BeBack</footer>
+        
+        <PoweredByFooter />
+        <BotNavBar />
       </div>
     );
   }

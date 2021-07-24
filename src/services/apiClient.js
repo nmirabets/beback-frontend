@@ -36,7 +36,7 @@ class ApiClient {
 
 	// Menus
 
-	async findActiveMenu(restaurantId) {
+	async findRestaurantActiveMenu(restaurantId) {
       return await this.apiClient.get(`/menus/${restaurantId}`).then( res => res.data.found )
   }
 

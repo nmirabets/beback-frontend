@@ -1,35 +1,44 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import apiClient from "../../services/apiClient";
+
+import RestaurantHeader from "../../components/customer/RestaurantHeader";
+import PoweredByFooter from "../../components/PoweredByFooter";
 
 class Landing extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      restaurant: {},
+			menu: {},
+			sections: [],
+			items: [],
   };
   }
 
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   const { username, password } = this.state;
-  //   this.props.signup({ username, password });
-  // };
+   async componentDidMount() {
+      const { restaurantId } = this.props.match.params;
+      const restaurant = await apiClient.findRestaurantActiveMenu(restaurantId);
+      const sections = await apiClient.getMenuSections(restaurant.activeMenu._id);
+      const items =  await apiClient.getMenuItems(restaurant.activeMenu._id);
 
-  // handleChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({ [name]: value });
-  // };
+      this.setState({
+        restaurant: restaurant,
+        menu: restaurant.activeMenu,
+        sections: sections,
+        items: items,
+      })
+  }
 
   render() {
-    // const { username, password } = this.state;
-    // const { countryId } = this.props.match.params
-    const { restaurantId } = this.props.match.params;
+    console.log("rendered")
+    const { restaurant, menu, sections, items } = this.state;
     return (
       <div className="container mx-auto flex-row">
-        <h1 className="text-xl" >Restaurant Name</h1>
-        <Link to={`/${restaurantId}/menu`} >Ver la carta</Link>
-        <Link to={`/${restaurantId}/feedback`} > ¡Dános feedback!</Link>
-        <footer className="text-xs" >powered by BeBack</footer>
+        <RestaurantHeader name={restaurant.name} />
+        <Link to={{ pathname: `/${restaurant.id}/menu`, state: { restaurant, menu, sections, items }}} >Ver la carta</Link>
+        <Link to={{ pathname: `/${restaurant.id}/feedback`, state: { restaurant, menu, sections, items }}} > ¡Dános feedback!</Link>
+        <PoweredByFooter/>
       </div>
     );
   }

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import apiClient from "../../services/apiClient"
 // import { Link } from "react-router-dom";
 import { withAuth } from "../../providers/AuthProvider";
+
+import BotNavBar from "../../components/manager/BotNavBar";
+import PoweredByFooter from "../../components/PoweredByFooter";
 
 class Settings extends Component {
   constructor(props) {
@@ -12,11 +14,7 @@ class Settings extends Component {
   }
 
   componentDidMount() {
-    const { restaurantId } = this.props.match.params;
-    apiClient.findActiveMenu(restaurantId).then((res) => {
-      console.log(res);
-      this.setState({ })
-    });
+
   }
 
   // handleFormSubmit = event => {
@@ -30,13 +28,18 @@ class Settings extends Component {
   //   this.setState({ [name]: value });
   // };
 
+  logout= () => {
+    this.props.logout();
+  }
+
   render() {
     // const { menu } = this.state;
     return (
       <div className="container mx-auto flex-row">
         <h1 className="text-xl" >Settings</h1>
-        <p></p>
-        <footer className="text-xs" >powered by BeBack</footer>
+        <button onClick={this.logout}>Logout</button>
+        <PoweredByFooter />
+        <BotNavBar />
       </div>
     );
   }
