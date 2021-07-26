@@ -36,24 +36,24 @@ class ApiClient {
 
 	// Menus
 
-	async findRestaurantActiveMenu(restaurantId) {
-      return await this.apiClient.get(`/menus/${restaurantId}`).then( res => res.data.found )
+	async getMenu(menuId) {
+      return await this.apiClient.post('/menus', { menuId }).then( res => res.data.found )
   }
 
 	// Sections
 
-  async getMenuSections(menuId) {
+  async getSections(menuId) {
     return await this.apiClient.get(`/sections/${menuId}`).then( res => res.data.found )
   }
 
 	// Items
 
-  async getMenuItems(menuId) {
+  async getItems(menuId) {
     return await this.apiClient.get(`/items/${menuId}`).then( res => res.data.found )
   }
 
 	// Reactions
-	async postReaction(reaction) {
+	async newReaction(reaction) {
     return await this.apiClient.post('/reactions/', { data: reaction }).then( res => res.data.created )
   }
 }

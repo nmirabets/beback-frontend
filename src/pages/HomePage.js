@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import apiClient from '../services/apiClient.js'
-import { withAuth } from "../providers/AuthProvider";
-import Navbar from '../components/Navbar';
+import Navbar from '../components/home/Navbar';
 
 class Home extends Component {
   constructor(props) {
@@ -18,28 +18,17 @@ class Home extends Component {
     });
   }
 
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   const { username, password } = this.state;
-  //   this.props.signup({ username, password });
-  // };
-
-  // handleChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({ [name]: value });
-  // };
-
   render() {
     const { restaurantList } = this.state;
     return (
       <>
         <h1 className="text-4xl">Welcome to BeBack</h1>
-        <Navbar />
+        <Navbar/>
         <ul> 
           { restaurantList.map((restaurant, index) => {
             return(
               <li key={index}>
-                <Link  to={`/${restaurant._id}`} >{restaurant.name}</Link>
+                <Link to={{ pathname: '/restaurant', state: { restaurant }}} >{restaurant.name}</Link>
               </li>
             )
           })}
@@ -49,4 +38,4 @@ class Home extends Component {
   }
 }
 
-export default withAuth(Home);
+export default Home;

@@ -8,9 +8,7 @@ handleClick = () => {
 
 	render() {
 		return (
-			<div className="container mx-auto flex" >
-				<button onClick={this.handleClick}>{this.props.name}</button>
-			</div>
+				<button className="border rounded-xl border-gray-400 bg-white" onClick={this.handleClick}>{this.props.name}</button>
 		);
 	}
 }

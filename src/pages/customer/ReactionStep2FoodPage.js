@@ -1,22 +1,22 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import feedbackReactions from '../../../src/feedback.config/feedbackReactions.json';
-import SubdimensionHeader from "../../components/customer/feedback/SubdimensionHeader";
-import DimensionReactionBtn from '../../components/customer/feedback/DimensionReactionBtn';
-import SubdimensionReactionBtn from '../../components/customer/feedback/SubdimensionReactionBtn';
-import FeedbackMenuList from '../../components/customer/feedback/FeedbackMenuList';
+import { withCustomer } from "../../providers/CustomerProvider";
+import feedbackReactions from '../../feedback.config/feedbackReactions.json';
+import SubdimensionHeader from "../../components/customer/reactions/SubdimensionHeader";
+import DimensionReactionBtn from '../../components/customer/reactions/ReactionStep1Btn';
+import SubdimensionReactionBtn from '../../components/customer/reactions/ReactionStep2Btn';
+import FeedbackMenuList from '../../components/customer/reactions/FeedbackMenuList';
 import BackBtn from "../../components/customer/BackBtn";
-import PoweredByFooter from '../../components/PoweredByFooter';
+import PoweredByFooter from '../../components/customer/PoweredByFooter';
 import apiClient from "../../services/apiClient";
 
-class Feedback extends Component {
+class ReactionStartPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
       step: 1,
       reaction: {},
-      menuList: this.props.location.state,
   };
   }
 
@@ -98,4 +98,4 @@ class Feedback extends Component {
   }
 }
 
-export default Feedback;
+export default withCustomer(ReactionStartPage);

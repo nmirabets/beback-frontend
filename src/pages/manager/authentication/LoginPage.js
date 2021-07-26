@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { withAuth } from "../providers/AuthProvider";
-import Navbar from "../components/Navbar";
+import { withAuth } from "../../../providers/AuthProvider";
+import Navbar from "../../../components/home/Navbar";
 
 
 class Login extends Component {

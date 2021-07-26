@@ -37,6 +37,7 @@ class AuthProvider extends Component {
 
   async componentDidMount() {
     try {
+      console.log("Aquí")
       const user = await apiClient.me()
       this.setState({
         status: 'loggedIn',
@@ -46,7 +47,6 @@ class AuthProvider extends Component {
       this.setState({
         status: 'loggedOut',
         user: null,
-        
       })  
       console.log(e);
     }
