@@ -61,9 +61,21 @@ class ApiClient {
 
 	// # Manager APIs
 
-	// User Restaurants
+	// Restaurants
+
+	// get the user's restaurants
 	async getUserRestaurants() {
     return await this.apiClient.get('/restaurants/').then( res => res.data.found )
+  }
+
+	// create a new restaurant
+	async postNewRestaurant(name) {
+    return await this.apiClient.post('/restaurants/', { name } ).then( res => res.data.created )
+  }
+
+	// delete restaurant
+	async deleteRestaurant(id) {
+    return await this.apiClient.delete('/restaurants/', { id } ).then( res => res.data.deleted )
   }
 
 	// Menus

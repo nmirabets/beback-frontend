@@ -23,13 +23,12 @@ class EditRestaurantPage extends Component {
 					clickRightTo="/manager/settings/restaurant-selection"
 					LeftComponent={HeaderBtn} 
 					leftTitle="Añadir"
-					clickLeftTo="/manager/settings/restaurant-new"
+					clickLeftTo={{ pathname: '/manager/settings/restaurant-edit-detail', state:  { restaurant:{}, isNew: true } }}
 				/>
-				
 				<div>
 					{restaurants.map( (restaurant, index) => {
 						return (
-							<Link to={{ pathname: '/manager/settings/restaurant-edit-detail', state:  { restaurant} }} key={index} className="flex p-3 text-xl justify-between border border-gray-300" >
+							<Link to={{ pathname: '/manager/settings/restaurant-edit-detail', state:  { restaurant, isNew:false } }} key={index} className="flex p-3 text-xl justify-between border border-gray-300" >
 								<h3 className="font-light mx-2">{restaurant.name}</h3>
               	<ChevronRightIcon id={index} className="w-6 h-6 text-gray-600"/>
               </Link> 

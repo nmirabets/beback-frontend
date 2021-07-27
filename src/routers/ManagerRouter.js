@@ -7,7 +7,6 @@ import SettingsPage from '../pages/manager/settings/SettingsPage';
 import SelectRestaurantPage from '../pages/manager/settings/SelectRestaurantPage';
 import EditDetailRestaurantPage from '../pages/manager/settings/EditDetailRestaurantPage';
 import EditRestaurantPage from '../pages/manager/settings/EditRestaurantPage';
-import NewRestaurantPage from '../pages/manager/settings/NewRestaurantPage';
 import NotFoundPage from '../pages/website/NotFound';
 import ManagerProvider from '../providers/ManagerProvider';
 
@@ -18,7 +17,6 @@ function ManagerRouter() {
       <Switch>
         <Route path={`${url}/dashboard`} component={DashboardPage} />
         <Route path={`${url}/menu`} component={AdminMenuPage} />
-        <Route path={`${url}/settings/restaurant-new`} component={NewRestaurantPage} />
         <Route path={`${url}/settings/restaurant-selection`} component={SelectRestaurantPage} />
         <Route path={`${url}/settings/restaurant-edit-detail`} component={EditDetailRestaurantPage} />
         <Route path={`${url}/settings/restaurant-edit`} component={EditRestaurantPage} />

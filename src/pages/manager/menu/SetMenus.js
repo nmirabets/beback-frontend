@@ -41,16 +41,13 @@ class SetMenu extends Component {
           <PencilAltIcon className="flex-none w-8 h-8 text-yellow-700 m-4" onClick={this.handleAdd} />
         </header>
         <div className="flex flex-col">
-          {menus.map( (item) => {
+          {menus.map( (item, index) => {
             return (
-              <>
-                <div className="flex p-3 text-m justify-between border border-gray-300" onClick={this.handleClick}>
-                  {(editMode ? <MenuIcon className="w-6 h-6 text-gray-600" /> : "")}
-                  <h3 className="font-light">{item.name}</h3>
-                  {(editMode ?                   <MinusCircleIcon className="w-6 h-6 text-red-600 mx-2"/> :                   <ChevronRightIcon className="w-6 h-6 text-gray-600"/>)}
-
-                </div> 
-              </>
+              <div className="flex p-3 text-m justify-between border border-gray-300" key={index} onClick={this.handleClick}>
+                {(editMode ? <MenuIcon className="w-6 h-6 text-gray-600" /> : "")}
+                <h3 className="font-light">{item.name}</h3>
+                {(editMode ? <MinusCircleIcon className="w-6 h-6 text-red-600 mx-2"/> :                   <ChevronRightIcon className="w-6 h-6 text-gray-600"/>)}
+              </div> 
             )
           })}
 

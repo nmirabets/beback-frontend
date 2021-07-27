@@ -70,10 +70,10 @@ class ManagerProvider extends Component {
         const menus = await apiClient.getMenus(activeRestaurant._id)
         // load dashboard data -> pending
 
-          this.setState({
-            restaurants: restaurants,
-            menus: menus,
-          })
+        this.setState({
+          restaurants: restaurants,
+          menus: menus,
+        })
       }
     } catch (e) {
       console.log(e)
