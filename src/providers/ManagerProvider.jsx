@@ -27,7 +27,7 @@ class ManagerProvider extends Component {
     super(props)
     this.state = {
       restaurants: [],
-      activeRestaurantIndex: "",
+      activeRestaurantIndex: 0,
       menus: [],
       dashboardData: {},
     }
@@ -35,20 +35,16 @@ class ManagerProvider extends Component {
 
   async componentDidMount() {
     try {
-      // load user's restaurants
       const restaurants = await apiClient.getUserRestaurants();
-      if (typeof restaurants !== 'undefined' && restaurants.length > 0) {
-        // load menus, sections and items
-
+      if (restaurants.length > 0) {
         const menus = await apiClient.getMenus(restaurants[0]._id);
-
         // load dashboard data
 
-          this.setState({
-            restaurants: restaurants,
-            menus: menus,
-            activeRestaurantIndex: 0,
-          })
+        this.setState({
+          restaurants: restaurants,
+          menus: menus,
+          activeRestaurantIndex: 0,
+        })
       }
     } catch (e) {
       console.log(e)
@@ -61,20 +57,27 @@ class ManagerProvider extends Component {
 
   loadRestaurantData = async () => {
      try {
-      // load user's restaurants
       const restaurants = await apiClient.getUserRestaurants();
-      if (typeof restaurants !== 'undefined' && restaurants.length > 0) {
-        const activeRestaurantIndex = this.state.activeRestaurantIndex;
+      let activeRestaurantIndex = this.state.activeRestaurantIndex;
+      let menus = [];
+      if (restaurants.length > 0) {
+
+        // por si se ha eliminado el restaurante seleccionado
+        if (activeRestaurantIndex>=(restaurants.length)) {
+          activeRestaurantIndex=0;
+        }
         const activeRestaurant = restaurants[activeRestaurantIndex];
-        // load menus, sections and items
-        const menus = await apiClient.getMenus(activeRestaurant._id)
+        // load menus, sections and items -> pending
+        menus = await apiClient.getMenus(activeRestaurant._id)
+
         // load dashboard data -> pending
 
-        this.setState({
-          restaurants: restaurants,
-          menus: menus,
-        })
       }
+      this.setState({
+        restaurants: restaurants,
+        menus: menus,
+        activeRestaurantIndex
+      })
     } catch (e) {
       console.log(e)
     }

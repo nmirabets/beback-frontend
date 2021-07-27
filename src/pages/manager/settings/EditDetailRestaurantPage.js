@@ -4,7 +4,7 @@ import { withAuth } from "../../../providers/AuthProvider";
 import { withManager } from "../../../providers/ManagerProvider";
 import BotNavBar from '../../../components/manager/BotNavBar';
 import HeaderSaveBtn from '../../../components/HeaderSaveBtn';
-import PageHeader from '../../../components/Header';
+import Header from '../../../components/Header';
 import BackBtn from '../../../components/HeaderBackBtn';
 import apiClient from '../../../services/apiClient';
 import ImgUpload from '../../../components/ImgUpload';
@@ -48,9 +48,9 @@ class EditDetailRestaurantPage extends Component {
 
 	handleDelete = async () => {
 		const { id } = this.state;
-		const deletedRest = await apiClient.deleteRestaurant(id);
-		console.log(deletedRest)
+		await apiClient.deleteRestaurant(id);
 		await this.props.loadRestaurantData();
+		this.props.history.push("/manager/settings/restaurant-edit");
 	};
 
 	render() {
@@ -59,25 +59,25 @@ class EditDetailRestaurantPage extends Component {
 
 		return (
 			<>
-				<PageHeader 
+				<Header 
 					mainTitle={name}
 					RightComponent={HeaderSaveBtn}
 					rightTitle="Guardar"
-					clickRightTo="/manager/settings/restaurant-edit"
+					clickRightTo="/manager/settings/restaurant-selection"
 					onClickRight={this.handleSave}
 					LeftComponent={BackBtn} 
 					leftTitle="Atrás"
 					clickLeftTo="/manager/settings/restaurant-edit"
 					onClickLeft={()=>{}}
 				/>
-				<div className="flex flex-row border border-b-2 border-gray-300">
-					<ImgUpload url={logoUrl}/>
-					<div className="font-light my-5 " >
-						<label className="text-gray-500" >Nombre</label><br/>
-						<input className="text-xl font-light border-t border-b  py-2 my-1 border-gray-400" type="text" id={id} name="name" defaultValue={name} onChange={this.handleChange} ref={this.nameInput}></input><br/>
+				<div className="flex border border-b-2 border-gray-300">
+					<ImgUpload className="text-blue-300 rounded-full w-20 p-3 my-8 mx-4 " url={logoUrl} />
+					<div className="flex flex-col justify-start w-3/4 font-light mt-5 pr-8" >
+						<label className="text-gray-500" >Nombre</label>
+						<input className="text-xl font-light border-t border-b py-2 my-1 border-gray-400" type="text" id={id} name="name" defaultValue={name} onChange={this.handleChange} ref={this.nameInput}></input>
 						<h3 className="text-xs font-light text-gray-400" >El nombre se mostrará en el menú QR</h3>
 						<div className="flex justify-end " >
-							{(!isNew ? <button className="text-xs text-red-700 font-light border-b border-red-700" onClick={this.handleDelete} >Eliminar restaurante</button> : "")}
+							{(!isNew ? <button className="text-xs text-red-700 font-light border-b border-red-700 my-2" onClick={this.handleDelete} >Eliminar</button> : "")}
 						</div>
 					</div>
 				</div>

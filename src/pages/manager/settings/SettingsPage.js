@@ -37,10 +37,10 @@ class SettingsPage extends Component {
 
 	const { username } = this.props.user;
   const { restaurants, activeRestaurantIndex }  = this.props.contextData
-  let name=""
 
-  if (restaurants.length !== 0) {
-        name  = restaurants[activeRestaurantIndex].name;
+  let name=""
+  if (restaurants.length > 0) {
+    name  = restaurants[activeRestaurantIndex].name;
   }
 
 		return (
