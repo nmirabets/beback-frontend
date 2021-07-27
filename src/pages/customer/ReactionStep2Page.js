@@ -2,10 +2,10 @@ import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 
 import { withCustomer } from "../../providers/CustomerProvider";
-import feedbackReactions from '../../feedback.config/feedbackReactions.json';
+import reactionsTemplate from '../../reactionsTemplate.json';
 import SubdimensionHeader from "../../components/customer/reactions/SubdimensionHeader";
 import SubdimensionReactionBtn from '../../components/customer/reactions/ReactionStep2Btn';
-import BackBtn from "../../components/customer/BackBtn";
+import BackBtn from "../../components/HeaderBackBtn";
 import PoweredByFooter from '../../components/customer/PoweredByFooter';
 
 class ReactionStep2Page extends Component {
@@ -17,7 +17,7 @@ class ReactionStep2Page extends Component {
   render() {
 
       // Feedback page 2 -> Subdimension
-        const feedbackReaction = feedbackReactions.filter( (reaction) => reaction.dimension === this.state.reaction.dimension && reaction.isPositive === this.props.reaction.isPositive);
+        const feedbackReaction = reactionsTemplate.filter( (reaction) => reaction.dimension === this.state.reaction.dimension && reaction.isPositive === this.props.reaction.isPositive);
 
     return (
       <>

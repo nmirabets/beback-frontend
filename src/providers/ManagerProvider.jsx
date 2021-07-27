@@ -11,9 +11,8 @@ export const withManager = (Comp) => {
           {managerProvider => (
             <Comp
               contextData={managerProvider.contextData}
-              loadRestaurant={managerProvider.loadRestaurant}
-              createReaction={managerProvider.createReaction}
-              sendReaction={managerProvider.sendReaction}
+              activateRestaurant={managerProvider.activateRestaurant}
+              loadRestaurantData={managerProvider.loadRestaurantData}
               {...this.props}
             />
           )}
@@ -27,51 +26,69 @@ class ManagerProvider extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      restaurant: {},
-      menu: {},
-      sections: [], 
-      items: [],
-      reaction: {},
+      restaurants: [],
+      activeRestaurantIndex: "",
+      menus: [],
+      dashboardData: {},
     }
   }
 
-  loadRestaurant = async ( restaurant ) => {
+  async componentDidMount() {
     try {
+      // load user's restaurants
+      const restaurants = await apiClient.getUserRestaurants();
+      if (typeof restaurants !== 'undefined' && restaurants.length > 0) {
+        // load menus, sections and items
 
-      const menu = await apiClient.getMenu(restaurant.activeMenuId);
-      const sections = await apiClient.getSections(restaurant.activeMenuId);
-      const items =  await apiClient.getItems(restaurant.activeMenuId);
+        const menus = await apiClient.getMenus(restaurants[0]._id);
 
-      this.setState({ restaurant, menu, sections, items, reaction: {} })
+        // load dashboard data
 
+          this.setState({
+            restaurants: restaurants,
+            menus: menus,
+            activeRestaurantIndex: 0,
+          })
+      }
     } catch (e) {
-      console.log(e);
+      console.log(e)
     }
   }
 
-  createReaction = ( name, isPositive ) => {
-    const { restaurant } = this.state;
-    this.setState({
-      reaction: { restaurantId: restaurant._id , name, isPositive }
-    });
+  activateRestaurant = ( activeRestaurantIndex ) =>{
+    this.setState({ activeRestaurantIndex: activeRestaurantIndex })
   }
 
-  sendReaction = ( name, isPositive ) => {
-    const { startedReaction } = this.state;
-    const reaction = { ...startedReaction, name, isPositive}; 
+  loadRestaurantData = async () => {
+     try {
+      // load user's restaurants
+      const restaurants = await apiClient.getUserRestaurants();
+      if (typeof restaurants !== 'undefined' && restaurants.length > 0) {
+        const activeRestaurantIndex = this.state.activeRestaurantIndex;
+        const activeRestaurant = restaurants[activeRestaurantIndex];
+        // load menus, sections and items
+        const menus = await apiClient.getMenus(activeRestaurant._id)
+        // load dashboard data -> pending
 
-    apiClient.postReaction(reaction);  
+          this.setState({
+            restaurants: restaurants,
+            menus: menus,
+          })
+      }
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   render() {
-    const  { restaurant, menu, sections, items, reaction }  = this.state;
+
+    const  { restaurants, menus, activeRestaurantIndex }  = this.state;
      
     return (
       <Provider value={{ 
-          contextData: { restaurant, menu, sections, items, reaction },
-          loadRestaurant: this.loadRestaurant,
-          createReaction: this.createReaction,
-          sendReaction: this.sendReaction,
+          contextData: { restaurants, menus, activeRestaurantIndex },
+          activateRestaurant: this.activateRestaurant,
+          loadRestaurantData: this.loadRestaurantData,
           }}>
         {this.props.children}
       </Provider>

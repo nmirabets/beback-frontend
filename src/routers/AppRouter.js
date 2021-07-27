@@ -5,8 +5,8 @@ import PrivateRoute from '../routers/PrivateRoute';
 import AnonRoute from '../routers/AnonRoute'
 import SignupPage from '../pages/manager/authentication/SignupPage';
 import LoginPage from '../pages/manager/authentication/LoginPage';
-import HomePage from '../pages/HomePage';
-import NotFoundPage from '../pages/NotFound';
+import HomePage from '../pages/website/HomePage';
+import NotFoundPage from '../pages/website/NotFound';
 import CustomerRouter from './CustomerRouter';
 import ManagerRouter from './ManagerRouter';
 

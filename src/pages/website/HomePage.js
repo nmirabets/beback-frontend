@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import apiClient from '../services/apiClient.js'
-import Navbar from '../components/home/Navbar';
+import apiClient from '../../services/apiClient.js'
+import Navbar from '../../components/home/Navbar';
 
 class Home extends Component {
   constructor(props) {

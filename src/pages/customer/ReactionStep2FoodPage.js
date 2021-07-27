@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { withCustomer } from "../../providers/CustomerProvider";
-import feedbackReactions from '../../feedback.config/feedbackReactions.json';
+import reactionsTemplate from '../../reactionsTemplate.json';
 import SubdimensionHeader from "../../components/customer/reactions/SubdimensionHeader";
 import DimensionReactionBtn from '../../components/customer/reactions/ReactionStep1Btn';
 import SubdimensionReactionBtn from '../../components/customer/reactions/ReactionStep2Btn';
 import FeedbackMenuList from '../../components/customer/reactions/FeedbackMenuList';
-import BackBtn from "../../components/customer/BackBtn";
+import BackBtn from "../../components/HeaderBackBtn";
 import PoweredByFooter from '../../components/customer/PoweredByFooter';
 import apiClient from "../../services/apiClient";
 
@@ -44,7 +44,7 @@ class ReactionStartPage extends Component {
           <BackBtn to={`/${this.state.menuList.restaurant.id}`}  />
           <h1>¿Cómo ha ido?</h1>
           <div>
-            {feedbackReactions.filter( (reaction) => reaction.isPositive === true).map((reaction, index) => {
+            {reactionsTemplate.filter( (reaction) => reaction.isPositive === true).map((reaction, index) => {
               return( <DimensionReactionBtn key={index} name={reaction.dimension} onClick={this.handleDimensionClick} /> )
             })}
           </div>
@@ -52,7 +52,7 @@ class ReactionStartPage extends Component {
         </>
     } else if(this.state.step === 2) {
       // Feedback page 2 -> Subdimension
-        const feedbackReaction = feedbackReactions.filter( (reaction) => reaction.dimension === this.state.reaction.dimension && reaction.isPositive === this.state.reaction.isPositive);
+        const feedbackReaction = reactionsTemplate.filter( (reaction) => reaction.dimension === this.state.reaction.dimension && reaction.isPositive === this.state.reaction.isPositive);
         const menuList = this.props.location.state;
         
         if (feedbackReaction[0].dimension==='comida') {

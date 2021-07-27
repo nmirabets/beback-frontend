@@ -8,7 +8,7 @@ import ReactionStep1Page from '../pages/customer/ReactionStep1Page';
 import ReactionStep2Page from '../pages/customer/ReactionStep2Page';
 import ReactionStep2FoodPage from '../pages/customer/ReactionStep2FoodPage';
 import ReactionThankyouPage from '../pages/customer/ReactionThankyouPage';
-import NotFoundPage from '../pages/NotFound';
+import NotFoundPage from '../pages/website/NotFound';
 import CustomerProvider from '../providers/CustomerProvider';
 
 function CustomerRouter() {

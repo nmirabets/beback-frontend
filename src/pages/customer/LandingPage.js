@@ -6,15 +6,6 @@ import RestaurantHeader from "../../components/customer/RestaurantHeader";
 import PoweredByFooter from "../../components/customer/PoweredByFooter";
 
 class Landing extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      restaurant: {},
-			menu: {},
-			sections: [],
-			items: [],
-  };
-  }
 
   componentDidMount() {
     const { restaurant } = this.props.location.state;

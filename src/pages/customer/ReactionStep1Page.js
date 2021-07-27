@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
 import { withCustomer } from "../../providers/CustomerProvider";
-import reactions from '../../feedback.config/feedbackReactions.json';
+import reactionsTemplate from '../../reactionsTemplate.json';
 import ReactionStep1Btn from '../../components/customer/reactions/ReactionStep1Btn';
 import PoweredByFooter from '../../components/customer/PoweredByFooter';
-import BackBtn from "../../components/customer/BackBtn";
+import BackBtn from "../../components/HeaderBackBtn";
 
 class ReactionStep1Page extends Component {
 
@@ -19,7 +19,7 @@ class ReactionStep1Page extends Component {
         <h1 className="text-xl ">¡Dános tu opinión!</h1>
         <h2 className="text-m ">Selecciona una opción...</h2>
         <div>
-          {reactions.filter( (reaction) => reaction.isPositive === true).map((reaction, index) => {
+          {reactionsTemplate.filter( (reaction) => reaction.isPositive === true).map((reaction, index) => {
             return( <ReactionStep1Btn key={index} name={reaction.dimension} onClick={this.handleClick} /> )
           })}
         </div>

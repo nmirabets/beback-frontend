@@ -55,7 +55,7 @@ class SetMenu extends Component {
           })}
 
         </div>
-        <BotNavBar activeTab="set-menu"/>
+        <BotNavBar activeTab="menu"/>
       </>
     );
   }
