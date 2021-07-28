@@ -8,7 +8,7 @@ class ApiClient {
 		});
 	}
 
-	// Authentication
+	// AUTHENTICATION
 
 	async me() {
 		return await this.apiClient.get('/whoami').then(response => response.data);
@@ -28,75 +28,91 @@ class ApiClient {
 		return await this.apiClient.post('/logout', {}).then(response => response.data);
 	}
 
-	// # Customer APIs
+	// RESTAURANTS
 
-	// Restaurants
-
+	// get all restaurants
 	async findAllRestaurants() {
 		return await this.apiClient.get('/restaurants/all').then( res => res.data.found )
   }
 
-	// Menus
-
-	async getMenu(menuId) {
-    return await this.apiClient.post('/menus/', { menuId }).then( res => res.data.found )
-  }
-
-	// Sections
-
-  async getSections(menuId) {
-    return await this.apiClient.get(`/sections/${menuId}`).then( res => res.data.found )
-  }
-
-	// Items
-
-  async getItems(menuId) {
-    return await this.apiClient.get(`/items/${menuId}`).then( res => res.data.found )
-  }
-
-	// Reactions
-	async newReaction(reaction) {
-    return await this.apiClient.post('/reactions/', { data: reaction }).then( res => res.data.created )
-  }
-
-	// # Manager APIs
-
-	// Restaurants
-
-		// delete restaurant
-	async deleteRestaurant(id) {
-    return await this.apiClient.delete('/restaurants/', { data: { id }} ).then( res => res.data.deleted )
-  }
-	// await axios.delete('https://httpbin.org/delete', { data: { answer: 42 } });
-
-	// get the user's restaurants
+	// get user's restaurants
 	async getUserRestaurants() {
-    return await this.apiClient.get('/restaurants/').then( res => res.data.found )
+    return await this.apiClient.get('/restaurants').then( res => res.data.found )
   }
 
-	// create a new restaurant
+	// create restaurant
 	async postNewRestaurant(name) {
-    return await this.apiClient.post('/restaurants/', { name } ).then( res => res.data.created )
+    return await this.apiClient.post('/restaurants', { name } ).then( res => res.data.created )
   }
 
-	// Menus
+	// update restaurant
+	async putRestaurant( id, name ) {
+    return await this.apiClient.put('/restaurants', { id, name }).then( res => res.data.found )
+  }
+
+	// delete restaurant
+	async deleteRestaurant(id) {
+    return await this.apiClient.delete('/restaurants', { data: { id }} ).then( res => res.data.deleted )
+  }
+
+	// MENUS
+
+	// get menu by menuId
+	async getMenu(menuId) {
+    return await this.apiClient.post('/menus', { menuId }).then( res => res.data.found )
+  }
+
+	// get menus by restaurantId
 	async getMenus(restaurantId) {
     return await this.apiClient.post('/menus/all', { restaurantId }).then( res => res.data.found )
   }
 
-	// Restaurant menus
-	async getReactionsData(restaurantId) {
-    return await this.apiClient.post('/menus/', { restaurantId }).then( res => res.data.found )
+	// update menu
+	async putMenu(id, name) {
+    return await this.apiClient.put('/menus', { id, name }).then( res => res.data.found )
   }
 
-	// Update Restaurant
-	async putRestaurant( id, name ) {
-    return await this.apiClient.put('/restaurants/', { id, name }).then( res => res.data.found )
+	// create menu
+	async postNewMenu(restaurantId, name) {
+    return await this.apiClient.post('/menus/new', { restaurantId, name }).then( res => res.data.created )
+  }
+
+	// delete menu
+	async deleteMenu(id) {
+    return await this.apiClient.delete('/menus', { data: { id }} ).then( res => res.data.deleted )
+  }
+
+	// SECTIONS
+
+	// get sections by menuId
+  async getSections(menuId) {
+    return await this.apiClient.post('/sections', { menuId }).then( res => res.data.found )
   }
 	
-	// Manager Restaurant Data
-	async getManagerData() {
-    return await this.apiClient.post('/reactions/').then( res => res.data.created )
+	// update section
+	async updateSection(id, name, position) {
+		return await this.apiClient.put('/sections', { id, name, position }).then( res => res.data.found )
+	}
+
+	// create section
+	async createSection(name) {
+		return await this.apiClient.post('/sections/new', { name }).then( res => res.data.created )
+	}
+
+	// delete section
+	async deleteSection(id) {
+		return await this.apiClient.delete('/sections', { data: { id }} ).then( res => res.data.deleted )
+	}
+
+	// ITEMS
+
+  async getItems(menuId) {
+    return await this.apiClient.post('/items', { menuId }).then( res => res.data.found )
+  }
+
+	// REACTIONS
+	async newReaction(reaction) {
+    return await this.apiClient.post('/reactions', { data: reaction }).then( res => res.data.created )
   }
 
 }

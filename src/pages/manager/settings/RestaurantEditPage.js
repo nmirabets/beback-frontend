@@ -1,14 +1,25 @@
 import React, { Component }  from 'react';
-import { Link } from "react-router-dom";
 
 import { withAuth } from "../../../providers/AuthProvider";
 import { withManager } from "../../../providers/ManagerProvider";
-import BotNavBar from '../../../components/manager/BotNavBar';
+import BotNavBar from '../../../components/BotNavBar';
 import HeaderBtn from '../../../components/HeaderBtn';
 import Header from '../../../components/Header';
-import { ChevronRightIcon } from '@heroicons/react/outline';
+import ListItemComp from '../../../components/ListItemComp';
 
 class EditRestaurantPage extends Component {
+
+	handleOnClickRight = () => {
+		this.props.history.push("/manager/settings/restaurant-selection")
+	}
+
+	handleOnClickLeft = () => {
+		this.props.history.push({pathname: "/manager/settings/restaurant-edit-detail", state: { isNew: true }});
+	}
+
+	handleOnClick = (index) => {
+		this.props.history.push({ pathname: '/manager/settings/restaurant-edit-detail', state:  { index, isNew: false } });
+	}
 
 	render() {
 
@@ -20,18 +31,20 @@ class EditRestaurantPage extends Component {
 					mainTitle="Restaurantes" 
 					RightComponent={HeaderBtn}
 					rightTitle="Guardar"
-					clickRightTo="/manager/settings/restaurant-selection"
+					onClickRight={this.handleOnClickRight}
 					LeftComponent={HeaderBtn} 
 					leftTitle="Añadir"
-					clickLeftTo={{ pathname: '/manager/settings/restaurant-edit-detail', state:  { restaurant:{}, isNew: true } }}
+					onClickLeft={this.handleOnClickLeft}
 				/>
 				<div>
 					{restaurants.map( (restaurant, index) => {
 						return (
-							<Link to={{ pathname: '/manager/settings/restaurant-edit-detail', state:  { restaurant, isNew:false } }} key={index} className="flex p-3 text-xl justify-between border border-gray-300" >
-								<h3 className="font-light mx-2">{restaurant.name}</h3>
-              	<ChevronRightIcon id={index} className="w-6 h-6 text-gray-600"/>
-              </Link> 
+							<ListItemComp
+								onClick={this.handleOnClick}
+								name={restaurant.name}
+								key={index}
+								index={index}
+							/>
 						)
 					})}
 				</div>

@@ -7,7 +7,7 @@ import SubdimensionHeader from "../../components/customer/reactions/Subdimension
 import DimensionReactionBtn from '../../components/customer/reactions/ReactionStep1Btn';
 import SubdimensionReactionBtn from '../../components/customer/reactions/ReactionStep2Btn';
 import FeedbackMenuList from '../../components/customer/reactions/FeedbackMenuList';
-import BackBtn from "../../components/HeaderBackBtn";
+import BackBtn from "../../components/BackBtn";
 import PoweredByFooter from '../../components/customer/PoweredByFooter';
 import apiClient from "../../services/apiClient";
 

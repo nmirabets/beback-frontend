@@ -21,7 +21,7 @@ function BotNavBar(props) {
 					<ChartBarIcon className={iconClassName}  />
 					<div className={dashboardClassName}>Dashboard</div>
 				</Link>
-				<Link className={linkClassName} to='/manager/menu' >
+				<Link className={linkClassName} to='/manager/menu/list' >
 					<BookOpenIcon className={iconClassName}  />
 					<div className={menuClassName}>Menú</div>
 				</Link>

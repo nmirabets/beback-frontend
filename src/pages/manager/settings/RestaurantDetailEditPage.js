@@ -2,14 +2,14 @@ import React, { Component }  from 'react';
 
 import { withAuth } from "../../../providers/AuthProvider";
 import { withManager } from "../../../providers/ManagerProvider";
-import BotNavBar from '../../../components/manager/BotNavBar';
+import BotNavBar from '../../../components/BotNavBar';
 import HeaderSaveBtn from '../../../components/HeaderSaveBtn';
 import Header from '../../../components/Header';
-import BackBtn from '../../../components/HeaderBackBtn';
+import BackBtn from '../../../components/BackBtn';
 import apiClient from '../../../services/apiClient';
 import ImgUpload from '../../../components/ImgUpload';
 
-class EditDetailRestaurantPage extends Component {
+class DetailEditRestaurantPage extends Component {
 	constructor(props) {
     super(props)
     this.state = {
@@ -21,24 +21,40 @@ class EditDetailRestaurantPage extends Component {
   }
 
 	componentDidMount() {
-    const { restaurant, isNew } = this.props.location.state;
-		this.setState({
-			id: restaurant._id,
-			name: restaurant.name,
-			logoUrl: restaurant.logoUrl,
-			isNew: isNew,
-		})
+    const { isNew } = this.props.location.state;
+		if (isNew) {
+			this.setState({
+				isNew: isNew,
+			})
+		} else {
+			const { index } = this.props.location.state;
+			const { restaurants } = this.props.contextData;
+			const restaurant = restaurants[index];
+			this.setState({
+				id: restaurant._id,
+				name: restaurant.name,
+				logoUrl: restaurant.logoUrl,
+				isNew: isNew,
+			})
+		}
 		this.nameInput.current.focus();
   }
 
+	handleOnClickLeft = () => {
+		this.props.history.push("/manager/settings/restaurant-edit")
+	}
+
 	handleSave = async () => {
 		const { id, name, isNew } = this.state;
+		if (typeof name !== 'undefined' && name!== "") {
 		if (!isNew) {
 			await apiClient.putRestaurant( id, name );
 		} else {
 			await apiClient.postNewRestaurant(name)
 		}
 		await this.props.loadRestaurantData();
+		this.props.history.push("/manager/settings/restaurant-edit")
+		}
 	}
 
 	handleChange = event => {
@@ -63,12 +79,10 @@ class EditDetailRestaurantPage extends Component {
 					mainTitle={name}
 					RightComponent={HeaderSaveBtn}
 					rightTitle="Guardar"
-					clickRightTo="/manager/settings/restaurant-selection"
 					onClickRight={this.handleSave}
 					LeftComponent={BackBtn} 
 					leftTitle="Atrás"
-					clickLeftTo="/manager/settings/restaurant-edit"
-					onClickLeft={()=>{}}
+					onClickLeft={this.handleOnClickLeft}
 				/>
 				<div className="flex border border-b-2 border-gray-300">
 					<ImgUpload className="text-blue-300 rounded-full w-20 p-3 my-8 mx-4 " url={logoUrl} />
@@ -87,4 +101,4 @@ class EditDetailRestaurantPage extends Component {
 	}
 }
 
-export default withAuth(withManager(EditDetailRestaurantPage));
+export default withAuth(withManager(DetailEditRestaurantPage));

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { withAuth } from "../../../providers/AuthProvider";
 import { withManager } from "../../../providers/ManagerProvider";
-import BotNavBar from "../../../components/manager/BotNavBar";
+import BotNavBar from "../../../components/BotNavBar";
 import DateFilterBar from "../../../components/manager/dashboard/DateFilterBar";
 import ReactionSummary from "../../../components/manager/dashboard/ReactionSummary";
 import DimReactionSummary from "../../../components/manager/dashboard/DimReactionSummary";

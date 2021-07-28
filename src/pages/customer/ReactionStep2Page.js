@@ -5,7 +5,7 @@ import { withCustomer } from "../../providers/CustomerProvider";
 import reactionsTemplate from '../../reactionsTemplate.json';
 import SubdimensionHeader from "../../components/customer/reactions/SubdimensionHeader";
 import SubdimensionReactionBtn from '../../components/customer/reactions/ReactionStep2Btn';
-import BackBtn from "../../components/HeaderBackBtn";
+import BackBtn from "../../components/BackBtn";
 import PoweredByFooter from '../../components/customer/PoweredByFooter';
 
 class ReactionStep2Page extends Component {

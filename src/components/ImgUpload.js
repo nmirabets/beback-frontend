@@ -5,7 +5,7 @@ import { CameraIcon } from '@heroicons/react/outline';
 function ImgUpload(props) {
 	return (
 		<div>
-			{props.url === "" ? (
+			{props.url !== "" ? (
 				<img src={props.url} alt="upload img" className={props.className} />
 			) : (
 				<CameraIcon className={props.className}/>
