@@ -7,6 +7,7 @@ import HeaderBtn from '../../../../components/HeaderBtn';
 import BotNavBar from '../../../../components/BotNavBar';
 import ListItem from "../../../../components/ListItemComp";
 import Spacing from "../../../../components/Spacing";
+import { ChevronRightIcon } from '@heroicons/react/outline';
 
 class SectionListEditPage extends Component {
   constructor(props) {
@@ -74,6 +75,7 @@ class SectionListEditPage extends Component {
                 key={index}
                 name={item.name}
                 onClick={this.handleItemClick}
+								Icon={ChevronRightIcon}
               />
             )
           })}

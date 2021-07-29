@@ -8,6 +8,7 @@ import BackBtn from '../../../components/BackBtn';
 import TopNavBar from '../../../components/TopNavBar';
 import ListItemComp from '../../../components/ListItemComp';
 import Spacing from '../../../components/Spacing';
+import { ChevronRightIcon } from '@heroicons/react/outline';
 
 class RestaurantSelectionPage extends Component {
 
@@ -48,6 +49,7 @@ class RestaurantSelectionPage extends Component {
 								name={restaurant.name}
 								key={index}
 								index={index}
+								Icon={ChevronRightIcon}
 							/>
 						)
 					})}

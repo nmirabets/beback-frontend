@@ -8,6 +8,8 @@ import BackBtn from "../../../../components/BackBtn";
 import BotNavBar from '../../../../components/BotNavBar';
 import ListItemComp from "../../../../components/ListItemComp";
 import Spacing from "../../../../components/Spacing";
+import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline';
+import apiClient from "../../../../services/apiClient";
 
 class ItemListPage extends Component {
   constructor(props) {
@@ -45,10 +47,12 @@ class ItemListPage extends Component {
   }
   
   handleItemClick = (itemIndex) => {
-    // to ItemDetailEditPage
+    // change item visibility
     const { filteredItems } = this.state;
     const item = filteredItems[itemIndex];
-    this.props.history.push({pathname: "/manager/menu/items-edit-detail", state: { item }});
+    item.isVisible = !item.isVisible;
+    apiClient.updateItem(item);
+    this.setState({});
   }
 
   render() {
@@ -74,6 +78,8 @@ class ItemListPage extends Component {
                 key={index}
                 onClick={this.handleItemClick}
                 name={item.name}
+                index={index}
+                Icon={(item.isVisible ? EyeIcon : EyeOffIcon)}
               />
             )
           })}

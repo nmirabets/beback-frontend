@@ -7,6 +7,7 @@ import HeaderBtn from '../../../../components/HeaderBtn';
 import BotNavBar from '../../../../components/BotNavBar';
 import ListItemComp from "../../../../components/ListItemComp";
 import Spacing from "../../../../components/Spacing";
+import { ChevronRightIcon } from '@heroicons/react/outline';
 
 class MenuEditListPage extends Component {
   constructor(props) {
@@ -64,6 +65,7 @@ class MenuEditListPage extends Component {
                 key={index}
                 name={item.name}
                 onClick={this.handleItemClick}
+								Icon={ChevronRightIcon}
               />
             )
           })}
