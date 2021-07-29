@@ -14,6 +14,8 @@ export const withManager = (Comp) => {
               activateRestaurant={managerProvider.activateRestaurant}
               loadRestaurantData={managerProvider.loadRestaurantData}
               loadMenusData={managerProvider.loadMenusData}
+              loadSectionsData={managerProvider.loadSectionsData}
+              loadItemsData={managerProvider.loadItemsData}
               {...this.props}
             />
           )}
@@ -39,44 +41,26 @@ class ManagerProvider extends Component {
   async componentDidMount() {
     try {
         await this.loadRestaurantData();
+
         const { restaurants } = this.state;
+
         if (restaurants.length > 0) {
-
           await this.loadMenusData(restaurants[0]._id)
-
           await this.loadSectionsData();
-
           await this.loadItemsData();
-
-
-          // const allSections = [];
-          // const allItems = [];
-
-          // menus.map( async (menu) => {
-          //   const sections =  await apiClient.getSections(menu._id);
-          //   sections.map( async (section) => {
-          //     allSections.push(section);
-          //   })
-          //   const items = await apiClient.getItems(menu._id);
-          //   items.map( async (item) => {
-          //     allItems.push(item);
-          //   })
-          // })
-          
-          // this.setState({
-          //   restaurants: restaurants,
-          //   menus: menus,
-          //   sections: allSections,
-          //   items: allItems,
-          //   activeRestaurantIndex: 0,
-          // })
         }
       } catch (e) {
         console.log(e)
       }
     }
 
-  activateRestaurant = ( index ) =>{
+  activateRestaurant = async (index) =>{
+    const { restaurants } = this.state;
+
+    await this.loadMenusData(restaurants[index]._id)
+    await this.loadSectionsData();
+    await this.loadItemsData();
+
     this.setState({ activeRestaurantIndex: index })
   }
 
@@ -84,23 +68,12 @@ class ManagerProvider extends Component {
     try {
       const restaurants = await apiClient.getUserRestaurants();
       let activeRestaurantIndex = this.state.activeRestaurantIndex;
-      let menus = [];
-      if (restaurants.length > 0) {
 
-        // por si se ha eliminado el restaurante seleccionado
-        if (activeRestaurantIndex>=(restaurants.length)) {
-          activeRestaurantIndex=0;
-        }
-        const activeRestaurant = restaurants[activeRestaurantIndex];
-        // load menus, sections and items -> pending
-        menus = await apiClient.getMenus(activeRestaurant._id)
-
-        // load dashboard data -> pending
-
+      if (restaurants.length > 0 && activeRestaurantIndex>=(restaurants.length)) {
+        activeRestaurantIndex=0;
       }
       this.setState({
         restaurants: restaurants,
-        menus: menus,
         activeRestaurantIndex
       })
     } catch (e) {
@@ -121,18 +94,10 @@ class ManagerProvider extends Component {
 
   loadSectionsData = async () => {
     try {
-      const { menus } = this.state;
-      const allSections = [];
-
-      menus.map( async (menu) => {
-        const sections =  await apiClient.getSections(menu._id);
-        sections.map( async (section) => {
-          allSections.push(section);
-        })
-      })
-
+      const { activeRestaurantIndex, restaurants } = this.state;
+      const sections = await apiClient.getSections(restaurants[activeRestaurantIndex]._id);
       this.setState({
-        sections: allSections,
+        sections,
       })
     } catch (e) {
       console.log(e)
@@ -140,19 +105,11 @@ class ManagerProvider extends Component {
   }
 
   loadItemsData = async () => {
-    try {
-      const { menus } = this.state;
-      const allItems = [];
-
-      menus.map( async (menu) => {
-        const items =  await apiClient.getItems(menu._id);
-        items.map( async (item) => {
-          allItems.push(item);
-        })
-      })
-
+        try {
+      const { activeRestaurantIndex, restaurants } = this.state;
+      const items = await apiClient.getItems(restaurants[activeRestaurantIndex]._id);
       this.setState({
-        items: allItems,
+        items,
       })
     } catch (e) {
       console.log(e)
@@ -169,6 +126,8 @@ class ManagerProvider extends Component {
           activateRestaurant: this.activateRestaurant,
           loadRestaurantData: this.loadRestaurantData,
           loadMenusData: this.loadMenusData,
+          loadSectionsData: this.loadSectionsData,
+          loadItemsData: this.loadItemsData,
           }}>
         {this.props.children}
       </Provider>

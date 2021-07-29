@@ -9,53 +9,56 @@ import BotNavBar from '../../../../components/BotNavBar';
 import ListItemComp from "../../../../components/ListItemComp";
 import Spacing from "../../../../components/Spacing";
 
-class SectionListPage extends Component {
+class ItemListPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
       restaurantId: "",
       menuId: "",
-      filteredSections: [],
+      sectionId: "",
+      filteredItems: [],
   };
   }
 
   componentDidMount() {
-    const { sections } = this.props.contextData;
-    const { restaurantId, menuId } = this.props.location.state;
-
-    const filteredSections = sections.filter( (element) => { return element.menuId === menuId });
-
+    const { items } = this.props.contextData;
+    const { restaurantId, menuId, sectionId } = this.props.location.state;
+    const filteredItems = items.filter( (element) => { return element.sectionId === sectionId });
     this.setState({
       restaurantId,
       menuId,
-      filteredSections
+      sectionId,
+      filteredItems,
     })
   }
 
   handleClickRight = () => {
-  const { restaurantId, menuId } = this.state;
-  this.props.history.push({pathname: "/manager/menu/sections-edit", state: { restaurantId, menuId }});
+    // to ItemListEditPage
+    const { restaurantId, menuId, sectionId } = this.state;
+    this.props.history.push({pathname: "/manager/menu/items-edit", state: { restaurantId, menuId, sectionId }});
   }
 
   handleClickLeft = () => {
-    this.props.history.push("/manager/menu/list")
+    // back to SectionListPage
+    const { restaurantId, menuId, sectionId } = this.state;
+    this.props.history.push({pathname: "/manager/menu/sections", state: { restaurantId, menuId, sectionId }});
   }
   
-  handleItemClick = (sectionIndex) => {
-    // to item list
-    const { restaurantId, menuId, filteredSections } = this.state;
-    const sectionId = filteredSections[sectionIndex]._id;
-    this.props.history.push({pathname: "/manager/menu/items", state: { restaurantId, menuId, sectionId }});
+  handleItemClick = (itemIndex) => {
+    // to ItemDetailEditPage
+    const { filteredItems } = this.state;
+    const item = filteredItems[itemIndex];
+    this.props.history.push({pathname: "/manager/menu/items-edit-detail", state: { item }});
   }
 
   render() {
 
-    const { filteredSections } = this.state;
+    const { filteredItems } = this.state;
 
     return (
       <>
         <TopNavBar
-          mainTitle='Secciones' 
+          mainTitle='Platos' 
 					RightComponent={HeaderBtn}
 					rightTitle='Editar'
 					onClickRight={this.handleClickRight}
@@ -65,10 +68,9 @@ class SectionListPage extends Component {
         />
         <Spacing />
         <div className="flex flex-col">
-          {filteredSections.map( (item, index) => {
+          {filteredItems.map( (item, index) => {
             return (
               <ListItemComp 
-                index={index}
                 key={index}
                 onClick={this.handleItemClick}
                 name={item.name}
@@ -83,4 +85,4 @@ class SectionListPage extends Component {
   }
 }
 
-export default withAuth(withManager(SectionListPage));
+export default withAuth(withManager(ItemListPage));

@@ -4,8 +4,9 @@ import { withAuth } from "../../../providers/AuthProvider";
 import { withManager } from "../../../providers/ManagerProvider";
 import BotNavBar from '../../../components/BotNavBar';
 import HeaderBtn from '../../../components/HeaderBtn';
-import Header from '../../../components/Header';
+import TopNavBar from '../../../components/TopNavBar';
 import ListItemComp from '../../../components/ListItemComp';
+import Spacing from '../../../components/Spacing';
 
 class EditRestaurantPage extends Component {
 
@@ -27,7 +28,7 @@ class EditRestaurantPage extends Component {
 
 		return (
 			<>
-				<Header 
+				<TopNavBar 
 					mainTitle="Restaurantes" 
 					RightComponent={HeaderBtn}
 					rightTitle="Guardar"
@@ -36,6 +37,7 @@ class EditRestaurantPage extends Component {
 					leftTitle="Añadir"
 					onClickLeft={this.handleOnClickLeft}
 				/>
+				<Spacing />
 				<div>
 					{restaurants.map( (restaurant, index) => {
 						return (
@@ -48,6 +50,7 @@ class EditRestaurantPage extends Component {
 						)
 					})}
 				</div>
+				<Spacing />
 				<BotNavBar activeTab="settings"/>
 			</>
 		);

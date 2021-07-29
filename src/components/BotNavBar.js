@@ -16,7 +16,7 @@ function BotNavBar(props) {
 		const settingsClassName = ( props.activeTab === "settings" ? activeTabStyle : inactiveTabStyle );
 
 	return (
-			<div className="bg-white fixed border-t border-gray-800 bottom-0 inset-x-0 flex py-2 ">
+			<div className="bg-white fixed border-t border-gray-800 bottom-0 inset-x-0 flex py-2 h-15">
 				<Link className={linkClassName} to='/manager/dashboard' >
 					<ChartBarIcon className={iconClassName}  />
 					<div className={dashboardClassName}>Dashboard</div>

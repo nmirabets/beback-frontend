@@ -68,13 +68,14 @@ class ApiClient {
   }
 
 	// update menu
-	async putMenu(id, name) {
-    return await this.apiClient.put('/menus', { id, name }).then( res => res.data.found )
+	async updateMenu(menu) {
+    return await this.apiClient.put('/menus', { menu }).then( res => res.data.found )
   }
 
 	// create menu
-	async postNewMenu(restaurantId, name) {
-    return await this.apiClient.post('/menus/new', { restaurantId, name }).then( res => res.data.created )
+	async createMenu(menu) {
+		console.log("create menu", menu);
+    return await this.apiClient.post('/menus/new', { menu }).then( res => res.data.created )
   }
 
 	// delete menu
@@ -84,19 +85,19 @@ class ApiClient {
 
 	// SECTIONS
 
-	// get sections by menuId
-  async getSections(menuId) {
-    return await this.apiClient.post('/sections', { menuId }).then( res => res.data.found )
+	// get sections by restaurantId
+  async getSections(restaurantId) {
+    return await this.apiClient.post('/sections', { restaurantId }).then( res => res.data.found )
   }
 	
 	// update section
-	async updateSection(id, name, position) {
-		return await this.apiClient.put('/sections', { id, name, position }).then( res => res.data.found )
+	async updateSection(section) {
+		return await this.apiClient.put('/sections', { section }).then( res => res.data.found )
 	}
 
 	// create section
-	async createSection(name) {
-		return await this.apiClient.post('/sections/new', { name }).then( res => res.data.created )
+	async createSection(section) {
+		return await this.apiClient.post('/sections/new', { section }).then( res => res.data.created )
 	}
 
 	// delete section
@@ -106,11 +107,28 @@ class ApiClient {
 
 	// ITEMS
 
-  async getItems(menuId) {
-    return await this.apiClient.post('/items', { menuId }).then( res => res.data.found )
+  async getItems(restaurantId) {
+    return await this.apiClient.post('/items', { restaurantId }).then( res => res.data.found )
   }
 
+	// update item
+	async updateItem(item) {
+		return await this.apiClient.put('/items', { item }).then( res => res.data.found )
+	}
+
+	// create item
+	async createItem(item) {
+		return await this.apiClient.post('/items/new', { item }).then( res => res.data.created )
+	}
+
+	// delete item
+	async deleteItem(id) {
+		return await this.apiClient.delete('/items', { data: { id }} ).then( res => res.data.deleted )
+	}
+
 	// REACTIONS
+
+	// create reaction
 	async newReaction(reaction) {
     return await this.apiClient.post('/reactions', { data: reaction }).then( res => res.data.created )
   }

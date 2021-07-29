@@ -11,6 +11,10 @@ import SectionListPage from '../pages/manager/menu/sections/SectionListPage';
 import SectionListEditPage from '../pages/manager/menu/sections/SectionListEditPage';
 import SectionDetailEditPage from '../pages/manager/menu/sections/SectionDetailEditPage';
 
+import ItemListPage from '../pages/manager/menu/items/ItemListPage';
+import ItemListEditPage from '../pages/manager/menu/items/ItemListEditPage';
+import ItemDetailEditPage from '../pages/manager/menu/items/ItemDetailEditPage';
+
 import SettingsPage from '../pages/manager/settings/SettingsPage';
 import RestaurantSelectionPage from '../pages/manager/settings/RestaurantSelectionPage';
 import RestaurantDetailEditPage from '../pages/manager/settings/RestaurantDetailEditPage';
@@ -35,9 +39,9 @@ function ManagerRouter() {
         <Route path={`${url}/menu/sections-edit`} component={SectionListEditPage} />
         <Route path={`${url}/menu/sections`} component={SectionListPage} />
 
-        {/* <Route path={`${url}/menu/items-edit-detail`} component={AdminMenuPage} />
-        <Route path={`${url}/menu/items-edit`} component={AdminMenuPage} />
-        <Route path={`${url}/menu/items`} component={AdminMenuPage} /> */}
+        <Route path={`${url}/menu/items-edit-detail`} component={ItemDetailEditPage} />
+        <Route path={`${url}/menu/items-edit`} component={ItemListEditPage} />
+        <Route path={`${url}/menu/items`} component={ItemListPage} />
 
         <Route path={`${url}/settings/restaurant-selection`} component={RestaurantSelectionPage} />
         <Route path={`${url}/settings/restaurant-edit-detail`} component={RestaurantDetailEditPage} />

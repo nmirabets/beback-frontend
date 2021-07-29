@@ -2,10 +2,11 @@ import React, { Component } from "react";
 
 import { withAuth } from '../../../../providers/AuthProvider';
 import { withManager } from "../../../../providers/ManagerProvider";
-import Header from '../../../../components/Header';
+import TopNavBar from '../../../../components/TopNavBar';
 import HeaderBtn from '../../../../components/HeaderBtn';
 import BotNavBar from '../../../../components/BotNavBar';
 import ListItemComp from "../../../../components/ListItemComp";
+import Spacing from "../../../../components/Spacing";
 
 class MenuListPage extends Component {
 
@@ -18,8 +19,11 @@ class MenuListPage extends Component {
     // this.props.history.push("/manager/menu/list-edit")
   }
 
-  handleItemClick = (index) => {
-    this.props.history.push({pathname: "/manager/menu/sections", state: { index }});
+  handleItemClick = (menuIndex) => {
+    const { activeRestaurantIndex, restaurants, menus } = this.props.contextData;
+    const menuId = menus[menuIndex]._id;
+    const restaurantId = restaurants[activeRestaurantIndex]._id;
+    this.props.history.push({pathname: "/manager/menu/sections", state: { restaurantId, menuId }});
   }
 
   render() {
@@ -28,15 +32,16 @@ class MenuListPage extends Component {
 
     return (
       <>
-        <Header
+        <TopNavBar
           mainTitle='Menús' 
 					RightComponent={HeaderBtn}
 					rightTitle='Editar'
 					onClickRight={this.handleClickRight}
 					LeftComponent={HeaderBtn} 
-					leftTitle='Vista QR'
+					leftTitle='QR'
 					onClickLeft={this.handleClickLeft}
         />
+        <Spacing />
         <div className="flex flex-col">
           {menus.map( (item, index) => {
             return (
@@ -48,8 +53,8 @@ class MenuListPage extends Component {
               />
             )
           })}
-
         </div>
+        <Spacing />
         <BotNavBar activeTab="menu"/>
       </>
     );

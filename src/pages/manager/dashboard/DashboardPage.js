@@ -7,6 +7,7 @@ import DateFilterBar from "../../../components/manager/dashboard/DateFilterBar";
 import ReactionSummary from "../../../components/manager/dashboard/ReactionSummary";
 import DimReactionSummary from "../../../components/manager/dashboard/DimReactionSummary";
 import RankDashboard from "../../../components/manager/dashboard/RankDashboard";
+import Spacing from "../../../components/Spacing";
 
 class DashboardPage extends Component {
 
@@ -24,6 +25,7 @@ class DashboardPage extends Component {
         <RankDashboard title="Lo que más ha gustado..." isPositive={true} items={[{ name:"Arroz negro", reactions:152 }, { name:"Sopa de ajo", reactions:78 }, { name:"Nachos con queso", reactions:22 }]}/>
         <RankDashboard title="Lo que menos ha gustado..." isPositive={false}  items={[{ name:"Spaguetti Bolognesa", reactions:32 }, { name:"Filet mignon", reactions:24 }, { name:"Ensalada de la casa", reactions:5 }]}/>
         <DateFilterBar />
+        <Spacing />
         <BotNavBar activeTab="dashboard" />
       </div>
     );

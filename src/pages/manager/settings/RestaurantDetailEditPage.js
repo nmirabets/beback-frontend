@@ -4,7 +4,7 @@ import { withAuth } from "../../../providers/AuthProvider";
 import { withManager } from "../../../providers/ManagerProvider";
 import BotNavBar from '../../../components/BotNavBar';
 import HeaderSaveBtn from '../../../components/HeaderSaveBtn';
-import Header from '../../../components/Header';
+import TopNavBar from '../../../components/TopNavBar';
 import BackBtn from '../../../components/BackBtn';
 import apiClient from '../../../services/apiClient';
 import ImgUpload from '../../../components/ImgUpload';
@@ -75,7 +75,7 @@ class DetailEditRestaurantPage extends Component {
 
 		return (
 			<>
-				<Header 
+				<TopNavBar 
 					mainTitle={name}
 					RightComponent={HeaderSaveBtn}
 					rightTitle="Guardar"

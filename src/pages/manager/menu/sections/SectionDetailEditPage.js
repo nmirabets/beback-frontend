@@ -4,86 +4,77 @@ import { withAuth } from "../../../../providers/AuthProvider";
 import { withManager } from "../../../../providers/ManagerProvider";
 import BotNavBar from '../../../../components/BotNavBar';
 import HeaderSaveBtn from '../../../../components/HeaderSaveBtn';
-import Header from '../../../../components/Header';
+import TopNavBar from '../../../../components/TopNavBar';
 import BackBtn from '../../../../components/BackBtn';
 import apiClient from '../../../../services/apiClient';
 import ImgUpload from '../../../../components/ImgUpload';
+import Spacing from '../../../../components/Spacing';
 
 class SectionDetailEditPage extends Component {
 	constructor(props) {
     super(props)
     this.state = {
-      menu: {},
-			id: "",
-			name: "",
-      position: "",
-			imgUrl: "",
+			restaurantId: "",
+			menuId: "",
+      section: {},
+			isNew: false,
     }
 		this.nameInput = React.createRef();
   }
 
 	componentDidMount() {
-    const { isNew, menu } = this.props.location.state;
-		if (isNew) {
-			this.setState({
-        menu: menu,
-        imgUrl: "",
-				isNew: isNew,
-			})
-		} else {
-			const { index } = this.props.location.state;
-			const { sections } = this.props.contextData;
-			const section = sections[index];
-			this.setState({
-        menu,
-				id: section._id,
-				name: section.name,
-        imgUrl: "",
-				isNew: isNew,
-			})
-		}
+    const { section, isNew } = this.props.location.state;
+		this.setState({
+			restaurantId: section.restaurantId,
+			menuId: section.menuId,
+			section,
+			isNew,
+		})
 		this.nameInput.current.focus();
   }
 
 	handleOnClickLeft = () => {
-		this.props.history.push("/manager/menu/menu-edit")
+		const { restaurantId, menuId } = this.state;
+		this.props.history.push({pathname: "/manager/menu/sections-edit", state: { restaurantId, menuId }});
 	}
 
 	handleSave = async () => {
-		const { restaurantId, id, name, isNew } = this.state;
-		if (typeof name !== 'undefined' && name!== "") {
+		const { restaurantId, menuId, section, isNew } = this.state;
+		if (typeof section.name !== 'undefined' && section.name!== "") {
 			if (!isNew) {
-				await apiClient.putMenu( id , name );
+				await apiClient.updateSection(section);
 			} else {
-				console.log("restaurantId", restaurantId)
-				console.log("name", name)
-				await apiClient.postNewMenu( restaurantId, name)
+				await apiClient.createSection(section);
 			}
-			await this.props.loadMenuData();
-			this.props.history.push("/manager/menu/menu-edit")
+			await this.props.loadSectionsData();
+			this.props.history.push({pathname: "/manager/menu/sections-edit", state: { restaurantId, menuId }});
 		}
 	}
 
 	handleChange = event => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+		this.setState(prevState => ({
+			section: {
+				...prevState.section,
+				[name]: value,
+		}}))
   };
 
 	handleDelete = async () => {
-		const { id } = this.state;
-		await apiClient.deleteMenu(id);
-		await this.props.loadMenuData();
-		this.props.history.push("/manager/menu/menu-edit");
+		const { restaurantId, menuId, section } = this.state;
+		await apiClient.deleteSection(section._id);
+		await this.props.loadSectionsData();
+		this.props.history.push({pathname: "/manager/menu/sections-edit", state: { restaurantId, menuId }});
 	};
 
 	render() {
 
-	const { id, name, imgUrl, isNew } = this.state;
+	const { section, isNew } = this.state;
 
 		return (
 			<>
-				<Header 
-					mainTitle={name}
+				<TopNavBar 
+					mainTitle={section.name}
 					RightComponent={HeaderSaveBtn}
 					rightTitle="Guardar"
 					onClickRight={this.handleSave}
@@ -91,11 +82,12 @@ class SectionDetailEditPage extends Component {
 					leftTitle="Atrás"
 					onClickLeft={this.handleOnClickLeft}
 				/>
+				<Spacing />
 				<div className="flex border border-b-2 border-gray-300">
-					<ImgUpload className="text-blue-300 rounded-full w-20 p-3 my-8 mx-4 " url={imgUrl} />
+					<ImgUpload className="text-blue-300 rounded-full w-20 p-3 my-8 mx-4 " url={section.imgUrl} />
 					<div className="flex flex-col justify-start w-3/4 font-light mt-5 pr-8" >
 						<label className="text-gray-500" >Nombre</label>
-						<input className="text-xl font-light border-t border-b py-2 my-1 border-gray-400" type="text" id={id} name="name" defaultValue={name} onChange={this.handleChange} ref={this.nameInput}></input>
+						<input className="text-xl font-light border-t border-b py-2 my-1 border-gray-400" type="text" id={section.id} name="name" defaultValue={section.name} onChange={this.handleChange} ref={this.nameInput}></input>
 						<h3 className="text-xs font-light text-gray-400" >El nombre se mostrará en el QR</h3>
 						<div className="flex justify-end " >
 							{(!isNew ? <button className="text-xs text-red-700 font-light border-b border-red-700 my-2" onClick={this.handleDelete} >Eliminar</button> : "")}
