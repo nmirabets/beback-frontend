@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { withCustomer } from "../../providers/CustomerProvider";
-import RestaurantHeader from "../../components/customer/RestaurantHeader";
+import RestaurantHeader from "../../components/customer/PageHeader";
 import PoweredByFooter from "../../components/customer/PoweredByFooter";
 import { ThumbUpIcon, ThumbDownIcon }from "@heroicons/react/outline";
 

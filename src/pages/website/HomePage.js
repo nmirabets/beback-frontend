@@ -38,14 +38,14 @@ class Home extends Component {
 
   handleClickNext = () => {
     const { restaurantList, index } = this.state;
-    if (index===restaurantList.length - 1) {
+    if (index===(restaurantList.length - 1)) {
           this.setState({
       index: 0
     })
     } else {
-          this.setState({
-      index: index + 1
-    })
+      this.setState({
+        index: index + 1
+      })
     }
   }
 
@@ -53,11 +53,11 @@ class Home extends Component {
     const { restaurantList, index } = this.state;
     if (index===0) {
       this.setState({
-        index: restaurantList.length - 1
+        index: (restaurantList.length - 1)
       })
     } else {
       this.setState({
-        index: index - 1
+        index: (index - 1)
       })
     }
   }

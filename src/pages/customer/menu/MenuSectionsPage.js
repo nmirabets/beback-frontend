@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import { withCustomer } from "../../providers/CustomerProvider";
-import PoweredByFooter from "../../components/customer/PoweredByFooter";
-import RestaurantHeader from "../../components/customer/RestaurantHeader";
+import { withCustomer } from "../../../providers/CustomerProvider";
+import PoweredByFooter from "../../../components/customer/PoweredByFooter";
+import PageHeader from "../../../components/customer/PageHeader";
+import BackBtn from "../../../components/BackBtn";
 
 class MenuSectionsPage extends Component {
 
@@ -13,7 +14,8 @@ class MenuSectionsPage extends Component {
 
     return (
       <>
-        <RestaurantHeader name={restaurant.name} />
+        <BackBtn title="Atrás" onClick={this.props.history.goBack} />
+        <PageHeader name={restaurant.name} />
         <ul> 
             { sections.map((section, index) => {
               return(

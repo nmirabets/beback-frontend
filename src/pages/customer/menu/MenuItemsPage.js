@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 
-import { withCustomer } from "../../providers/CustomerProvider";
-import PoweredByFooter from "../../components/customer/PoweredByFooter";
+import { withCustomer } from "../../../providers/CustomerProvider";
+import PoweredByFooter from "../../../components/customer/PoweredByFooter";
+import BackBtn from "../../../components/BackBtn";
+import PageHeader from "../../../components/customer/PageHeader";
 
 class MenuItemsPage extends Component {
   constructor(props) {
@@ -28,7 +30,8 @@ class MenuItemsPage extends Component {
 
     return (
       <div>
-				<h1>{section.name}</h1>
+        <BackBtn title="Atrás" onClick={this.props.history.goBack} />
+        <PageHeader name={section.name} />
         {items.map((item, index) => {
           return(
             <div key={index} >

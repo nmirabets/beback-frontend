@@ -20,23 +20,13 @@
     "isPositive": false
   },
   {
-    "dimension": "ambiente",
+    "dimension": "atmósfera",
     "subdimension": ["buena musica","","",""],
     "isPositive": true
   },
   {
-    "dimension": "ambiente",
+    "dimension": "atmósfera",
     "subdimension": ["mala musica","","",""],
-    "isPositive": false
-  },
-  {
-    "dimension": "local",
-    "subdimension": ["limpio","","",""],
-    "isPositive": true
-  },
-  {
-    "dimension": "local",
-    "subdimension": ["sucio","","",""],
     "isPositive": false
   }
 ]

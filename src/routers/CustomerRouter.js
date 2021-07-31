@@ -2,12 +2,12 @@ import React from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 
 import LandingPage from '../pages/customer/LandingPage';
-import MenuSectionsPage from '../pages/customer/MenuSectionsPage';
-import MenuItemsPage from '../pages/customer/MenuItemsPage';
-import ReactionStep1Page from '../pages/customer/ReactionStep1Page';
-import ReactionStep2Page from '../pages/customer/ReactionStep2Page';
-import ReactionStep2FoodPage from '../pages/customer/ReactionStep2FoodPage';
-import ReactionThankyouPage from '../pages/customer/ReactionThankyouPage';
+import MenuSectionsPage from '../pages/customer/menu/MenuSectionsPage';
+import MenuItemsPage from '../pages/customer/menu/MenuItemsPage';
+import ReactionStep1Page from '../pages/customer/reaction/ReactionStep1Page';
+import ReactionStep2Page from '../pages/customer/reaction/ReactionStep2Page';
+import ReactionStep2FoodPage from '../pages/customer/reaction/ReactionStep2FoodPage';
+import ReactionThankyouPage from '../pages/customer/reaction/ReactionThankyouPage';
 import NotFoundPage from '../pages/website/NotFound';
 import CustomerProvider from '../providers/CustomerProvider';
 

@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import { withCustomer } from "../../providers/CustomerProvider";
-import reactionsTemplate from '../../reactionsTemplate.json';
-import SubdimensionHeader from "../../components/customer/reactions/SubdimensionHeader";
-import DimensionReactionBtn from '../../components/customer/reactions/ReactionStep1Btn';
-import SubdimensionReactionBtn from '../../components/customer/reactions/ReactionStep2Btn';
-import FeedbackMenuList from '../../components/customer/reactions/FeedbackMenuList';
-import BackBtn from "../../components/BackBtn";
-import PoweredByFooter from '../../components/customer/PoweredByFooter';
-import apiClient from "../../services/customerApiClient";
+import { withCustomer } from "../../../providers/CustomerProvider";
+import reactionsTemplate from '../../../reactionsTemplate.json';
+import SubdimensionHeader from "../../../components/customer/reactions/SubdimensionHeader";
+import DimensionReactionBtn from '../../../components/customer/reactions/ReactionStep1Btn';
+import SubdimensionReactionBtn from '../../../components/customer/reactions/ReactionStep2Btn';
+import FeedbackMenuList from '../../../components/customer/reactions/FeedbackMenuList';
+import BackBtn from "../../../components/BackBtn";
+import PoweredByFooter from '../../../components/customer/PoweredByFooter';
+import apiClient from "../../../services/customerApiClient";
 
-class ReactionStartPage extends Component {
+class ReactionStep2FoodPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -98,4 +98,4 @@ class ReactionStartPage extends Component {
   }
 }
 
-export default withCustomer(ReactionStartPage);
+export default withCustomer(ReactionStep2FoodPage);

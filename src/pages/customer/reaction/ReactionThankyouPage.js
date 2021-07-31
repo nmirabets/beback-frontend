@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import { withCustomer } from "../../providers/CustomerProvider";
-import PoweredByFooter from '../../components/customer/PoweredByFooter';
-import apiClient from "../../services/customerApiClient";
+import { withCustomer } from "../../../providers/CustomerProvider";
+import PoweredByFooter from '../../../components/customer/PoweredByFooter';
+import apiClient from "../../../services/customerApiClient";
 
-class ReactionStartPage extends Component {
+class ReactionThankyouPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -44,4 +44,5 @@ class ReactionStartPage extends Component {
   }
 }
 
-export default withCustomer(ReactionStartPage);
+export default withCustomer(ReactionThankyouPage
+  );

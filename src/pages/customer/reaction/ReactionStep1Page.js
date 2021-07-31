@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-import { withCustomer } from "../../providers/CustomerProvider";
-import reactionsTemplate from '../../reactionsTemplate.json';
-import ReactionStep1Btn from '../../components/customer/reactions/ReactionStep1Btn';
-import PoweredByFooter from '../../components/customer/PoweredByFooter';
-import BackBtn from "../../components/BackBtn";
+import { withCustomer } from "../../../providers/CustomerProvider";
+import reactionsTemplate from '../../../reactionsTemplate.json';
+import ReactionStep1Btn from '../../../components/customer/reactions/ReactionStep1Btn';
+import PoweredByFooter from '../../../components/customer/PoweredByFooter';
+import BackBtn from "../../../components/BackBtn";
 
 class ReactionStep1Page extends Component {
 
