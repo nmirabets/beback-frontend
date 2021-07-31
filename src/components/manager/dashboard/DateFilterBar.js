@@ -8,11 +8,14 @@ class DateFilterBar extends Component {
   };
   }
 
-
 	handleOnClick = (e) => {
+
+		this.props.onClick(e.target.name)
+
 		this.setState({
 			activeTab: e.target.name,
 		})
+
 	}
 
 	render() {
@@ -29,10 +32,10 @@ class DateFilterBar extends Component {
 
 		return (
 			<div className="flex fixed bg-white border rounded-xl border-gray-800 bottom-10 inset-x-5 py-2 mb-10">
-				<button name="day"className={dayClassName} onClick={this.handleOnClick}>día</button>
-				<button name="week" className={weekClassName} onClick={this.handleOnClick}>semana</button>
-				<button name="month" className={monthClassName} onClick={this.handleOnClick}>mes</button>
-				<button name="year" className={yearClassName} onClick={this.handleOnClick}>año</button>
+				<button name="d"className={dayClassName} onClick={this.handleOnClick}>día</button>
+				<button name="w" className={weekClassName} onClick={this.handleOnClick}>semana</button>
+				<button name="m" className={monthClassName} onClick={this.handleOnClick}>mes</button>
+				<button name="y" className={yearClassName} onClick={this.handleOnClick}>año</button>
 			</div>
 		);
 	}

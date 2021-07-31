@@ -1,35 +1,41 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 import { withCustomer } from "../../providers/CustomerProvider";
 import PoweredByFooter from "../../components/customer/PoweredByFooter";
 
 class MenuItemsPage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      section: {},
+			items: [],
+    }
+  }
+
+	componentDidMount() {
+		const { items } = this.props.contextData;
+    const { section } = this.props.location.state;
+    const filteredItems = items.filter( (element) => { return element.sectionId === section._id });
+    this.setState({
+      items: filteredItems,
+      section,
+    })
+  }
+
 
   render() {
-    const { menu, sections, items } = this.props.contextData;
+    const { section, items } = this.state;
+
     return (
       <div>
-        <Link to={{ pathname: `/restaurant/menu-sections` }} > ¡Dános feedback!</Link>
-        <div>
-					<h1>{menu.name}</h1>
-          {sections.map((section, index) => {
-            return(
-              <div key={index} >
-                <h2>{section.name}</h2>
-                <div>
-                  {items.map((item, index) => {
-                    return(
-                      <div key={index} >
-                        {item.name}
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-              )
-            })}
-        </div>
+				<h1>{section.name}</h1>
+        {items.map((item, index) => {
+          return(
+            <div key={index} >
+              {item.name}
+            </div>
+          )
+        })}
         <PoweredByFooter />
       </div>
     )

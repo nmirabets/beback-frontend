@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import apiClient from "../services/apiClient";
+import managerApiClient from "../services/managerApiClient";
 
 const { Consumer, Provider } = React.createContext();
 
@@ -40,19 +40,17 @@ class ManagerProvider extends Component {
 
   async componentDidMount() {
     try {
-        await this.loadRestaurantData();
-
-        const { restaurants } = this.state;
-
-        if (restaurants.length > 0) {
-          await this.loadMenusData(restaurants[0]._id)
-          await this.loadSectionsData();
-          await this.loadItemsData();
-        }
-      } catch (e) {
-        console.log(e)
+      await this.loadRestaurantData();
+      const { restaurants } = this.state;
+      if (restaurants.length > 0) {
+        await this.loadMenusData(restaurants[0]._id)
+        await this.loadSectionsData();
+        await this.loadItemsData();
       }
+    } catch (e) {
+      console.log(e)
     }
+  }
 
   activateRestaurant = async (index) =>{
     const { restaurants } = this.state;
@@ -66,7 +64,7 @@ class ManagerProvider extends Component {
 
   loadRestaurantData = async () => {
     try {
-      const restaurants = await apiClient.getUserRestaurants();
+      const restaurants = await managerApiClient.getUserRestaurants();
       let activeRestaurantIndex = this.state.activeRestaurantIndex;
 
       if (restaurants.length > 0 && activeRestaurantIndex>=(restaurants.length)) {
@@ -83,7 +81,7 @@ class ManagerProvider extends Component {
 
   loadMenusData = async (restaurantId) => {
     try {
-    const menus = await apiClient.getMenus(restaurantId);
+    const menus = await managerApiClient.getMenus(restaurantId);
     this.setState({
         menus: menus,
       })
@@ -95,7 +93,7 @@ class ManagerProvider extends Component {
   loadSectionsData = async () => {
     try {
       const { activeRestaurantIndex, restaurants } = this.state;
-      const sections = await apiClient.getSections(restaurants[activeRestaurantIndex]._id);
+      const sections = await managerApiClient.getSections(restaurants[activeRestaurantIndex]._id);
       this.setState({
         sections,
       })
@@ -107,7 +105,7 @@ class ManagerProvider extends Component {
   loadItemsData = async () => {
         try {
       const { activeRestaurantIndex, restaurants } = this.state;
-      const items = await apiClient.getItems(restaurants[activeRestaurantIndex]._id);
+      const items = await managerApiClient.getItems(restaurants[activeRestaurantIndex]._id);
       this.setState({
         items,
       })

@@ -9,7 +9,7 @@ import SubdimensionReactionBtn from '../../components/customer/reactions/Reactio
 import FeedbackMenuList from '../../components/customer/reactions/FeedbackMenuList';
 import BackBtn from "../../components/BackBtn";
 import PoweredByFooter from '../../components/customer/PoweredByFooter';
-import apiClient from "../../services/apiClient";
+import apiClient from "../../services/customerApiClient";
 
 class ReactionStartPage extends Component {
   constructor(props) {

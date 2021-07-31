@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import apiClient from "../services/apiClient";
+import apiClient from "../services/customerApiClient";
 
 const { Consumer, Provider } = React.createContext();
 
@@ -35,12 +35,27 @@ class CustomerProvider extends Component {
     }
   }
 
+  async componentDidMount() {
+    // console.log("HEY")
+    // try {
+    //   await this.loadRestaurantData();
+    //   const { restaurants } = this.state;
+    //   if (restaurants.length > 0) {
+    //     await this.loadMenusData(restaurants[0]._id);
+    //     await this.loadSectionsData();
+    //     await this.loadItemsData();
+    //   }
+    // } catch (e) {
+    //   console.log(e)
+    // }
+  }
+
   loadRestaurant = async ( restaurant ) => {
     try {
-
+      console.log("load restaurant", restaurant)
       const menu = await apiClient.getMenu(restaurant.activeMenuId);
-      const sections = await apiClient.getSections(restaurant.activeMenuId);
-      const items =  await apiClient.getItems(restaurant.activeMenuId);
+      const sections = await apiClient.getSections(restaurant._id);
+      const items =  await apiClient.getItems(restaurant._id);
 
       this.setState({ restaurant, menu, sections, items, reaction: {} })
 

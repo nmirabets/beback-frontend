@@ -6,7 +6,7 @@ import BotNavBar from '../../../../components/BotNavBar';
 import HeaderSaveBtn from '../../../../components/HeaderSaveBtn';
 import TopNavBar from '../../../../components/TopNavBar';
 import BackBtn from '../../../../components/BackBtn';
-import apiClient from '../../../../services/apiClient';
+import apiClient from '../../../../services/managerApiClient';
 import ImgUpload from '../../../../components/ImgUpload';
 import Spacing from '../../../../components/Spacing';
 

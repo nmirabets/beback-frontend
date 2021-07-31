@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import apiClient from "../services/apiClient";
+import apiClient from "../services/managerApiClient";
 
 const { Consumer, Provider } = React.createContext();
 

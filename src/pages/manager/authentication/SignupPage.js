@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { withAuth } from "../../../providers/AuthProvider";
-import Navbar from "../../../components/home/Navbar";
 
-class Signup extends Component {
+import { withAuth } from "../../../providers/AuthProvider";
+import Spacing from "../../../components/Spacing";
+import HomeNavBar from "../../../components/HomeNavBar";
+import RoundedBtn from "../../../components/RoundedBtn";
+import logo from "../../../images/v-logo.svg";
+
+
+class SignupPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -23,10 +27,64 @@ class Signup extends Component {
     this.setState({ [name]: value });
   };
 
+  handleClickRight = () => {
+    this.props.history.push("/login");
+  }
+
+  handleClickLeft = () => {
+    this.props.history.push("/");
+  }
+
+  handleLoginClick = () => {
+    this.props.history.push("/login");
+  }
+
   render() {
     const { username, password } = this.state;
     return (
-      <>
+      <div className="container mx-auto place-content-center">
+        <HomeNavBar 
+          logo = {logo}
+          RightComponent={RoundedBtn}
+					rightTitle='Entrar'
+					onClickRight={this.handleClickRight}
+					LeftComponent={RoundedBtn} 
+					leftTitle='QRs'
+					onClickLeft={this.handleClickLeft}
+        />
+        <Spacing/>
+        <div className="w-full pt-20 items-center">
+          <form className="flex flex-col items-center " onSubmit={this.handleFormSubmit}>
+            <input
+              className="text-2xl py-2 my-2 bg-gray-200"
+              type="text"
+              name="username"
+              placeholder="e-mail address"
+              value={username}
+              onChange={this.handleChange}
+            />
+            <input
+              className="text-2xl py-2 my-2 bg-gray-200"
+              type="password"
+              name="password"
+              placeholder="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+            <button className="flex bg-yellow-400 text-2xl font-light text-white border rounded-full border-yellow-500 px-6 py-1 my-2" onClick={this.handleFormSubmit} type="submit" value="Signup" >Signup</button>
+            <h2 className="text-l font-thin mt-2" >¿Ya tienes una cuenta?</h2>
+            <button className="flex text-2xl font-thin text-yellow-700  rounded-full border-yellow-500 px-6 py-1" onClick={this.handleLoginClick} type="submit" value="Signup" >Login</button>
+          </form>
+        </div>
+      </div>
+      
+    );
+  }
+}
+
+export default withAuth(SignupPage);
+
+/* <>
         <Navbar />
         <form onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
@@ -49,9 +107,4 @@ class Signup extends Component {
           Already have account?
           <Link to={"/login"}> Login</Link>
         </p>
-      </>
-    );
-  }
-}
-
-export default withAuth(Signup);
+      </> */

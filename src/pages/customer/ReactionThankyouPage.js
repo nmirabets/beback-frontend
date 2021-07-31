@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { withCustomer } from "../../providers/CustomerProvider";
 import PoweredByFooter from '../../components/customer/PoweredByFooter';
-import apiClient from "../../services/apiClient";
+import apiClient from "../../services/customerApiClient";
 
 class ReactionStartPage extends Component {
   constructor(props) {

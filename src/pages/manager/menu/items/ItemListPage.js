@@ -9,7 +9,7 @@ import BotNavBar from '../../../../components/BotNavBar';
 import ListItemComp from "../../../../components/ListItemComp";
 import Spacing from "../../../../components/Spacing";
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline';
-import apiClient from "../../../../services/apiClient";
+import apiClient from "../../../../services/managerApiClient";
 
 class ItemListPage extends Component {
   constructor(props) {
