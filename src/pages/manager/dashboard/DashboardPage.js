@@ -8,7 +8,7 @@ import ReactionSummary from "../../../components/manager/dashboard/ReactionSumma
 import DimReactionSummary from "../../../components/manager/dashboard/DimReactionSummary";
 import RankDashboard from "../../../components/manager/dashboard/RankDashboard";
 import Spacing from "../../../components/Spacing";
-import apiClient from "../../../services/managerApiClient";
+// import apiClient from "../../../services/managerApiClient";
 
 class DashboardPage extends Component {
 	constructor(props) {
@@ -32,76 +32,76 @@ class DashboardPage extends Component {
 
   }
 
-CalculateDataSummaryItem = (reactions, period, dimension, isPositive) => {
-  const dateLimit = new Date();
-  dateLimit.setDate( dateLimit.getDate() - period.dayCount );
-  console.log("dateLimit", dateLimit)
-  console.log("created_at", reactions[0].created_at)
-  return reactions.filter( (reaction) => 
-    ((Date(reaction.created_at) > dateLimit) &&
-    (reaction.dimension === dimension) &&
-    (reaction.isPositive === isPositive))).length
-};
+// CalculateDataSummaryItem = (reactions, period, dimension, isPositive) => {
+//   const dateLimit = new Date();
+//   dateLimit.setDate( dateLimit.getDate() - period.dayCount );
+//   console.log("dateLimit", dateLimit)
+//   console.log("created_at", reactions[0].created_at)
+//   return reactions.filter( (reaction) => 
+//     ((Date(reaction.created_at) > dateLimit) &&
+//     (reaction.dimension === dimension) &&
+//     (reaction.isPositive === isPositive))).length
+// };
 
-CalculateRankedItems = (reactions, period, isPositive) => {
-	const dateLimit = Date() - period.dayCount;
-	const filteredReactions = reactions.filter(reaction => 
-		(Date(reaction.created_at) >= Date(dateLimit)) &&
-		(reaction.isPositive === isPositive))
+// CalculateRankedItems = (reactions, period, isPositive) => {
+// 	const dateLimit = Date() - period.dayCount;
+// 	const filteredReactions = reactions.filter(reaction => 
+// 		(Date(reaction.created_at) >= Date(dateLimit)) &&
+// 		(reaction.isPositive === isPositive))
 
-	var holder = {};
+// 	var holder = {};
 
-	filteredReactions.forEach( reaction => {
-		if (holder.hasOwnProperty.call(reaction.subdimension)) {
-			holder[reaction.subdimension] = holder[reaction.subdimension] + 1;
-		} else {
-			holder[reaction.subdimension] = 1;
-		}
-	});
+// 	filteredReactions.forEach( reaction => {
+// 		if (holder.hasOwnProperty.call(reaction.subdimension)) {
+// 			holder[reaction.subdimension] = holder[reaction.subdimension] + 1;
+// 		} else {
+// 			holder[reaction.subdimension] = 1;
+// 		}
+// 	});
 
-	var obj2 = [];
+// 	var obj2 = [];
 
-	for (var prop in holder) {
-		obj2.push({ name: prop, value: holder[prop] });
-	}
+// 	for (var prop in holder) {
+// 		obj2.push({ name: prop, value: holder[prop] });
+// 	}
 
-	return obj2
+// 	return obj2
 
-};
+// };
 
   handleDateFilterClick = async (button) => {
-    console.log("button", button)
-    const { activeRestaurantIndex, restaurants } = this.props.contextData;
-    const restaurantId = restaurants[activeRestaurantIndex]._id;
-    const reactions = await apiClient.getDashboardData(restaurantId);
-    console.log("reactions",reactions);
-    const periods = [
-			{ name: 'd', dayCount: 1 },
-			{ name: 'w', dayCount: 7 },
-			{ name: 'm', dayCount: 30 },
-			{ name: 'y', dayCount: 365 }
-		];
-		const dimensions = ['servicio', 'comida', 'atmósfera'];
-		const isPositive = [true, false];
+    // console.log("button", button)
+    // const { activeRestaurantIndex, restaurants } = this.props.contextData;
+    // const restaurantId = restaurants[activeRestaurantIndex]._id;
+    // const reactions = await apiClient.getDashboardData(restaurantId);
+    // console.log("reactions",reactions);
+    // const periods = [
+		// 	{ name: 'd', dayCount: 1 },
+		// 	{ name: 'w', dayCount: 7 },
+		// 	{ name: 'm', dayCount: 30 },
+		// 	{ name: 'y', dayCount: 365 }
+		// ];
+		// const dimensions = ['servicio', 'comida', 'atmósfera'];
+		// const isPositive = [true, false];
 
-		var dataSummary = [];
+		// var dataSummary = [];
 
-		periods.forEach(period => {
-			dimensions.forEach(dimension => {
-				isPositive.forEach(isPositive => {
-					const count = this.CalculateDataSummaryItem(reactions, period, dimension, isPositive);
-					const dataItem = {
-						period,
-						dimension,
-						isPositive,
-						count,
-					};
-					dataSummary.push(dataItem);
-				})
-			})
-		})
+		// periods.forEach(period => {
+		// 	dimensions.forEach(dimension => {
+		// 		isPositive.forEach(isPositive => {
+		// 			const count = this.CalculateDataSummaryItem(reactions, period, dimension, isPositive);
+		// 			const dataItem = {
+		// 				period,
+		// 				dimension,
+		// 				isPositive,
+		// 				count,
+		// 			};
+		// 			dataSummary.push(dataItem);
+		// 		})
+		// 	})
+		// })
 
-    console.log("result", dataSummary)
+    // console.log("result", dataSummary)
 
   }
 
