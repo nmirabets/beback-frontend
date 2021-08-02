@@ -69,6 +69,7 @@ class ManagerApiClient {
 
 	// update menu
 	async updateMenu(menu) {
+		console.log("apiClient", menu)
     return await this.managerApiClient.put('/menus', { menu }).then( res => res.data.found )
   }
 

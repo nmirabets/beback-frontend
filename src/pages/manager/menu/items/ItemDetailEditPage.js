@@ -51,7 +51,7 @@ class ItemDetailEditPage extends Component {
 				// create item
 				await apiClient.createItem(item)
 			}
-			await this.props.loadItemsData();
+			await this.props.loadItemsData(item.restaurantId);
 			this.props.history.push({pathname: "/manager/menu/items-edit", state: { restaurantId, menuId, sectionId }});
 		}
 	}

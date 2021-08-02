@@ -46,7 +46,7 @@ class SectionDetailEditPage extends Component {
 			} else {
 				await apiClient.createSection(section);
 			}
-			await this.props.loadSectionsData();
+			await this.props.loadSectionsData(section.restaurantId);
 			this.props.history.push({pathname: "/manager/menu/sections-edit", state: { restaurantId, menuId }});
 		}
 	}

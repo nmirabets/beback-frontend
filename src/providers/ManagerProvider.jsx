@@ -16,6 +16,7 @@ export const withManager = (Comp) => {
               loadMenusData={managerProvider.loadMenusData}
               loadSectionsData={managerProvider.loadSectionsData}
               loadItemsData={managerProvider.loadItemsData}
+              loadDashboardData={managerProvider.loadDashboardData}
               {...this.props}
             />
           )}
@@ -34,7 +35,10 @@ class ManagerProvider extends Component {
       menus: [],
       sections: [],
       items: [],
-      dashboardData: {},
+      dashboardData: {
+        dataSummary: {},
+        rankData: {},
+      },
     }
   }
 
@@ -44,8 +48,9 @@ class ManagerProvider extends Component {
       const { restaurants } = this.state;
       if (restaurants.length > 0) {
         await this.loadMenusData(restaurants[0]._id)
-        await this.loadSectionsData();
-        await this.loadItemsData();
+        await this.loadSectionsData(restaurants[0]._id);
+        await this.loadItemsData(restaurants[0]._id);
+        await this.loadDashboardData(restaurants[0]._id);
       }
     } catch (e) {
       console.log(e)
@@ -56,8 +61,9 @@ class ManagerProvider extends Component {
     const { restaurants } = this.state;
 
     await this.loadMenusData(restaurants[index]._id)
-    await this.loadSectionsData();
-    await this.loadItemsData();
+    await this.loadSectionsData(restaurants[index]._id);
+    await this.loadItemsData(restaurants[index]._id);
+    await this.loadDashboardData(restaurants[index]._id);
 
     this.setState({ activeRestaurantIndex: index })
   }
@@ -90,10 +96,9 @@ class ManagerProvider extends Component {
     }
   }
 
-  loadSectionsData = async () => {
+  loadSectionsData = async (restaurantId) => {
     try {
-      const { activeRestaurantIndex, restaurants } = this.state;
-      const sections = await managerApiClient.getSections(restaurants[activeRestaurantIndex]._id);
+      const sections = await managerApiClient.getSections(restaurantId);
       this.setState({
         sections,
       })
@@ -102,10 +107,9 @@ class ManagerProvider extends Component {
     }
   }
 
-  loadItemsData = async () => {
-        try {
-      const { activeRestaurantIndex, restaurants } = this.state;
-      const items = await managerApiClient.getItems(restaurants[activeRestaurantIndex]._id);
+  loadItemsData = async (restaurantId) => {
+    try {
+      const items = await managerApiClient.getItems(restaurantId);
       this.setState({
         items,
       })
@@ -114,18 +118,30 @@ class ManagerProvider extends Component {
     }
   }
 
+  loadDashboardData = async (restaurantId) => {
+    try {
+      const data = await managerApiClient.getDashboardData(restaurantId);
+      this.setState({
+        dashboardData: data,
+      });
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   render() {
 
-    const  { restaurants, menus, sections, items, activeRestaurantIndex }  = this.state;
+    const  { dashboardData, restaurants, menus, sections, items, activeRestaurantIndex }  = this.state;
 
     return (
       <Provider value={{ 
-          contextData: { restaurants, menus, sections, items, activeRestaurantIndex },
+          contextData: { dashboardData, restaurants, menus, sections, items, activeRestaurantIndex },
           activateRestaurant: this.activateRestaurant,
           loadRestaurantData: this.loadRestaurantData,
           loadMenusData: this.loadMenusData,
           loadSectionsData: this.loadSectionsData,
           loadItemsData: this.loadItemsData,
+          loadDashboardData: this.loadDashboardData,
           }}>
         {this.props.children}
       </Provider>

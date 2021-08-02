@@ -8,8 +8,15 @@ import BackBtn from "../../../components/BackBtn";
 
 class ReactionStep1Page extends Component {
 
-  handleClick = (name, isPositive ) => {
-    this.props.createReaction(name, isPositive );
+  handleClick = (dimension, isPositive ) => {
+    const { restaurant } = this.props.contextData;
+    const reaction = { restaurantId: restaurant._id , dimension, isPositive };
+    
+    if (dimension==="comida") {
+      this.props.history.push({pathname: "/restaurant/reaction-food", state: { reaction }});
+    } else {
+      this.props.history.push({pathname: "/restaurant/reaction-rest", state: { reaction }});
+    }
   };
 
   render() {

@@ -20,11 +20,11 @@ class SubdimensionHeader extends Component {
               header = "¿Qué plato ha fallado?"
             }
             break;
-          case "ambiente y local":
+          case "atmósfera":
             if (isPositive) {
-              header = "¿Qué te ha gustado del ambiente y local?"
+              header = "¿Qué te ha gustado de la atmósfera?"
             } else {
-              header = "¿Qué ha fallado en el ambiente y local?"
+              header = "¿Qué ha fallado en la atmósfera?"
             }
             break;
         }

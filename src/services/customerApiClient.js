@@ -50,7 +50,7 @@ class CustomerApiClient {
 
 	// create reaction
 	async newReaction(reaction) {
-    return await this.customerApiClient.post('/reactions', { data: reaction }).then( res => res.data.created )
+    return await this.customerApiClient.post('/reactions', { reaction }).then( res => res.data.created )
   }
 
 	// get dashboard data

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 
 import { withCustomer } from "../../../providers/CustomerProvider";
 import reactionsTemplate from '../../../reactionsTemplate.json';
@@ -7,21 +6,24 @@ import SubdimensionHeader from "../../../components/customer/reactions/Subdimens
 import SubdimensionReactionBtn from '../../../components/customer/reactions/ReactionStep2Btn';
 import BackBtn from "../../../components/BackBtn";
 import PoweredByFooter from '../../../components/customer/PoweredByFooter';
+import apiClient from "../../../services/customerApiClient";
 
 class ReactionStep2Page extends Component {
 
-  handleSubdimensionClick = ( name ) => {
-    this.props.sendReaction(name);
+  handleSubdimensionClick = ( subdimension ) => {
+    const { reaction: wipReaction } = this.props.location.state;
+    const reaction = { ...wipReaction, subdimension}; 
+
+    apiClient.newReaction(reaction);  
   };
 
   render() {
-
-      // Feedback page 2 -> Subdimension
-        const feedbackReaction = reactionsTemplate.filter( (reaction) => reaction.dimension === this.state.reaction.dimension && reaction.isPositive === this.props.reaction.isPositive);
+      const { reaction } = this.props.location.state;
+      const feedbackReaction = reactionsTemplate.filter( (element) => element.dimension === reaction.dimension && element.isPositive === reaction.isPositive);
 
     return (
       <>
-        <BackBtn to={'/reaction-rest'}/>
+        <BackBtn title="Atrás" onClick={this.props.history.goBack} />
         <SubdimensionHeader dimension={feedbackReaction[0].dimension} isPositive={feedbackReaction[0].isPositive} />
         <div>
           {feedbackReaction[0].subdimension.map((subdimension, index) => {

@@ -8,6 +8,7 @@ import TopNavBar from '../../../components/TopNavBar';
 import BackBtn from '../../../components/BackBtn';
 import apiClient from '../../../services/managerApiClient';
 import ImgUpload from '../../../components/ImgUpload';
+import Spacing from '../../../components/Spacing';
 
 class DetailEditRestaurantPage extends Component {
 	constructor(props) {
@@ -84,6 +85,7 @@ class DetailEditRestaurantPage extends Component {
 					leftTitle="Atrás"
 					onClickLeft={this.handleOnClickLeft}
 				/>
+				<Spacing />
 				<div className="flex border border-b-2 border-gray-300">
 					<ImgUpload className="text-blue-300 rounded-full w-20 p-3 my-8 mx-4 " url={logoUrl} />
 					<div className="flex flex-col justify-start w-3/4 font-light mt-5 pr-8" >
@@ -95,6 +97,7 @@ class DetailEditRestaurantPage extends Component {
 						</div>
 					</div>
 				</div>
+				<Spacing />
 				<BotNavBar activeTab="settings"/>
 			</>
 		);

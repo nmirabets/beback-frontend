@@ -1,32 +1,32 @@
 [
   {
    "dimension": "servicio",
-    "subdimension": ["top","max top","",""],
+    "subdimension": ["Servicio atento","Servicio amable","Servicio rápido","Servicio con conocimiento"],
     "isPositive": true
   },
   {
     "dimension": "servicio",
-    "subdimension": ["despistado","mal servicio","",""],
+    "subdimension": ["Servicio con poca atención","Antipático","Mucha espera","Poco conocimiento"],
     "isPositive": false
   },
   {
     "dimension": "comida",
-    "subdimension": ["buena","","",""],
+    "subdimension": [],
     "isPositive": true
   },
   {
     "dimension": "comida",
-    "subdimension": ["fría","","",""],
+    "subdimension": [],
     "isPositive": false
   },
   {
     "dimension": "atmósfera",
-    "subdimension": ["buena musica","","",""],
+    "subdimension": ["Buen ambiente","Local limpio","Local amplio"],
     "isPositive": true
   },
   {
     "dimension": "atmósfera",
-    "subdimension": ["mala musica","","",""],
+    "subdimension": ["Mucho ruido","Local sucio","Poco espacio"],
     "isPositive": false
   }
 ]
