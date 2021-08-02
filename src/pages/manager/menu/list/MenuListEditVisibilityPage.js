@@ -7,23 +7,41 @@ import HeaderBtn from '../../../../components/HeaderBtn';
 import BotNavBar from '../../../../components/BotNavBar';
 import ListItemComp from "../../../../components/ListItemComp";
 import Spacing from "../../../../components/Spacing";
-import { ChevronRightIcon } from '@heroicons/react/outline';
+import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline';
+import apiClient from '../../../../services/managerApiClient';
 
-class MenuListPage extends Component {
+class MenuListEditVisibilityPage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      restaurantId: "",
+    }
+		this.nameInput = React.createRef();
+  }
+
+  componentDidMount() {
+    const { activeRestaurantIndex, restaurants } = this.props.contextData;
+    const restaurantId = restaurants[activeRestaurantIndex]._id;
+		this.setState({
+			restaurantId,
+		})
+  }
 
   handleClickRight = () => {
-    this.props.history.push("/manager/menu/menu-edit")
+    this.props.history.push("/manager/menu/list")
   }
 
   handleClickLeft = () => {
-    this.props.history.push("/manager/menu/menu-edit-visibility")
+
   }
 
-  handleItemClick = (menuIndex) => {
-    const { activeRestaurantIndex, restaurants, menus } = this.props.contextData;
-    const menuId = menus[menuIndex]._id;
-    const restaurantId = restaurants[activeRestaurantIndex]._id;
-    this.props.history.push({pathname: "/manager/menu/sections", state: { restaurantId, menuId }});
+  handleItemClick = (index) => {
+
+    const { menus } = this.props.contextData;
+    const menu = menus[index];
+    menu.isVisible = !menu.isVisible;
+    apiClient.updateMenu(menu);
+    this.setState({});
   }
 
   render() {
@@ -33,12 +51,12 @@ class MenuListPage extends Component {
     return (
       <>
         <TopNavBar
-          mainTitle='Menús' 
+          mainTitle='Mostrar menú' 
 					RightComponent={HeaderBtn}
-					rightTitle='Editar'
+					rightTitle='Guardar'
 					onClickRight={this.handleClickRight}
 					LeftComponent={HeaderBtn} 
-					leftTitle='Visibility'
+					leftTitle=''
 					onClickLeft={this.handleClickLeft}
         />
         <Spacing />
@@ -48,9 +66,9 @@ class MenuListPage extends Component {
               <ListItemComp 
                 index={index}
                 key={index}
-                onClick={this.handleItemClick}
                 name={item.name}
-								Icon={ChevronRightIcon}
+                onClick={this.handleItemClick}
+								Icon={(item.isVisible ? EyeIcon : EyeOffIcon)}
               />
             )
           })}
@@ -62,4 +80,4 @@ class MenuListPage extends Component {
   }
 }
 
-export default withAuth(withManager(MenuListPage));
+export default withAuth(withManager(MenuListEditVisibilityPage));

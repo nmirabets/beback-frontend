@@ -75,7 +75,6 @@ class ManagerApiClient {
 
 	// create menu
 	async createMenu(menu) {
-		console.log("create menu", menu);
     return await this.managerApiClient.post('/menus/new', { menu }).then( res => res.data.created )
   }
 

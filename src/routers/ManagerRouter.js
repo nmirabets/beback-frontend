@@ -5,6 +5,7 @@ import DashboardPage from '../pages/manager/dashboard/DashboardPage';
 
 import MenuListPage from '../pages/manager/menu/list/MenuListPage';
 import MenuListEditPage from '../pages/manager/menu/list/MenuListEditPage';
+import MenuEditVisibilityPage from '../pages/manager/menu/list/MenuListEditVisibilityPage';
 import MenuDetailEditPage from '../pages/manager/menu/list/MenuDetailEditPage';
 
 import SectionListPage from '../pages/manager/menu/sections/SectionListPage';
@@ -31,6 +32,7 @@ function ManagerRouter() {
       <Switch>
         <Route path={`${url}/dashboard`} component={DashboardPage} />
 
+        <Route path={`${url}/menu/menu-edit-visibility`} component={MenuEditVisibilityPage} />
         <Route path={`${url}/menu/menu-edit-detail`} component={MenuDetailEditPage} />
         <Route path={`${url}/menu/menu-edit`} component={MenuListEditPage} />
         <Route path={`${url}/menu/list`} component={MenuListPage} />
