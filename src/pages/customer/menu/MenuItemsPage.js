@@ -4,6 +4,7 @@ import { withCustomer } from "../../../providers/CustomerProvider";
 import PoweredByFooter from "../../../components/customer/PoweredByFooter";
 import BackBtn from "../../../components/BackBtn";
 import PageHeader from "../../../components/customer/PageHeader";
+import MenuItemComp from "../../../components/customer/menu/MenuItemComp";
 
 class MenuItemsPage extends Component {
   constructor(props) {
@@ -29,17 +30,31 @@ class MenuItemsPage extends Component {
     const { section, items } = this.state;
 
     return (
-      <div>
-        <BackBtn title="Atrás" onClick={this.props.history.goBack} />
-        <PageHeader name={section.name} />
-        {items.map((item, index) => {
-          return(
-            <div key={index} >
-              {item.name}
-            </div>
-          )
-        })}
-        <PoweredByFooter />
+      <div className="flex flex-col h-screen bg-gray-200" >
+        <div className="flex flex-col items-center justify-between mx-auto h-full" >
+        <div className="w-screen">
+          <BackBtn 
+            title="Atrás"
+            onClick={this.props.history.goBack}
+          />
+          <PageHeader 
+            name={section.name}
+            style={"text-5xl"}
+          />
+        </div>
+          <div className="flex flex-col w-full" >
+            {items.map((item, index) => {
+              return (
+                <MenuItemComp 
+                  key={index}
+                  item={item}
+                  index={index}
+                />
+              )
+            })}
+          </div>
+          <PoweredByFooter/>
+        </div>
       </div>
     )
   }

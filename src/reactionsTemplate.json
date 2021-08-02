@@ -1,12 +1,12 @@
 [
   {
    "dimension": "servicio",
-    "subdimension": ["Servicio atento","Servicio amable","Servicio rápido","Servicio con conocimiento"],
+    "subdimension": ["Atento","Amable","Rápido","Buen conocimiento"],
     "isPositive": true
   },
   {
     "dimension": "servicio",
-    "subdimension": ["Servicio con poca atención","Antipático","Mucha espera","Poco conocimiento"],
+    "subdimension": ["Poca atención","Antipático","Mucha espera","Poco conocimiento"],
     "isPositive": false
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "dimension": "atmósfera",
-    "subdimension": ["Buen ambiente","Local limpio","Local amplio"],
+    "subdimension": ["Buen ambiente","Local limpio","Local espacioso"],
     "isPositive": true
   },
   {

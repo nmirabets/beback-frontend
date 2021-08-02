@@ -46,7 +46,7 @@ class DashboardPage extends Component {
 
     return (
       <div className="container min-h-screen mx-auto flex flex-col bg-gray-200 w-screen">
-        <div className="flex justify-center text-4xl font-light py-4 mb-2 mx-8 border-b border-yellow-900" >{restaurantName}</div>
+        <div className="flex justify-center text-4xl font-thin py-4 mb-2 mx-8 border-b border-yellow-900" >{restaurantName}</div>
         <ReactionSummary pos={totalPos} neg={totalNeg} />
         <DimReactionSummary 
           items={filteredData}
@@ -57,8 +57,8 @@ class DashboardPage extends Component {
           isPositive={true} 
           items={[
             { name:"Arroz negro", reactions:152 }, 
-            { name:"Sopa de ajo", reactions:78 }, 
-            { name:"Nachos con queso", reactions:22 
+            { name:"Paella marinera", reactions:78 }, 
+            { name:"Ceviche", reactions:22 
             }]}
           />
         <RankDashboard 

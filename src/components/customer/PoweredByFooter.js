@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class PoweredByFooter extends Component {
 	render() {
 		return (
-			<Link className="text-s text-thin text-yellow-700" to={'/'} >powered by V</Link>
+			<Link className="text-s text-thin text-yellow-800 " to={'/'} >powered by Vapp</Link>
 		);
 	}
 }

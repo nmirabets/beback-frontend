@@ -3,26 +3,19 @@ import React, { Component } from "react";
 import { withCustomer } from "../../providers/CustomerProvider";
 import RestaurantHeader from "../../components/customer/PageHeader";
 import PoweredByFooter from "../../components/customer/PoweredByFooter";
-import { ThumbUpIcon, ThumbDownIcon }from "@heroicons/react/outline";
+import MenuBtn from "../../components/customer/menu/MenuBtn";
+import GiveFeedbackBtn from "../../components/customer/menu/GiveFeedbackBtn";
 
 class Landing extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      restaurant: {},
-    };
-  }
 
   componentDidMount() {
-    const { restaurant } = this.props.location.state;
-    this.props.loadRestaurant( restaurant );
-    this.setState({
-      restaurant,
-    });
+    const { restaurantId } = this.props.match.params;
+    this.props.loadRestaurant(restaurantId);
   }
 
-  handleClickMenu = () => {
-    this.props.history.push("/restaurant/menu-sections");
+  handleClickMenu = (index) => {
+    const { menus } = this.props.contextData;
+    this.props.history.push({pathname: "/restaurant/menu-sections", state: { menu: menus[index] }});
   }
 
   handleClickFeedback = () => {
@@ -31,21 +24,30 @@ class Landing extends Component {
 
   render() {
 
-    const { name } = this.props.contextData.restaurant;
+    const { restaurant, menus } = this.props.contextData;
 
     return (
-      <div className="container min-h-screen mx-auto flex flex-col bg-gray-200 ">
-        <RestaurantHeader name={name} />
-        <button className="flex m-2 border rounded-full border-yellow-500 px-1 py-1" onClick={this.handleClickMenu} >
-          <h2 className="text-3xl font-light text-yellow-700 mx-2 ">Ver la carta</h2>
-        </button>	
-        <button className="flex m-2 border rounded-full border-yellow-500 px-1 py-1" onClick={this.handleClickFeedback} >
-          <div className="flex items-center text-l font-thin text-yellow-700 mx-2 ">
-            <ThumbDownIcon className="text-red-800 w-5 h-5 mx-1" onClick={this.handleClickPos} />
-					  <h1>¡Dános feedback!</h1>
-					  <ThumbUpIcon className="text-green-800 w-5 h-5 mx-1" onClick={this.handleClickNeg} />
-          </div>
-        </button>	
+      <div className="flex flex-col mx-auto items-center bg-gray-200 h-screen justify-between">
+        <RestaurantHeader 
+          name={restaurant.name}
+          style={"mt-12 text-5xl"}
+        />
+        <div className="flex flex-col items-center text-3xl font-normal text-yellow-700" >
+          {menus.map((menu, index) => {
+            return (
+              <MenuBtn 
+                key={index}
+                title={menu.name}
+                onClick={this.handleClickMenu}
+                index={index}
+              />
+            )
+          })}
+        </div>
+        <GiveFeedbackBtn
+          title={"¡Dános feedback!"}
+          onClick={this.handleClickFeedback}
+        />
         <PoweredByFooter/>
       </div>
     );

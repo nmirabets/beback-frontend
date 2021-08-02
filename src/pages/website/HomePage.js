@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 
-import logo from '../../images/v-logo.svg'
+import logo from '../../images/Vapp logo.png'
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import apiClient from '../../services/managerApiClient.js'
 import HomeNavBar from "../../components/HomeNavBar";
 import RoundedBtn from "../../components/RoundedBtn";
 import Spacing from "../../components/Spacing";
-import sampleQR from "../../images/sampleQR.png"
-// logo background color: #ded8c2, #c8c7c4, #dbdbdb
-// logo color: 
+import sampleQR from "../../images/Demo QR.png"
 
 class Home extends Component {
   constructor(props) {
@@ -39,12 +37,12 @@ class Home extends Component {
   handleClickNext = () => {
     const { restaurantList, index } = this.state;
     if (index===(restaurantList.length - 1)) {
-          this.setState({
-      index: 0
-    })
+      this.setState({
+        index: 0,
+      })
     } else {
       this.setState({
-        index: index + 1
+        index: (index + 1),
       })
     }
   }
@@ -65,7 +63,8 @@ class Home extends Component {
   handleClickQR = () => {
     const { restaurantList, index } = this.state;
     const restaurant = restaurantList[index];
-    this.props.history.push({pathname: "/restaurant", state: { restaurant }});
+    this.props.history.push({pathname: `/restaurant/${restaurant._id}`});
+    // this.props.history.push({pathname: "/restaurant", state: { restaurant }});
   }
 
   render() {
@@ -88,10 +87,10 @@ class Home extends Component {
           <div className="flex items-center">
             <ChevronLeftIcon className="flex bg-yellow-400 w-32 text-white border rounded-full border-yellow-500 ml-5" onClick={this.handleClickPrevious}  ></ChevronLeftIcon>            
             <div className="flex flex-col items-center" onClick={this.handleClickQR}>
-              <h2 className="" >{restaurant}</h2>
+              <h1 className="text-xl font-thin" >{restaurant}</h1>
               <img src={sampleQR} className="transform scale-75" />
             </div>
-            <ChevronRightIcon className="flex bg-yellow-400 w-32 text-white border rounded-full border-yellow-500 mr-5 " onClick={this.handleClickPrevious} ></ChevronRightIcon>
+            <ChevronRightIcon className="flex bg-yellow-400 w-32 text-white border rounded-full border-yellow-500 mr-5 " onClick={this.handleClickNext} ></ChevronRightIcon>
           </div>
         </div>
       </div>

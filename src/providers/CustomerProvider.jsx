@@ -26,31 +26,32 @@ class CustomerProvider extends Component {
     super(props)
     this.state = {
       restaurant: {},
-      menu: {},
+      menus: [],
       sections: [], 
       items: [],
       reaction: {},
     }
   }
 
-  loadRestaurant = async ( restaurant ) => {
+  loadRestaurant = async (restaurantId) => {
     try {
-      const menu = await apiClient.getMenu(restaurant.activeMenuId);
-      const sections = await apiClient.getSections(restaurant._id);
-      const items =  await apiClient.getItems(restaurant._id);
+      const restaurant = await apiClient.getRestaurant(restaurantId);
+      const menus = await apiClient.getActiveMenus(restaurantId);
+      const sections = await apiClient.getSections(restaurantId);
+      const items =  await apiClient.getItems(restaurantId);
 
-      this.setState({ restaurant, menu, sections, items, reaction: {} })
+      this.setState({ restaurant, menus, sections, items, reaction: {} })
     } catch (e) {
       console.log(e);
     }
   }
 
   render() {
-    const  { restaurant, menu, sections, items, reaction }  = this.state;
+    const  { restaurant, menus, sections, items, reaction }  = this.state;
      
     return (
       <Provider value={{ 
-          contextData: { restaurant, menu, sections, items, reaction },
+          contextData: { restaurant, menus, sections, items, reaction },
           loadRestaurant: this.loadRestaurant,
           }}>
         {this.props.children}

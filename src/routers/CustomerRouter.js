@@ -24,7 +24,7 @@ function CustomerRouter() {
         <Route path={`${url}/reaction-food`} component={ReactionStep2FoodPage} />
         <Route path={`${url}/reaction-end`} component={ReactionThankyouPage} />
 
-        <Route exact path={url} component={LandingPage} />
+        <Route exact path={`${url}/:restaurantId`} component={LandingPage} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
     </CustomerProvider>

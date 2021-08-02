@@ -15,10 +15,20 @@ handleClickPos = () => {
 
 	render() {
 		return (
-			<div className="flex flex-row items-center justify-center mx-12 py-3 my-2 border rounded-xl border-gray-400 bg-white">
-			<ThumbUpIcon className="text-green-800 w-10 h-10 " onClick={this.handleClickPos} />
-			<h1>{this.props.name}</h1>
-			<ThumbDownIcon className="text-red-800 w-10 h-10 " onClick={this.handleClickNeg} />	
+			<div className="flex items-center justify-center py-2">
+				<div className="bg-white border rounded-full border-yellow-500 m-4 p-2 " >
+					<ThumbDownIcon 
+						className="text-red-800 w-10 h-10 " 
+						onClick={this.handleClickNeg} 
+					/>	
+				</div>
+				<h1 className="flex justify-center w-32 font-thin text-gray-800" >{this.props.name}</h1>
+				<div className="bg-white border rounded-full border-yellow-500 m-4 p-2" >
+					<ThumbUpIcon 
+						className="text-green-800 w-10 h-10" 
+						onClick={this.handleClickPos} 
+					/>
+				</div>
 			</div>
 		);
 	}

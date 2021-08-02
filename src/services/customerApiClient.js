@@ -20,16 +20,16 @@ class CustomerApiClient {
     return await this.customerApiClient.get('/restaurants').then( res => res.data.found )
   }
 
-	// MENUS
-
-	// get menu by menuId
-	async getMenu(menuId) {
-    return await this.customerApiClient.post('/menus', { menuId }).then( res => res.data.found )
+	// load one restaurant
+	async getRestaurant(restaurantId) {
+    return await this.customerApiClient.post('/restaurants/load-one', { id: restaurantId }).then( res => res.data.found )
   }
 
-	// get menus by restaurantId
-	async getMenus(restaurantId) {
-    return await this.customerApiClient.post('/menus/all', { restaurantId }).then( res => res.data.found )
+	// MENUS
+
+	// get active menus by restaurantId
+	async getActiveMenus(restaurantId) {
+    return await this.customerApiClient.post('/menus/active', { restaurantId }).then( res => res.data.found )
   }
 
 

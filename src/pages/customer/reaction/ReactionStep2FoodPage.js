@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { withCustomer } from "../../../providers/CustomerProvider";
 import reactionsTemplate from '../../../reactionsTemplate.json';
-import SubdimensionHeader from "../../../components/customer/reactions/SubdimensionHeader";
+import ReactionStep2HeaderBuilder from "../../../components/customer/reactions/ReactionStep2HeaderBuilder";
 import BackBtn from "../../../components/BackBtn";
 import PoweredByFooter from '../../../components/customer/PoweredByFooter';
 import apiClient from "../../../services/customerApiClient";
@@ -24,7 +24,7 @@ class ReactionStep2FoodPage extends Component {
     return (
       <>
         <BackBtn title="Atrás" onClick={this.props.history.goBack} />
-        <SubdimensionHeader dimension={feedbackReaction[0].dimension} isPositive={feedbackReaction[0].isPositive} />
+        <ReactionStep2HeaderBuilder dimension={feedbackReaction[0].dimension} isPositive={feedbackReaction[0].isPositive} />
         
         <PoweredByFooter/>
       </>

@@ -4,7 +4,7 @@ import { withAuth } from "../../../providers/AuthProvider";
 import Spacing from "../../../components/Spacing";
 import HomeNavBar from "../../../components/HomeNavBar";
 import RoundedBtn from "../../../components/RoundedBtn";
-import logo from "../../../images/v-logo.svg";
+import logo from "../../../images/Vapp logo.png";
 
 
 class SignupPage extends Component {

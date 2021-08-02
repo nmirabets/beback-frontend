@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class SubdimensionHeader extends Component {
+class ReactionStep2HeaderBuilder extends Component {
 
 	render() {
 		let header = "";
@@ -30,9 +30,9 @@ class SubdimensionHeader extends Component {
         }
 
 		return (
-			<h1>{header}</h1>
+			<>{header}</>
 		);
 	}
 }
 
-export default SubdimensionHeader;
+export default ReactionStep2HeaderBuilder;
