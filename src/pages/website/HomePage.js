@@ -6,9 +6,9 @@ import apiClient from '../../services/managerApiClient.js'
 import HomeNavBar from "../../components/HomeNavBar";
 import RoundedBtn from "../../components/RoundedBtn";
 import Spacing from "../../components/Spacing";
-import QR1 from "../../images/Vapp-QR-1.png"
-import QR2 from "../../images/Vapp-QR-2.png"
-import QR3 from "../../images/Vapp-QR-3.png"
+import ElBarLoboQR from "../../images/El_Bar_Lobo.png";
+import NoTanNegroQR from "../../images/No_Tan_Negro.png";
+import TragamarQR from "../../images/Tragamar.png";
 
 class Home extends Component {
   constructor(props) {
@@ -73,18 +73,18 @@ class Home extends Component {
     const { restaurantList, index } = this.state;
     const restaurant = ( restaurantList.length ? restaurantList[index].name : "");
     let QRCode = "";
-    switch (index) {
-      case 0:
-        QRCode = QR1
+    switch (restaurant) {
+      case "No Tan Negro":
+        QRCode = NoTanNegroQR;
         break;
-      case 1:
-        QRCode = QR2
+      case "El Bar Lobo":
+        QRCode = ElBarLoboQR;
         break;
-      case 2:
-        QRCode = QR3
+      case "Tragamar":
+        QRCode = TragamarQR;
         break;
       default:
-        QRCode = QR1
+        QRCode = TragamarQR;
         break;
     }
 
