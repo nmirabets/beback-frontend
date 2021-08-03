@@ -2,11 +2,11 @@ import React, { Component }  from 'react';
 
 import { withAuth } from "../../../providers/AuthProvider";
 import { withManager } from "../../../providers/ManagerProvider";
+import apiClient from '../../../services/managerApiClient';
 import BotNavBar from '../../../components/BotNavBar';
 import HeaderSaveBtn from '../../../components/HeaderSaveBtn';
 import TopNavBar from '../../../components/TopNavBar';
 import BackBtn from '../../../components/BackBtn';
-import apiClient from '../../../services/managerApiClient';
 import ImgUpload from '../../../components/ImgUpload';
 import Spacing from '../../../components/Spacing';
 
@@ -60,18 +60,19 @@ class DetailEditRestaurantPage extends Component {
 
 	handleChange = event => {
     const { name, value } = event.target;
+
     this.setState({ [name]: value });
   };
 
 	handleDelete = async () => {
 		const { id } = this.state;
+
 		await apiClient.deleteRestaurant(id);
 		await this.props.loadRestaurantData();
 		this.props.history.push("/manager/settings/restaurant-edit");
 	};
 
 	render() {
-
 	const { id, name, logoUrl, isNew } = this.state;
 
 		return (

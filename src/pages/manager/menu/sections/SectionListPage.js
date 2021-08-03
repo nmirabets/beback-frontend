@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ChevronRightIcon } from '@heroicons/react/outline';
 
 import { withAuth } from '../../../../providers/AuthProvider';
 import { withManager } from "../../../../providers/ManagerProvider";
@@ -8,7 +9,6 @@ import BackBtn from "../../../../components/BackBtn";
 import BotNavBar from '../../../../components/BotNavBar';
 import ListItemComp from "../../../../components/ListItemComp";
 import Spacing from "../../../../components/Spacing";
-import { ChevronRightIcon } from '@heroicons/react/outline';
 
 class SectionListPage extends Component {
   constructor(props) {
@@ -35,6 +35,7 @@ class SectionListPage extends Component {
 
   handleClickRight = () => {
   const { restaurantId, menuId } = this.state;
+
   this.props.history.push({pathname: "/manager/menu/sections-edit", state: { restaurantId, menuId }});
   }
 
@@ -43,14 +44,13 @@ class SectionListPage extends Component {
   }
   
   handleItemClick = (sectionIndex) => {
-    // to item list
     const { restaurantId, menuId, filteredSections } = this.state;
     const sectionId = filteredSections[sectionIndex]._id;
+
     this.props.history.push({pathname: "/manager/menu/items", state: { restaurantId, menuId, sectionId }});
   }
 
   render() {
-
     const { filteredSections } = this.state;
 
     return (

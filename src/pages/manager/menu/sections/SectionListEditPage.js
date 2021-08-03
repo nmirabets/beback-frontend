@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ChevronRightIcon } from '@heroicons/react/outline';
 
 import { withAuth } from '../../../../providers/AuthProvider';
 import { withManager } from "../../../../providers/ManagerProvider";
@@ -7,7 +8,6 @@ import HeaderBtn from '../../../../components/HeaderBtn';
 import BotNavBar from '../../../../components/BotNavBar';
 import ListItem from "../../../../components/ListItemComp";
 import Spacing from "../../../../components/Spacing";
-import { ChevronRightIcon } from '@heroicons/react/outline';
 
 class SectionListEditPage extends Component {
   constructor(props) {
@@ -29,18 +29,19 @@ class SectionListEditPage extends Component {
       menuId,
       filteredSections
     })
-
   }
 
   handleClickRight = () => {
     // back to SectionListPage
     const { restaurantId, menuId } = this.state;
+
     this.props.history.push({pathname: "/manager/menu/sections", state: { restaurantId, menuId }});
   }
 
   handleClickLeft = () => {
     // new item -> go to SectionDetailEditPage
     const { restaurantId, menuId } = this.state;
+
     this.props.history.push({pathname: "/manager/menu/sections-edit-detail", state: { section: { restaurantId, menuId }, isNew: true }});
   }
 
@@ -48,11 +49,11 @@ class SectionListEditPage extends Component {
     // edit item -> go to SectionDetailEditPage
     const { filteredSections } = this.state;
     const section = filteredSections[sectionIndex];
+
     this.props.history.push({ pathname: '/manager/menu/sections-edit-detail', state:  { section, isNew: false } });
   }
 
   render() {
-
     const { filteredSections } = this.state;
 
     return (

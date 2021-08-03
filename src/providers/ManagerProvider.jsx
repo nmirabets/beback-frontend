@@ -73,12 +73,12 @@ class ManagerProvider extends Component {
       const restaurants = await managerApiClient.getUserRestaurants();
       let activeRestaurantIndex = this.state.activeRestaurantIndex;
 
-      if (restaurants.length > 0 && activeRestaurantIndex>=(restaurants.length)) {
+      if (restaurants.length > 0 && activeRestaurantIndex >= restaurants.length) {
         activeRestaurantIndex=0;
       }
       this.setState({
-        restaurants: restaurants,
-        activeRestaurantIndex
+        restaurants,
+        activeRestaurantIndex,
       })
     } catch (e) {
       console.log(e)
@@ -120,9 +120,9 @@ class ManagerProvider extends Component {
 
   loadDashboardData = async (restaurantId) => {
     try {
-      const data = await managerApiClient.getDashboardData(restaurantId);
+      const dashboardData = await managerApiClient.getDashboardData(restaurantId);
       this.setState({
-        dashboardData: data,
+        dashboardData,
       });
     } catch (e) {
       console.log(e)

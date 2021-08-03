@@ -26,7 +26,6 @@ class RestaurantSelectionPage extends Component {
 	}
 
 	render() {
-
 	const { restaurants } = this.props.contextData;
 
 		return (

@@ -79,13 +79,27 @@ class MenuDetailEditPage extends Component {
 				/>
 				<Spacing />
 				<div className="flex border border-b-2 border-gray-300">
-					<ImgUpload className="text-blue-300 rounded-full w-20 p-3 my-8 mx-4 " url={menu.imgUrl} />
+					<ImgUpload 
+						className="text-blue-300 rounded-full w-20 p-3 my-8 mx-4 " 
+						url={menu.imgUrl} 
+					/>
 					<div className="flex flex-col justify-start w-3/4 font-light mt-5 pr-8" >
 						<label className="text-gray-500" >Nombre</label>
-						<input className="text-xl font-light border-t border-b py-2 my-1 border-gray-400" type="text" id={menu.id} name="name" defaultValue={menu.name} onChange={this.handleChange} ref={this.nameInput}></input>
+						<input 
+							className="text-xl font-light border-t border-b py-2 my-1 border-gray-400" 
+							type="text" 
+							id={menu.id} 
+							name="name" 
+							defaultValue={menu.name} 
+							onChange={this.handleChange} 
+							ref={this.nameInput} 
+						/>
 						<h3 className="text-xs font-light text-gray-400" >El nombre se mostrará en el QR</h3>
 						<div className="flex justify-end " >
-							{(!isNew ? <button className="text-xs text-red-700 font-light border-b border-red-700 my-2" onClick={this.handleDelete} >Eliminar</button> : "")}
+							{(!isNew ? 
+								<button 
+								className="text-xs text-red-700 font-light border-b border-red-700 my-2" 
+								onClick={this.handleDelete} >Eliminar</button> : "")}
 						</div>
 					</div>
 				</div>

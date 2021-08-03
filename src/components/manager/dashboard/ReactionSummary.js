@@ -17,6 +17,5 @@ export default function SummaryDashboard(props) {
         <h2 className="text-s  px-2">{props.neg}</h2> 
       </div>
     </>
-
   )
 }

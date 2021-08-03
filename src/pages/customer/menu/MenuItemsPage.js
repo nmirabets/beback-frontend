@@ -20,6 +20,7 @@ class MenuItemsPage extends Component {
 		const { items } = this.props.contextData;
     const { section } = this.props.location.state;
     const filteredItems = items.filter( (element) => { return element.sectionId === section._id });
+    
     this.setState({
       items: filteredItems,
       section,

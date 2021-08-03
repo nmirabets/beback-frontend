@@ -1,4 +1,5 @@
 import React, { Component }  from 'react';
+import { ChevronRightIcon } from '@heroicons/react/outline';
 
 import { withAuth } from "../../../providers/AuthProvider";
 import { withManager } from "../../../providers/ManagerProvider";
@@ -7,7 +8,6 @@ import HeaderBtn from '../../../components/HeaderBtn';
 import TopNavBar from '../../../components/TopNavBar';
 import ListItemComp from '../../../components/ListItemComp';
 import Spacing from '../../../components/Spacing';
-import { ChevronRightIcon } from '@heroicons/react/outline';
 
 class EditRestaurantPage extends Component {
 
@@ -24,7 +24,6 @@ class EditRestaurantPage extends Component {
 	}
 
 	render() {
-
 	const { restaurants } = this.props.contextData;
 
 		return (

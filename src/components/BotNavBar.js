@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { ChartBarIcon, BookOpenIcon, CogIcon } from '@heroicons/react/outline'
 
 function BotNavBar(props) {
@@ -16,12 +15,12 @@ function BotNavBar(props) {
 		const settingsClassName = ( props.activeTab === "settings" ? activeTabStyle : inactiveTabStyle );
 
 	return (
-			<div className=" fixed border-t border-gray-800 bottom-0 inset-x-0 flex py-2 h-15 bg-white">
+			<div className="fixed border-t border-gray-800 bottom-0 inset-x-0 flex py-2 h-15 bg-white justify-between">
 				<Link className={linkClassName} to='/manager/dashboard' >
 					<ChartBarIcon className={iconClassName}  />
 					<div className={dashboardClassName}>Dashboard</div>
 				</Link>
-				<Link className={linkClassName} to='/manager/menu/list' >
+				<Link className={linkClassName+" px-16 "} to='/manager/menu/list' >
 					<BookOpenIcon className={iconClassName}  />
 					<div className={menuClassName}>Menú</div>
 				</Link>

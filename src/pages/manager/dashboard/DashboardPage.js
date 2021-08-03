@@ -79,8 +79,7 @@ class DashboardPage extends Component {
   render() {
 
     const { restaurants, dashboardData, activeRestaurantIndex } = this.props.contextData;
-    let restaurantName = "";
-    let { data, globalSummary, dimensionSummary, posItems, negItems } = this.state;
+    let { restaurantName, data, globalSummary, dimensionSummary, posItems, negItems } = this.state;
     if ( restaurants.length>0 && dashboardData.dataSummary.length>0 ){
       restaurantName = restaurants[activeRestaurantIndex].name;
       data = this.filterData();
@@ -94,8 +93,13 @@ class DashboardPage extends Component {
 
     return (
       <div className="container min-h-screen mx-auto flex flex-col w-screen bg-primary bg-opacity-30">
-        <div className="flex justify-center text-4xl font-thin py-4 mb-2 mx-8 border-b border-secondary-dark " >{restaurantName}</div>
-        <ReactionSummary pos={globalSummary.totalPos} neg={globalSummary.totalNeg} />
+        <div className="flex justify-center text-4xl font-thin py-4 mb-2 mx-8 border-b border-secondary-dark ">
+          {restaurantName}
+        </div>
+        <ReactionSummary 
+          pos={globalSummary.totalPos} 
+          neg={globalSummary.totalNeg} 
+        />
         <DimReactionSummary 
           items={((typeof dimensionSummary !== 'undefined') ? dimensionSummary : [])}
           dateFilter={dateFilter}

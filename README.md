@@ -1,3 +1,13 @@
 # README
 
-Frontend for use with https://github.com/zapatran/ih-started-backend
+## CUSTOMER APP
+
+## Components
+
+## Context providers
+
+## Routers
+
+## Services
+
+## Pages

@@ -31,15 +31,13 @@ class MenuListEditVisibilityPage extends Component {
     this.props.history.push("/manager/menu/list")
   }
 
-  handleClickLeft = () => {
-
-  }
+  handleClickLeft = () => {}
 
   handleItemClick = (index) => {
-
     const { menus } = this.props.contextData;
     const menu = menus[index];
     menu.isVisible = !menu.isVisible;
+    
     apiClient.updateMenu(menu);
     this.setState({});
   }

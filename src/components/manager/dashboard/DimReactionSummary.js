@@ -6,18 +6,18 @@ import { ThumbUpIcon, ThumbDownIcon } from '@heroicons/react/outline';
 class SummaryDashboard extends Component {
 
   render() {
-
+    // get dimensions -> filter by ispositive to remove doubled dimensions
     const dimensions = reactionsTemplate.filter((item) => { return item.isPositive===true });
     const { items } = this.props;
     const processedItems = [];
+
     if (items.count>0) {
       dimensions.forEach((element) => {
-        const calcItem={
+        processedItems.push({
           dimension: element.dimension,
           pos: items.filter((item) => { return item.dimension === element.dimension && item.isPositive===true })[0].count,
           neg: items.filter((item) => { return item.dimension === element.dimension && item.isPositive===false})[0].count,
-        };
-        processedItems.push(calcItem);
+        })
       })
     }
 
@@ -45,7 +45,6 @@ class SummaryDashboard extends Component {
               </div>
             )
           })}
-
         </div>
       </>
 

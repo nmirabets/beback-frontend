@@ -66,14 +66,14 @@ class Home extends Component {
     const { restaurantList, index } = this.state;
     const restaurant = restaurantList[index];
     this.props.history.push({pathname: `/restaurant/${restaurant._id}`});
-    // this.props.history.push({pathname: "/restaurant", state: { restaurant }});
   }
 
   render() {
 
     const { restaurantList, index } = this.state;
     const restaurant = ( restaurantList.length ? restaurantList[index].name : "");
-    let QRCode = "";
+    // Demo QRs
+    let QRCode;
     switch (restaurant) {
       case "No Tan Negro":
         QRCode = NoTanNegroQR;
@@ -108,9 +108,7 @@ class Home extends Component {
               className="flex bg-secondary-light text-white border rounded-full border-secondary-dark ml-10 w-10" 
               onClick={this.handleClickPrevious}
             />
-            
             <div className="flex flex-col items-center w-1/2" onClick={this.handleClickQR}>
-              
               <img src={QRCode} className="" />
             </div>
             <ChevronRightIcon 

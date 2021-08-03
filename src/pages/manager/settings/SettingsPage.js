@@ -18,6 +18,7 @@ class SettingsPage extends Component {
 
   componentDidMount() {
     const { restaurants, activeRestaurantIndex }  = this.props.contextData
+
     this.setState({
       restaurants: restaurants,
       activeRestaurantIndex: activeRestaurantIndex,
@@ -33,14 +34,9 @@ class SettingsPage extends Component {
   }
 
 	render() {
-
 	const { username } = this.props.user;
   const { restaurants, activeRestaurantIndex }  = this.props.contextData
-
-  let name=""
-  if (restaurants.length > 0) {
-    name  = restaurants[activeRestaurantIndex].name;
-  }
+  const name = (restaurants.length>0 ? restaurants[activeRestaurantIndex].name : "")
 
   return (
     <>
