@@ -70,6 +70,7 @@ class Home extends Component {
   }
 
   render() {
+
     const { restaurantList, index } = this.state;
     const restaurant = ( restaurantList.length ? restaurantList[index].name : "");
     let QRCode = "";
@@ -101,17 +102,19 @@ class Home extends Component {
         />
         <Spacing/>
         <div className="flex flex-col w-full pt-20 items-center">
-          <div className="flex items-center">
+          <h1 className="text-3xl font-thin text-primary-dark" >{restaurant}</h1>
+          <div className="flex items-center justify-center">
             <ChevronLeftIcon 
-              className="flex bg-secondary-light text-white border rounded-full border-secondary-dark ml-5" 
+              className="flex bg-secondary-light text-white border rounded-full border-secondary-dark ml-10 w-10" 
               onClick={this.handleClickPrevious}
-            />            
-            <div className="flex flex-col items-center" onClick={this.handleClickQR}>
-              <h1 className="text-3xl font-thin text-primary-dark" >{restaurant}</h1>
-              <img src={QRCode} className="w-3/4" />
+            />
+            
+            <div className="flex flex-col items-center w-1/2" onClick={this.handleClickQR}>
+              
+              <img src={QRCode} className="" />
             </div>
             <ChevronRightIcon 
-              className="flex bg-secondary-light text-white border rounded-full border-secondary-dark mr-5 " 
+              className="flex bg-secondary-light text-white border rounded-full border-secondary-dark mr-10 w-10" 
               onClick={this.handleClickNext} 
             />
           </div>

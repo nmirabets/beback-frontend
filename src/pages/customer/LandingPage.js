@@ -30,7 +30,7 @@ class Landing extends Component {
       <div className="flex flex-col mx-auto items-center h-screen">
         <RestaurantHeader 
           name={restaurant.name}
-          style={"my-20 text-5xl"}
+          style={"my-10 text-5xl"}
         />
         <div className="flex flex-col items-center text-3xl font-normal justify-around" >
           {menus.map((menu, index) => {
