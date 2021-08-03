@@ -32,7 +32,7 @@ class MenuItemsPage extends Component {
 
     return (
       <div className="flex flex-col " >
-        <div className="flex flex-col items-center mx-auto h-full " >
+        <div className="flex flex-col items-center mx-auto" >
           <div className="w-screen fixed inset-x-0 bg-white">
             <BackBtn 
               title="Atrás"
@@ -47,7 +47,7 @@ class MenuItemsPage extends Component {
           <Spacing />
           <Spacing />
           <Spacing />
-          <div className="flex-col w-full" >
+          <div className="flex-col w-screen px-4" >
             {items.map((item, index) => {
               return (
                 <MenuItemComp 

@@ -16,12 +16,17 @@ class DashboardPage extends Component {
     this.state = {
       restaurantName: "",
       dateFilter: "d",
-      data: [],
+      data: {
+        dataSummary: [],
+        rankData: [],
+      },
       globalSummary: {
         totalPos:0,
         totalNeg:0,
       },
       dimensionSummary: [],
+      posItems: [],
+      negItems: [],
     }
   }
 
@@ -32,24 +37,25 @@ class DashboardPage extends Component {
   filterData = () => {
     const { dashboardData, restaurants } = this.props.contextData;
     const { dateFilter } = this.state;
-    let filteredData = [];
+    let filteredSummaryData = [];
+    let filteredRankData = [];
 
     if ( restaurants.length>0 && dashboardData.dataSummary.length>0 ){
-      filteredData = dashboardData.dataSummary.filter((item) => { return item.period === dateFilter });
+      filteredSummaryData = dashboardData.dataSummary.filter((item) => { return item.period === dateFilter });
+      filteredRankData = dashboardData.rank.filter((item) => { return item.period === dateFilter });
     }
-    return filteredData;
+    const result = { dataSummary: filteredSummaryData, rankData: filteredRankData }
+
+    return result;
   }
 
   processGlobalSummary = (data) => {
-
     const totalPos = Object.values(data.filter((item) => { return item.isPositive === true })).reduce((acc, { count }) => acc + count,0 );
     const totalNeg = Object.values(data.filter((item) => { return item.isPositive === false })).reduce((acc, { count }) => acc + count,0 );
-
     const globalSummary = {
         totalPos,
         totalNeg,
     }
-
     return globalSummary;
   }
 
@@ -70,18 +76,18 @@ class DashboardPage extends Component {
     return processedItems;
   }
 
-
-
   render() {
 
     const { restaurants, dashboardData, activeRestaurantIndex } = this.props.contextData;
     let restaurantName = "";
-    let { data, globalSummary, dimensionSummary } = this.state;
+    let { data, globalSummary, dimensionSummary, posItems, negItems } = this.state;
     if ( restaurants.length>0 && dashboardData.dataSummary.length>0 ){
       restaurantName = restaurants[activeRestaurantIndex].name;
       data = this.filterData();
-      globalSummary = this.processGlobalSummary(data);
-      dimensionSummary = this.processDimensionSummary(data);
+      globalSummary = this.processGlobalSummary(data.dataSummary);
+      dimensionSummary = this.processDimensionSummary(data.dataSummary);
+      posItems = data.rankData[0].items;
+      negItems = data.rankData[1].items;
     }
 
     const { dateFilter } = this.state;
@@ -91,26 +97,18 @@ class DashboardPage extends Component {
         <div className="flex justify-center text-4xl font-thin py-4 mb-2 mx-8 border-b border-secondary-dark " >{restaurantName}</div>
         <ReactionSummary pos={globalSummary.totalPos} neg={globalSummary.totalNeg} />
         <DimReactionSummary 
-          items={dimensionSummary}
+          items={((typeof dimensionSummary !== 'undefined') ? dimensionSummary : [])}
           dateFilter={dateFilter}
         />
         <RankDashboard 
           title="Lo que más ha gustado..." 
           isPositive={true} 
-          items={[
-            { name:"Arroz negro", reactions:152 }, 
-            { name:"Paella marinera", reactions:78 }, 
-            { name:"Ceviche", reactions:22 
-            }]}
+          items={((typeof posItems !== 'undefined') ? posItems : [])}
           />
         <RankDashboard 
           title="Lo que menos ha gustado..." 
           isPositive={false}  
-          items={[
-            { name:"Spaguetti Bolognesa", reactions:32 }, 
-            { name:"Filet mignon", reactions:24 }, 
-            { name:"Ensalada de la casa", reactions:5 }
-          ]}
+          items={((typeof negItems !== 'undefined') ? negItems : [])}
         />
         <DateFilterBar onClick={this.handleDateFilterClick} />
         <Spacing />
