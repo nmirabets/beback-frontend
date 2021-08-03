@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { withAuth } from "../../../providers/AuthProvider";
 import { withManager } from "../../../providers/ManagerProvider";
+import reactionsTemplate from '../../../reactionsTemplate.json';
 import BotNavBar from "../../../components/BotNavBar";
 import DateFilterBar from "../../../components/manager/dashboard/DateFilterBar";
 import ReactionSummary from "../../../components/manager/dashboard/ReactionSummary";
@@ -15,41 +16,82 @@ class DashboardPage extends Component {
     this.state = {
       restaurantName: "",
       dateFilter: "d",
-      dashboardData: {},
+      data: [],
+      globalSummary: {
+        totalPos:0,
+        totalNeg:0,
+      },
+      dimensionSummary: [],
     }
-  }
-
-  componentDidMount() {
-
   }
 
   handleDateFilterClick = (button) => {
     this.setState({ dateFilter: button })
   }
 
-  render() {
-
-    const { dashboardData, restaurants, activeRestaurantIndex } = this.props.contextData;
+  filterData = () => {
+    const { dashboardData, restaurants } = this.props.contextData;
     const { dateFilter } = this.state;
     let filteredData = [];
-    let restaurantName = "";
-    let totalPos = 0;
-    let totalNeg = 0;
 
     if ( restaurants.length>0 && dashboardData.dataSummary.length>0 ){
-      restaurantName = restaurants[activeRestaurantIndex].name;
       filteredData = dashboardData.dataSummary.filter((item) => { return item.period === dateFilter });
-      totalPos = Object.values(filteredData.filter((item) => { return item.isPositive === true })).reduce((acc, { count }) => acc + count,0 );
-      totalNeg = Object.values(filteredData.filter((item) => { return item.isPositive === false })).reduce((acc, { count }) => acc + count,0 );
-      console.log("filteredData", filteredData);
     }
+    return filteredData;
+  }
+
+  processGlobalSummary = (data) => {
+
+    const totalPos = Object.values(data.filter((item) => { return item.isPositive === true })).reduce((acc, { count }) => acc + count,0 );
+    const totalNeg = Object.values(data.filter((item) => { return item.isPositive === false })).reduce((acc, { count }) => acc + count,0 );
+
+    const globalSummary = {
+        totalPos,
+        totalNeg,
+    }
+
+    return globalSummary;
+  }
+
+  processDimensionSummary = (data) => {
+    const dimensions = reactionsTemplate.filter((item) => { return item.isPositive===true });
+    const processedItems = [];
+
+    if (data.length>0) {
+      dimensions.forEach((element) => {
+        const calcItem={
+          dimension: element.dimension,
+          pos: data.filter((item) => { return item.dimension === element.dimension && item.isPositive===true })[0].count,
+          neg: data.filter((item) => { return item.dimension === element.dimension && item.isPositive===false})[0].count,
+        };
+        processedItems.push(calcItem);
+      })
+    }
+    return processedItems;
+  }
+
+
+
+  render() {
+
+    const { restaurants, dashboardData, activeRestaurantIndex } = this.props.contextData;
+    let restaurantName = "";
+    let { data, globalSummary, dimensionSummary } = this.state;
+    if ( restaurants.length>0 && dashboardData.dataSummary.length>0 ){
+      restaurantName = restaurants[activeRestaurantIndex].name;
+      data = this.filterData();
+      globalSummary = this.processGlobalSummary(data);
+      dimensionSummary = this.processDimensionSummary(data);
+    }
+
+    const { dateFilter } = this.state;
 
     return (
       <div className="container min-h-screen mx-auto flex flex-col w-screen bg-primary bg-opacity-30">
         <div className="flex justify-center text-4xl font-thin py-4 mb-2 mx-8 border-b border-secondary-dark " >{restaurantName}</div>
-        <ReactionSummary pos={totalPos} neg={totalNeg} />
+        <ReactionSummary pos={globalSummary.totalPos} neg={globalSummary.totalNeg} />
         <DimReactionSummary 
-          items={filteredData}
+          items={dimensionSummary}
           dateFilter={dateFilter}
         />
         <RankDashboard 

@@ -6,7 +6,9 @@ import apiClient from '../../services/managerApiClient.js'
 import HomeNavBar from "../../components/HomeNavBar";
 import RoundedBtn from "../../components/RoundedBtn";
 import Spacing from "../../components/Spacing";
-import sampleQR from "../../images/Demo QR.png"
+import QR1 from "../../images/Vapp-QR-1.png"
+import QR2 from "../../images/Vapp-QR-2.png"
+import QR3 from "../../images/Vapp-QR-3.png"
 
 class Home extends Component {
   constructor(props) {
@@ -70,6 +72,21 @@ class Home extends Component {
   render() {
     const { restaurantList, index } = this.state;
     const restaurant = ( restaurantList.length ? restaurantList[index].name : "");
+    let QRCode = "";
+    switch (index) {
+      case 0:
+        QRCode = QR1
+        break;
+      case 1:
+        QRCode = QR2
+        break;
+      case 2:
+        QRCode = QR3
+        break;
+      default:
+        QRCode = QR1
+        break;
+    }
 
     return (
       <div className="container mx-auto place-content-center">
@@ -91,7 +108,7 @@ class Home extends Component {
             />            
             <div className="flex flex-col items-center" onClick={this.handleClickQR}>
               <h1 className="text-3xl font-thin text-primary-dark" >{restaurant}</h1>
-              <img src={sampleQR} className="w-3/4" />
+              <img src={QRCode} className="w-3/4" />
             </div>
             <ChevronRightIcon 
               className="flex bg-secondary-light text-white border rounded-full border-secondary-dark mr-5 " 

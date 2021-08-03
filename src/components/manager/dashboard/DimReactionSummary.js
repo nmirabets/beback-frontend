@@ -4,21 +4,13 @@ import reactionsTemplate from '../../../reactionsTemplate.json';
 import { ThumbUpIcon, ThumbDownIcon } from '@heroicons/react/outline';
 
 class SummaryDashboard extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      dateFilter: "d",
-      dimensions: [],
-      items: [],
-  };
-  }
 
-  componentDidMount() {
+  render() {
+
     const dimensions = reactionsTemplate.filter((item) => { return item.isPositive===true });
     const { items } = this.props;
     const processedItems = [];
-
-    if (items.length>0) {
+    if (items.count>0) {
       dimensions.forEach((element) => {
         const calcItem={
           dimension: element.dimension,
@@ -27,18 +19,7 @@ class SummaryDashboard extends Component {
         };
         processedItems.push(calcItem);
       })
-
-      this.setState({
-        dimensions,
-        items: processedItems,
-      });
     }
-  }
-
-  render() {
-
-    const { items } = this.state;
-    console.log("items", items);
 
     return (
       <>
