@@ -68,7 +68,7 @@ class ItemDetailEditPage extends Component {
 	handleDelete = async () => {
 		const { restaurantId, menuId, sectionId, item } = this.state;
 		await apiClient.deleteItem(item._id);
-		await this.props.loadItemsData();
+		await this.props.loadItemsData(restaurantId);
 		this.props.history.push({pathname: "/manager/menu/items-edit", state: { restaurantId, menuId, sectionId }});
 	};
 

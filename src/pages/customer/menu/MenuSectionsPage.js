@@ -5,6 +5,7 @@ import PoweredByFooter from "../../../components/customer/PoweredByFooter";
 import PageHeader from "../../../components/customer/PageHeader";
 import BackBtn from "../../../components/BackBtn";
 import SectionBtn from "../../../components/customer/menu/SectionBtn";
+import Spacing from "../../../components/Spacing";
 
 class MenuSectionsPage extends Component {
   constructor(props) {
@@ -36,16 +37,19 @@ class MenuSectionsPage extends Component {
     return (
       <div className="flex flex-col h-screen" >
         <div className="flex flex-col items-center mx-auto h-full" >
-        <div className="w-screen">
+        <div className="w-screen fixed inset-x-0 bg-white">
           <BackBtn 
             title="Atrás" 
             onClick={this.props.history.goBack}
           />
           <PageHeader 
             name={menu.name}
-            style={"text-5xl mb-20"}
+            style={"text-5xl"}
           />
         </div>
+          <Spacing />
+          <Spacing />
+          <Spacing />
           <div className="flex flex-col items-center text-3xl font-normal text-yellow-700 justify-around" >
             {sections.map((section, index) => {
               return (
@@ -58,6 +62,7 @@ class MenuSectionsPage extends Component {
               )
             })}
           </div>
+          <Spacing />
           <PoweredByFooter/>
         </div>
       </div>

@@ -63,7 +63,7 @@ class SectionDetailEditPage extends Component {
 	handleDelete = async () => {
 		const { restaurantId, menuId, section } = this.state;
 		await apiClient.deleteSection(section._id);
-		await this.props.loadSectionsData();
+		await this.props.loadSectionsData(restaurantId);
 		this.props.history.push({pathname: "/manager/menu/sections-edit", state: { restaurantId, menuId }});
 	};
 
