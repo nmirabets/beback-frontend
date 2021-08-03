@@ -45,8 +45,8 @@ class DashboardPage extends Component {
     }
 
     return (
-      <div className="container min-h-screen mx-auto flex flex-col bg-gray-200 w-screen">
-        <div className="flex justify-center text-4xl font-thin py-4 mb-2 mx-8 border-b border-yellow-900" >{restaurantName}</div>
+      <div className="container min-h-screen mx-auto flex flex-col w-screen bg-primary bg-opacity-30">
+        <div className="flex justify-center text-4xl font-thin py-4 mb-2 mx-8 border-b border-secondary-dark " >{restaurantName}</div>
         <ReactionSummary pos={totalPos} neg={totalNeg} />
         <DimReactionSummary 
           items={filteredData}

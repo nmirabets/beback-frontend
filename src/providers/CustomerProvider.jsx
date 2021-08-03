@@ -38,7 +38,7 @@ class CustomerProvider extends Component {
       const restaurant = await apiClient.getRestaurant(restaurantId);
       const menus = await apiClient.getActiveMenus(restaurantId);
       const sections = await apiClient.getSections(restaurantId);
-      const items =  await apiClient.getItems(restaurantId);
+      const items =  await apiClient.getActiveItems(restaurantId);
 
       this.setState({ restaurant, menus, sections, items, reaction: {} })
     } catch (e) {

@@ -5,6 +5,7 @@ import PoweredByFooter from "../../../components/customer/PoweredByFooter";
 import BackBtn from "../../../components/BackBtn";
 import PageHeader from "../../../components/customer/PageHeader";
 import MenuItemComp from "../../../components/customer/menu/MenuItemComp";
+import Spacing from "../../../components/Spacing";
 
 class MenuItemsPage extends Component {
   constructor(props) {
@@ -30,19 +31,23 @@ class MenuItemsPage extends Component {
     const { section, items } = this.state;
 
     return (
-      <div className="flex flex-col h-screen bg-gray-200" >
-        <div className="flex flex-col items-center justify-between mx-auto h-full" >
-        <div className="w-screen">
-          <BackBtn 
-            title="Atrás"
-            onClick={this.props.history.goBack}
-          />
-          <PageHeader 
-            name={section.name}
-            style={"text-5xl"}
-          />
-        </div>
-          <div className="flex flex-col w-full" >
+      <div className="flex flex-col " >
+        <div className="flex flex-col items-center mx-auto h-full " >
+          <div className="w-screen fixed inset-x-0 bg-white">
+            <BackBtn 
+              title="Atrás"
+              onClick={this.props.history.goBack}
+              style=" border rounded-full"
+            />
+            <PageHeader 
+              name={section.name}
+              style={"text-5xl"}
+            />
+          </div>
+          <Spacing />
+          <Spacing />
+          <Spacing />
+          <div className="flex-col w-full" >
             {items.map((item, index) => {
               return (
                 <MenuItemComp 
@@ -53,6 +58,7 @@ class MenuItemsPage extends Component {
               )
             })}
           </div>
+          <Spacing />
           <PoweredByFooter/>
         </div>
       </div>

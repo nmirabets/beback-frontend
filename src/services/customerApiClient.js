@@ -42,8 +42,8 @@ class CustomerApiClient {
 
 	// ITEMS
 
-  async getItems(restaurantId) {
-    return await this.customerApiClient.post('/items', { restaurantId }).then( res => res.data.found )
+  async getActiveItems(restaurantId) {
+    return await this.customerApiClient.post('/items/active', { restaurantId }).then( res => res.data.found )
   }
 
 	// REACTIONS

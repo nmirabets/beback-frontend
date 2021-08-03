@@ -1,7 +1,7 @@
 [
   {
    "dimension": "servicio",
-    "subdimension": ["Atento","Amable","Rápido","Buen conocimiento"],
+    "subdimension": ["Atento","Amable","Rápido","Conocimiento"],
     "isPositive": true
   },
   {

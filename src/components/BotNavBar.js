@@ -8,7 +8,7 @@ function BotNavBar(props) {
 		const { activeTab } = props;
 		const linkClassName = "flex-1 flex flex-col items-center text-xs ";
 		const iconClassName = "w-8 h-8 ";
-		const activeTabStyle = "text-yellow-800 font-semibold";
+		const activeTabStyle = "text-secondary font-semibold";
 		const inactiveTabStyle = "text-gray-600 font-extralight";
 
 		const dashboardClassName = ( activeTab === "dashboard" ? activeTabStyle : inactiveTabStyle );
@@ -16,7 +16,7 @@ function BotNavBar(props) {
 		const settingsClassName = ( props.activeTab === "settings" ? activeTabStyle : inactiveTabStyle );
 
 	return (
-			<div className="bg-white fixed border-t border-gray-800 bottom-0 inset-x-0 flex py-2 h-15">
+			<div className=" fixed border-t border-gray-800 bottom-0 inset-x-0 flex py-2 h-15 bg-white">
 				<Link className={linkClassName} to='/manager/dashboard' >
 					<ChartBarIcon className={iconClassName}  />
 					<div className={dashboardClassName}>Dashboard</div>

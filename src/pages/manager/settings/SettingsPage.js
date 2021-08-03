@@ -48,7 +48,7 @@ class SettingsPage extends Component {
         <h1 className="text-2xl font-extralight" >Ajustes</h1>
       </header>
       <SectionHeader title={"Restaurantes"} />
-      <SettingsBtn title={name} onClick={this.handleRestaurantSelection}/>
+      <SettingsBtn title={name} onClick={this.handleRestaurantSelection} />
       <SectionHeader title={"Cuenta"} />
       <SettingsLabel label={"Usuario: "} item={username} />
       <SettingsBtn title={"Cerrar sesión"} style={"text-red-800"} onClick={this.logout} />

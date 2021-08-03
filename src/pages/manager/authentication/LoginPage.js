@@ -58,7 +58,7 @@ class LoginPage extends Component {
         <div className="w-full pt-20 items-center">
           <form className="flex flex-col items-center " onSubmit={this.handleFormSubmit}>
             <input
-              className="text-2xl py-2 my-2 bg-gray-200"
+              className="text-2xl py-2 my-2 bg-primary-light bg-opacity-50"
               type="text"
               name="username"
               placeholder="e-mail address"
@@ -66,16 +66,16 @@ class LoginPage extends Component {
               onChange={this.handleChange}
             />
             <input
-              className="text-2xl py-2 my-2 bg-gray-200"
+              className="text-2xl py-2 my-2 bg-primary-light bg-opacity-50"
               type="password"
               name="password"
               placeholder="password"
               value={password}
               onChange={this.handleChange}
             />
-            <button className="flex bg-yellow-400 text-2xl font-light text-white border rounded-full border-yellow-500 px-6 py-1 my-2" onClick={this.handleFormSubmit} type="submit" value="Login" >Login</button>
+            <button className="flex bg-secondary-light bg-opacity-70 text-2xl font-light text-white border rounded-full border-secondary-dark px-6 py-1 my-2" onClick={this.handleFormSubmit} type="submit" value="Login" >Login</button>
             <h2 className="text-l font-thin mt-2" >¿Aún no tienes cuenta?</h2>
-            <button className="flex text-2xl font-thin text-yellow-700 rounded-full border-yellow-500 px-6 py-1" onClick={this.handleSignupClick} type="submit" value="Signup" >Signup</button>
+            <button className="flex text-2xl font-thin text-secondary-dark rounded-full px-6 py-1" onClick={this.handleSignupClick} type="submit" value="Signup" >Signup</button>
           </form>
         </div>
       </div>

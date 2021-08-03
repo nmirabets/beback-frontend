@@ -4,7 +4,7 @@ class DateFilterBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeTab: "day",
+      activeTab: "d",
   };
   }
 
@@ -22,13 +22,13 @@ class DateFilterBar extends Component {
 
 		const { activeTab } = this.state;
 	
-		const activeTabStyle = "flex-1 items-center text-yellow-800 text-s font-medium";
+		const activeTabStyle = "flex-1 items-center text-secondary-dark text-s font-medium";
 		const inactiveTabStyle = "flex-1 items-center text-gray-600 text-s font-extralight";
 
-		const dayClassName = ( activeTab ==="day" ? activeTabStyle : inactiveTabStyle );
-		const weekClassName = ( activeTab ==="week" ? activeTabStyle : inactiveTabStyle );
-		const monthClassName = ( activeTab ==="month" ? activeTabStyle : inactiveTabStyle );
-		const yearClassName = ( activeTab ==="year" ? activeTabStyle : inactiveTabStyle );
+		const dayClassName = ( activeTab ==="d" ? activeTabStyle : inactiveTabStyle );
+		const weekClassName = ( activeTab ==="w" ? activeTabStyle : inactiveTabStyle );
+		const monthClassName = ( activeTab ==="m" ? activeTabStyle : inactiveTabStyle );
+		const yearClassName = ( activeTab ==="y" ? activeTabStyle : inactiveTabStyle );
 
 		return (
 			<div className="flex fixed bg-white border rounded-xl border-gray-800 bottom-10 inset-x-5 py-2 mb-10">

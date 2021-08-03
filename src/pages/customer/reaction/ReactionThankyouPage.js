@@ -6,7 +6,7 @@ import PageSubheader from "../../../components/customer/PageSubheader";
 import PoweredByFooter from "../../../components/customer/PoweredByFooter";
 import MenuBtn from "../../../components/customer/menu/MenuBtn";
 import GiveFeedbackBtn from "../../../components/customer/menu/GiveFeedbackBtn";
-// import { EmojiHappyIcon } from '@heroicons/react/outline';
+import Spacing from "../../../components/Spacing";
 
 class ReactionThankyouPage extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class ReactionThankyouPage extends Component {
     const { menus } = this.props.contextData;
       
     return (
-      <div className="flex flex-col mx-auto items-center bg-gray-200 h-screen justify-between">
+      <div className="flex flex-col mx-auto items-center h-screen justify-between">
         <PageHeader 
           name={"¡Gracias!"}
           style={"mt-12 text-5xl"}
@@ -55,6 +55,7 @@ class ReactionThankyouPage extends Component {
           title={"¡Dános más feedback!"}
           onClick={this.handleClickFeedback}
         />
+        <Spacing />
         <PoweredByFooter/>
       </div>
     )

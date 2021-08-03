@@ -4,7 +4,7 @@ import { ThumbUpIcon, ThumbDownIcon } from '@heroicons/react/outline';
 
 class ReactionStep2Btn extends Component {
 
-handleClick = () => {
+handleOnClick = () => {
 	this.props.onClick(this.props.name);
 }
 
@@ -13,8 +13,8 @@ handleClick = () => {
 		const { name, isPositive } = this.props;
 
 		return (
-			<div className="flex items-center justify-center bg-white border rounded-full border-yellow-500 m-4 p-2" onClick={this.handleClick} >
-				<h1 className="flex justify-center w-44 font-thin text-gray-800 text-xl" >{name}</h1>
+			<div className="flex items-center justify-cente border rounded-full border-secondary-dark bg-secondary-light bg-opacity-20 m-4 px-6 p-2" onClick={this.handleOnClick} >
+				<h1 className="flex justify-center w-44 font-light text-gray-800 text-xl" >{name}</h1>
 					{(isPositive ? 
 						<ThumbUpIcon 
 							className="text-green-800 w-10 h-10" 

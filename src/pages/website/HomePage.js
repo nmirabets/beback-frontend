@@ -85,12 +85,18 @@ class Home extends Component {
         <Spacing/>
         <div className="flex flex-col w-full pt-20 items-center">
           <div className="flex items-center">
-            <ChevronLeftIcon className="flex bg-yellow-400 w-32 text-white border rounded-full border-yellow-500 ml-5" onClick={this.handleClickPrevious}  ></ChevronLeftIcon>            
+            <ChevronLeftIcon 
+              className="flex bg-secondary-light text-white border rounded-full border-secondary-dark ml-5" 
+              onClick={this.handleClickPrevious}
+            />            
             <div className="flex flex-col items-center" onClick={this.handleClickQR}>
-              <h1 className="text-xl font-thin" >{restaurant}</h1>
-              <img src={sampleQR} className="transform scale-75" />
+              <h1 className="text-3xl font-thin text-primary-dark" >{restaurant}</h1>
+              <img src={sampleQR} className="w-3/4" />
             </div>
-            <ChevronRightIcon className="flex bg-yellow-400 w-32 text-white border rounded-full border-yellow-500 mr-5 " onClick={this.handleClickNext} ></ChevronRightIcon>
+            <ChevronRightIcon 
+              className="flex bg-secondary-light text-white border rounded-full border-secondary-dark mr-5 " 
+              onClick={this.handleClickNext} 
+            />
           </div>
         </div>
       </div>

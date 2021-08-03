@@ -28,23 +28,25 @@ class MenuSectionsPage extends Component {
     this.props.history.push({pathname: "/restaurant/menu-items", state: { section: sections[index] }});
   }
 
-
   render() {
 
     const { menu } = this.props.location.state; 
     const { sections } = this.state;
 
     return (
-      <div className="flex flex-col h-screen bg-gray-200" >
-        <div className="flex flex-col items-center justify-between mx-auto h-full" >
+      <div className="flex flex-col h-screen" >
+        <div className="flex flex-col items-center mx-auto h-full" >
         <div className="w-screen">
-          <BackBtn title="Atrás" onClick={this.props.history.goBack} />
+          <BackBtn 
+            title="Atrás" 
+            onClick={this.props.history.goBack}
+          />
           <PageHeader 
             name={menu.name}
-            style={"text-5xl"}
+            style={"text-5xl mb-20"}
           />
         </div>
-          <div className="flex flex-col items-center text-3xl font-normal text-yellow-700 " >
+          <div className="flex flex-col items-center text-3xl font-normal text-yellow-700 justify-around" >
             {sections.map((section, index) => {
               return (
                 <SectionBtn 
