@@ -61,15 +61,17 @@ class ItemListPage extends Component {
 
     return (
       <>
-        <TopNavBar
-          mainTitle='Platos' 
-					RightComponent={HeaderBtn}
-					rightTitle='Editar'
-					onClickRight={this.handleClickRight}
-					LeftComponent={BackBtn} 
-					leftTitle='Atrás'
-					onClickLeft={this.handleClickLeft}
-        />
+        <div className="bg-white">
+          <TopNavBar
+            mainTitle='Platos' 
+            RightComponent={HeaderBtn}
+            rightTitle='Editar'
+            onClickRight={this.handleClickRight}
+            LeftComponent={BackBtn} 
+            leftTitle='Atrás'
+            onClickLeft={this.handleClickLeft}
+          />
+        </div>
         <Spacing />
         <div className="flex flex-col">
           {filteredItems.map( (item, index) => {
