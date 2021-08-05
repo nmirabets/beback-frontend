@@ -15,6 +15,7 @@ class MenuDetailEditPage extends Component {
     this.state = {
       menu: {},
 			isNew: false,
+			nameError: false,
     }
 		this.nameInput = React.createRef();
   }
@@ -35,13 +36,17 @@ class MenuDetailEditPage extends Component {
 	handleSave = async () => {
 		const { menu, isNew } = this.state;
 		if (typeof menu.name !== 'undefined' && menu.name!== "") {
-		if (!isNew) {
-			await apiClient.updateMenu(menu);
+			if (!isNew) {
+				await apiClient.updateMenu(menu);
+			} else {
+				await apiClient.createMenu(menu)
+			}
+			await this.props.loadMenusData(menu.restaurantId);
+			this.props.history.push("/manager/menu/menu-edit")
 		} else {
-			await apiClient.createMenu(menu)
-		}
-		await this.props.loadMenusData(menu.restaurantId);
-		this.props.history.push("/manager/menu/menu-edit")
+			this.setState({
+				nameError: true,
+			})
 		}
 	}
 
@@ -51,7 +56,7 @@ class MenuDetailEditPage extends Component {
     menu: {
 			...prevState.menu,
 			[name]: value,
-		}}))	
+		}, nameError: false }))	
   }
 
 	handleDelete = async () => {
@@ -63,7 +68,7 @@ class MenuDetailEditPage extends Component {
 
 	render() {
 
-	const { menu, isNew } = this.state;
+	const { menu, isNew, nameError } = this.state;
 
 		return (
 			<>
@@ -87,7 +92,9 @@ class MenuDetailEditPage extends Component {
 							onChange={this.handleChange}
 							ref={this.nameInput} 
 						/>
-						<h3 className="text-xs font-light text-gray-400" >El nombre se mostrará en el QR</h3>
+						{(nameError === false?
+							<h3 className="text-xs font-light text-gray-400">El nombre se mostrará en el menú QR</h3> :
+							<h3 className="text-xs font-light text-red-700">Debes introducir un nombre</h3> )}
 						<div className="flex justify-end " >
 							{(!isNew ? 
 								<button 

@@ -16,6 +16,7 @@ class DetailEditRestaurantPage extends Component {
 			id: "",
 			name: "",
 			logoUrl: "",
+			nameError: false,
     }
 		this.nameInput = React.createRef();
   }
@@ -47,20 +48,23 @@ class DetailEditRestaurantPage extends Component {
 	handleSave = async () => {
 		const { id, name, isNew } = this.state;
 		if (typeof name !== 'undefined' && name!== "") {
-		if (!isNew) {
-			await apiClient.putRestaurant( id, name );
+			if (!isNew) {
+				await apiClient.putRestaurant( id, name );
+			} else {
+				await apiClient.postNewRestaurant(name);
+			}
+			await this.props.loadRestaurantData();
+			this.props.history.push("/manager/settings/restaurant-edit")
 		} else {
-			await apiClient.postNewRestaurant(name)
-		}
-		await this.props.loadRestaurantData();
-		this.props.history.push("/manager/settings/restaurant-edit")
+			this.setState({
+				nameError: true,
+			})
 		}
 	}
 
 	handleChange = event => {
     const { name, value } = event.target;
-
-    this.setState({ [name]: value });
+    this.setState({ [name]: value, nameError: false });
   };
 
 	handleDelete = async () => {
@@ -72,7 +76,7 @@ class DetailEditRestaurantPage extends Component {
 	};
 
 	render() {
-	const { id, name, isNew } = this.state;
+	const { id, name, isNew, nameError } = this.state;
 
 		return (
 			<>
@@ -89,8 +93,10 @@ class DetailEditRestaurantPage extends Component {
 				<div className="flex flex-col items-center">
 					<div className="flex flex-col font-light w-3/4 my-4" >
 						<label className="text-sm text-gray-500" >Nombre</label>
-						<input className="text-xl font-light border-t border-b py-2 my-1 border-gray-400" type="text" id={id} name="name" defaultValue={name} onChange={this.handleChange} ref={this.nameInput}></input>
-						<h3 className="text-xs font-light text-gray-400" >El nombre se mostrará en el menú QR</h3>
+						<input className="text-xl font-light border-t border-b py-2 my-1 border-gray-400" type="text" id={id} name="name" defaultValue={name} onChange={this.handleChange} ref={this.nameInput}/>
+						{(nameError === false?
+							<h3 className="text-xs font-light text-gray-400">El nombre se mostrará en el menú QR</h3> :
+							<h3 className="text-xs font-light text-red-700">Debes introducir un nombre</h3> )}
 						<div className="flex justify-end " >
 							{(!isNew ? <button className="text-xs text-red-700 font-light border-b border-red-700 my-2" onClick={this.handleDelete} >Eliminar</button> : "")}
 						</div>

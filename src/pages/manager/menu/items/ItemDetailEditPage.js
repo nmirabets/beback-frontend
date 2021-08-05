@@ -18,12 +18,14 @@ class ItemDetailEditPage extends Component {
 			sectionId: "",
 			isNew: false,
 			item: {},
+			nameError: false,
     }
 		this.nameInput = React.createRef();
   }
 
 	componentDidMount() {
     const { item, isNew } = this.props.location.state;
+
 		this.setState({
 			restaurantId: item.restaurantId,
 			menuId: item.menuId,
@@ -52,6 +54,10 @@ class ItemDetailEditPage extends Component {
 			}
 			await this.props.loadItemsData(item.restaurantId);
 			this.props.history.push({pathname: "/manager/menu/items-edit", state: { restaurantId, menuId, sectionId }});
+		} else {
+			this.setState({
+				nameError: true,
+			})
 		}
 	}
 
@@ -61,7 +67,7 @@ class ItemDetailEditPage extends Component {
 			item: {
 				...prevState.item,
 				[name]: value,
-		}}))
+		}, nameError: false }))
   };
 
 	handleDelete = async () => {
@@ -73,7 +79,7 @@ class ItemDetailEditPage extends Component {
 
 	render() {
 
-	const { item, isNew } = this.state;
+	const { item, isNew, nameError } = this.state;
 
 		return (
 			<>
@@ -97,7 +103,9 @@ class ItemDetailEditPage extends Component {
 							onChange={this.handleChange}
 							ref={this.nameInput} 
 						/>
-						<h3 className="text-xs font-light text-gray-400" >El nombre se mostrará en el QR</h3>
+						{(nameError === false?
+							<h3 className="text-xs font-light text-gray-400">El nombre se mostrará en el menú QR</h3> :
+							<h3 className="text-xs font-light text-red-700">Debes introducir un nombre</h3> )}
 						<label className="text-sm text-gray-500" >Descripción</label>
 						<textarea className="text-xl font-light border py-2 border-primary-light rounded-lg" name="description" rows="3" defaultValue={item.description} onChange={this.handleChange} type="text"></textarea>
 						<label className="text-sm text-gray-500" >Precio</label>

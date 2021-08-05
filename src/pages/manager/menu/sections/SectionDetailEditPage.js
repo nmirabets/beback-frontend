@@ -17,6 +17,7 @@ class SectionDetailEditPage extends Component {
 			menuId: "",
       section: {},
 			isNew: false,
+			nameError: false,
     }
 		this.nameInput = React.createRef();
   }
@@ -47,6 +48,10 @@ class SectionDetailEditPage extends Component {
 			}
 			await this.props.loadSectionsData(section.restaurantId);
 			this.props.history.push({pathname: "/manager/menu/sections-edit", state: { restaurantId, menuId }});
+		} else {
+			this.setState({
+				nameError: true,
+			})
 		}
 	}
 
@@ -56,7 +61,8 @@ class SectionDetailEditPage extends Component {
 			section: {
 				...prevState.section,
 				[name]: value,
-		}}))
+
+		}, nameError: false}))
   };
 
 	handleDelete = async () => {
@@ -68,7 +74,7 @@ class SectionDetailEditPage extends Component {
 
 	render() {
 
-	const { section, isNew } = this.state;
+	const { section, isNew, nameError } = this.state;
 
 		return (
 			<>
@@ -92,7 +98,9 @@ class SectionDetailEditPage extends Component {
 							onChange={this.handleChange}
 							ref={this.nameInput} 
 						/>
-						<h3 className="text-xs font-light text-gray-400" >El nombre se mostrará en el QR</h3>
+						{(nameError === false?
+							<h3 className="text-xs font-light text-gray-400">El nombre se mostrará en el menú QR</h3> :
+							<h3 className="text-xs font-light text-red-700">Debes introducir un nombre</h3> )}
 						<div className="flex justify-end " >
 							{(!isNew ? <button className="text-xs text-red-700 font-light border-b border-red-700 my-2" onClick={this.handleDelete} >Eliminar</button> : "")}
 						</div>
