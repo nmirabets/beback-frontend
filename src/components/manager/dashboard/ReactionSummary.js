@@ -6,7 +6,7 @@ export default function SummaryDashboard(props) {
 
   return (
     <>
-      <div className="flex flex-row items-center justify-center mx-12 py-3 my-2 border rounded-xl border-gray-400 bg-white">
+      <div className="flex flex-row items-center justify-center mx-12 py-3 my-2 border rounded-xl border-primary-dark bg-white">
         <h2 className="text-s  px-2">{props.pos}</h2> 
         <ThumbUpIcon className="text-green-800 w-10 h-10 "/>
         <div className="flex flex-col items-center">

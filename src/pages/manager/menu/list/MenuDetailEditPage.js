@@ -7,7 +7,6 @@ import HeaderSaveBtn from '../../../../components/HeaderSaveBtn';
 import TopNavBar from '../../../../components/TopNavBar';
 import BackBtn from '../../../../components/BackBtn';
 import apiClient from '../../../../services/managerApiClient';
-import ImgUpload from '../../../../components/ImgUpload';
 import Spacing from '../../../../components/Spacing';
 
 class MenuDetailEditPage extends Component {
@@ -78,20 +77,14 @@ class MenuDetailEditPage extends Component {
 					onClickLeft={this.handleOnClickLeft}
 				/>
 				<Spacing />
-				<div className="flex border border-b-2 border-gray-300">
-					<ImgUpload 
-						className="text-blue-300 rounded-full w-20 p-3 my-8 mx-4 " 
-						url={menu.imgUrl} 
-					/>
-					<div className="flex flex-col justify-start w-3/4 font-light mt-5 pr-8" >
-						<label className="text-gray-500" >Nombre</label>
-						<input 
-							className="text-xl font-light border-t border-b py-2 my-1 border-gray-400" 
+				<div className="flex flex-col items-center">
+					<div className="flex flex-col w-3/4 my-4" >
+						<label className="text-sm text-gray-500" >Nombre</label>
+						<input className="text-xl font-light border py-2 border-primary-light rounded-lg" 
 							type="text" 
-							id={menu.id} 
-							name="name" 
-							defaultValue={menu.name} 
-							onChange={this.handleChange} 
+							name="name"
+							defaultValue={menu.name}
+							onChange={this.handleChange}
 							ref={this.nameInput} 
 						/>
 						<h3 className="text-xs font-light text-gray-400" >El nombre se mostrará en el QR</h3>

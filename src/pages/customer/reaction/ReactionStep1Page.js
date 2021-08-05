@@ -25,23 +25,23 @@ class ReactionStep1Page extends Component {
 
 
     return (
-      <div className="flex flex-col h-screen" >
-        <div className="flex flex-col items-center mx-auto h-full" >
-        <div className="w-screen">
-          <BackBtn 
-            title="Atrás"
-            onClick={this.props.history.goBack}
-          />
-          <PageHeader 
-            name={"¿Qué quieres evaluar?"}
-            style={"text-3xl"}
-          />
-          <PageSubheader
-            name={"Selecciona una opción..."}
-            style={"text-xl"}
-          />
-        </div>
-          <div className="flex flex-col items-center text-3xl font-normal mb-32 justify-around" >
+      <>
+        <div className="h-screen w-screen mx-auto" >
+            <div className="m-2">
+              <BackBtn
+                onClick={this.props.history.goBack}
+              />
+            </div>
+            <div className="h-1/3 flex flex-col items-center justify-center">
+            <PageHeader 
+              name={"¿Qué quieres evaluar?"}
+              style={"text-2xl py-2"}
+            />
+            <PageSubheader
+              name={"Selecciona una opción..."}
+            />
+          </div>
+          <div className="flex flex-col items-center " >
               {reactionsTemplate.filter( (reaction) => reaction.isPositive === true).map((reaction, index) => {
                 return( 
                   <ReactionStep1Btn 
@@ -53,7 +53,7 @@ class ReactionStep1Page extends Component {
           </div>
           <PoweredByFooter/>
         </div>
-      </div>
+      </>
     )
   }
 }

@@ -7,7 +7,7 @@ function MenuBtn(props) {
   }
 
 	return (
-		<button className="border rounded-full bg-secondary-light bg-opacity-60 border-secondary-dark text-white font-light m-4 p-4 " onClick={handleOnClick} type={props.type} value={props.value}>
+		<button className="w-2/3 text-base font-normal border rounded-full border-secondary-dark bg-secondary-light bg-opacity-30 text-gray-800 my-4 p-2 " onClick={handleOnClick} type={props.type} value={props.value}>
 			{props.title}
 		</button>
 	);

@@ -24,42 +24,38 @@ class ReactionStep2MenuPage extends Component {
       const { menus } = this.props.contextData;
 
     return (
-      <div className="flex flex-col h-screen" >
-        <div className="flex flex-col items-center justify-around mx-auto " >
-          <div className="w-screen">
-            <BackBtn 
-              title="Atrás"
-              onClick={this.props.history.goBack}
-            />
-            <PageHeader 
-              name={
-                <ReactionStep2HeaderBuilder 
-                  dimension={feedbackReaction[0].dimension} isPositive={feedbackReaction[0].isPositive}
-                />
-              }
-              style={"text-2xl"}
-            />
-            <PageSubheader
-              name={"Primero escoge el menú..."}
-              style={"text-xl"}
-            />
-          </div>
-          <div className="flex flex-col items-center text-3xl font-normal text-yellow-700 mb-32" >
-            <div className="flex flex-col items-center text-3xl font-normal text-yellow-700" >
-              {menus.map((menu, index) => {
-                return (
-                  <MenuBtn 
-                    key={index}
-                    title={menu.name}
-                    onClick={this.handleOnClick}
-                    index={index}
-                  />
-                )
-              })}
-            </div>
-          </div>
-          <PoweredByFooter/>
+      <div className="w-screen h-screen mx-auto" >
+        <div className="m-2">
+          <BackBtn
+            onClick={this.props.history.goBack}
+          />
         </div>
+        <div className="h-1/3 flex flex-col items-center justify-center" >
+          <PageHeader 
+            name={
+              <ReactionStep2HeaderBuilder 
+                dimension={feedbackReaction[0].dimension} isPositive={feedbackReaction[0].isPositive}
+              />
+            }
+            style={"text-xl"}
+          />
+          <PageSubheader
+            name={"Primero escoge el menú..."}
+          />
+        </div>
+        <div className="h-1/3 flex flex-col items-center justify-center" >
+            {menus.map((menu, index) => {
+              return (
+                <MenuBtn 
+                  key={index}
+                  title={menu.name}
+                  onClick={this.handleOnClick}
+                  index={index}
+                />
+              )
+            })}
+        </div>
+        <PoweredByFooter/>
       </div>
     )
   }

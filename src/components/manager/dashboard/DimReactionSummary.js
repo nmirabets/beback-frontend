@@ -23,7 +23,7 @@ class SummaryDashboard extends Component {
 
     return (
       <>
-        <div className="flex flex-col items-center justify-around mx-20 py-2 my-2 border rounded-xl border-gray-400 bg-white">
+        <div className="flex flex-col items-center justify-around mx-20 py-2 my-2 border rounded-xl border-primary-dark bg-white">
           {items.map( (item, index ) => {
             return (
               <div key={index} className="flex flex-1 items-center">

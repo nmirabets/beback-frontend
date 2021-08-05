@@ -31,7 +31,7 @@ class DateFilterBar extends Component {
 		const yearClassName = ( activeTab ==="y" ? activeTabStyle : inactiveTabStyle );
 
 		return (
-			<div className="flex fixed bg-white border rounded-xl border-gray-800 bottom-10 inset-x-5 py-2 mb-10">
+			<div className="flex fixed bg-white border rounded-xl border-gray-800 bottom-7 inset-x-5 py-2 mb-10">
 				<button name="d"className={dayClassName} onClick={this.handleOnClick}>día</button>
 				<button name="w" className={weekClassName} onClick={this.handleOnClick}>semana</button>
 				<button name="m" className={monthClassName} onClick={this.handleOnClick}>mes</button>

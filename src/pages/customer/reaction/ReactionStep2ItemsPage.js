@@ -42,31 +42,27 @@ class ReactionStep2ItemsPage extends Component {
       const { items } = this.state;
 
     return (
-      <div className="flex flex-col h-screen" >
-        <div className="flex flex-col items-center mx-auto h-full" >
-          <div className="w-screen fixed inset-x-0 bg-white">
-            <BackBtn 
-              title="Atrás"
+      <div className="w-screen h-screen mx-auto" >
+          <div className="m-2">
+            <BackBtn
               onClick={this.props.history.goBack}
-              style="fixed inset-x-0 border rounded-full"
             />
+          </div>
+          <div className="h-1/3 flex flex-col items-center justify-center">
             <PageHeader 
               name={
                 <ReactionStep2HeaderBuilder 
                   dimension={feedbackReaction[0].dimension} isPositive={feedbackReaction[0].isPositive}
                 />
               }
-              style={"text-2xl"}
+              style={"text-xl"}
             />
             <PageSubheader
               name={"Para acabar, escoge el plato..."}
-              style={"text-xl"}
+              style={"text-base"}
             />
           </div>
-          <Spacing />
-          <Spacing />
-          <Spacing />
-          <div className="flex flex-col w-full" >
+          <div className="h-1/3 flex flex-col w-full" >
             {items.map((item, index) => {
               return (
                 <ReactionItemComp 
@@ -81,7 +77,6 @@ class ReactionStep2ItemsPage extends Component {
             <Spacing />
           </div>
           <PoweredByFooter/>
-        </div>
       </div>
     )
   }

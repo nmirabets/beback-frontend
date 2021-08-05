@@ -16,7 +16,7 @@ export default function RankDashboard(props) {
   return (
     <div className="py-1 px-8">
       <h1 className="text-s pb-1 px-2 italic font-medium text-gray-800" >{title}</h1>
-      <div className="flex flex-col justify-center  border rounded-xl border-gray-400 bg-white">
+      <div className="flex flex-col justify-center  border rounded-xl border-primary-dark bg-white">
         {((typeof items !== 'undefined') ? items.map( (item, index) => {
           return ( 
             <div key={index} className="flex flex-1 text-m py-1" >

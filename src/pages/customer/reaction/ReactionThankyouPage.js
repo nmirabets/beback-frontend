@@ -6,7 +6,6 @@ import PageSubheader from "../../../components/customer/PageSubheader";
 import PoweredByFooter from "../../../components/customer/PoweredByFooter";
 import MenuBtn from "../../../components/customer/menu/MenuBtn";
 import GiveFeedbackBtn from "../../../components/customer/menu/GiveFeedbackBtn";
-import Spacing from "../../../components/Spacing";
 
 class ReactionThankyouPage extends Component {
   constructor(props) {
@@ -30,16 +29,18 @@ class ReactionThankyouPage extends Component {
     const { menus } = this.props.contextData;
       
     return (
-      <div className="flex flex-col mx-auto items-center h-screen justify-between">
-        <PageHeader 
-          name={"¡Gracias!"}
-          style={"mt-12 text-5xl"}
-        />
-        <PageSubheader
-          name={"Tu opinión nos ayuda mejorar :)"}
-          style={"text-xl"}
-        />
-        <div className="flex flex-col items-center text-3xl font-normal text-yellow-700" >
+      <div className="w-screen h-screen mx-auto">
+        <div className="h-1/3 flex flex-col items-center justify-center">
+          <PageHeader 
+            name={"¡Gracias!"}
+            style={"text-3xl"}
+          />
+          <PageSubheader
+            name={"Tu opinión nos ayuda mejorar :)"}
+            style={"text-lg"}
+          />
+        </div>
+        <div className="h-1/3 flex flex-col items-center justify-center" >
           {menus.map((menu, index) => {
             return (
               <MenuBtn 
@@ -51,11 +52,12 @@ class ReactionThankyouPage extends Component {
             )
           })}
         </div>
-        <GiveFeedbackBtn
-          title={"¡Dános más feedback!"}
-          onClick={this.handleClickFeedback}
-        />
-        <Spacing />
+        <div className="h-1/3 flex flex-col items-center justify-center">
+          <GiveFeedbackBtn
+            title={"¡Dános más feedback!"}
+            onClick={this.handleClickFeedback}
+          />
+        </div>
         <PoweredByFooter/>
       </div>
     )

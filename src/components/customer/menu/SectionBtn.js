@@ -7,7 +7,7 @@ function SectionBtn(props) {
   }
 
 	return (
-		<button className="border rounded-full border-secondary-dark bg-secondary-light bg-opacity-60 text-white font-light m-2 p-2 " onClick={handleOnClick} type={props.type} value={props.value}>
+		<button className="w-60 text-base font-normal border rounded-full border-secondary-dark bg-secondary-light bg-opacity-30 text-gray-800 m-2 px-2 " onClick={handleOnClick} type={props.type} value={props.value}>
 			{props.title}
 		</button>
 	);

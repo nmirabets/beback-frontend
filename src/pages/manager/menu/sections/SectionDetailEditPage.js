@@ -7,7 +7,6 @@ import HeaderSaveBtn from '../../../../components/HeaderSaveBtn';
 import TopNavBar from '../../../../components/TopNavBar';
 import BackBtn from '../../../../components/BackBtn';
 import apiClient from '../../../../services/managerApiClient';
-import ImgUpload from '../../../../components/ImgUpload';
 import Spacing from '../../../../components/Spacing';
 
 class SectionDetailEditPage extends Component {
@@ -83,11 +82,16 @@ class SectionDetailEditPage extends Component {
 					onClickLeft={this.handleOnClickLeft}
 				/>
 				<Spacing />
-				<div className="flex border border-b-2 border-gray-300">
-					<ImgUpload className="text-blue-300 rounded-full w-20 p-3 my-8 mx-4 " url={section.imgUrl} />
-					<div className="flex flex-col justify-start w-3/4 font-light mt-5 pr-8" >
-						<label className="text-gray-500" >Nombre</label>
-						<input className="text-xl font-light border-t border-b py-2 my-1 border-gray-400" type="text" id={section.id} name="name" defaultValue={section.name} onChange={this.handleChange} ref={this.nameInput}></input>
+				<div className="flex flex-col items-center">
+					<div className="flex flex-col w-3/4 my-4" >
+					<label className="text-sm text-gray-500" >Nombre</label>
+						<input className="text-xl font-light border py-2 border-primary-light rounded-lg" 
+							type="text" 
+							name="name"
+							defaultValue={section.name}
+							onChange={this.handleChange}
+							ref={this.nameInput} 
+						/>
 						<h3 className="text-xs font-light text-gray-400" >El nombre se mostrará en el QR</h3>
 						<div className="flex justify-end " >
 							{(!isNew ? <button className="text-xs text-red-700 font-light border-b border-red-700 my-2" onClick={this.handleDelete} >Eliminar</button> : "")}

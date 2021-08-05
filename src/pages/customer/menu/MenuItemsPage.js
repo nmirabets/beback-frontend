@@ -35,20 +35,19 @@ class MenuItemsPage extends Component {
       <div className="flex flex-col " >
         <div className="flex flex-col items-center mx-auto" >
           <div className="w-screen fixed inset-x-0 bg-white">
-            <BackBtn 
-              title="Atrás"
-              onClick={this.props.history.goBack}
-              style=" border rounded-full"
-            />
+            <div className="m-2">
+              <BackBtn
+                onClick={this.props.history.goBack}
+              />
+            </div>
             <PageHeader 
               name={section.name}
-              style={"text-5xl"}
+              style={"text-3xl"}
             />
           </div>
           <Spacing />
           <Spacing />
-          <Spacing />
-          <div className="flex-col w-screen px-4" >
+          <div className="flex flex-col justify-items-start w-screen px-4" >
             {items.map((item, index) => {
               return (
                 <MenuItemComp 

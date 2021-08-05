@@ -56,7 +56,7 @@ class SignupPage extends Component {
         <div className="w-full pt-20 items-center">
           <form className="flex flex-col items-center " onSubmit={this.handleFormSubmit}>
             <input
-              className="text-2xl py-2 my-2 bg-primary-light bg-opacity-50"
+              className="text-base py-2 my-2 bg-primary-light bg-opacity-50"
               type="text"
               name="username"
               placeholder="e-mail address"
@@ -64,16 +64,16 @@ class SignupPage extends Component {
               onChange={this.handleChange}
             />
             <input
-              className="text-2xl py-2 my-2 bg-primary-light bg-opacity-50"
+              className="text-base py-2 my-2 bg-primary-light bg-opacity-50"
               type="password"
               name="password"
               placeholder="password"
               value={password}
               onChange={this.handleChange}
             />
-            <button className="flex  text-2xl font-light text-white border border-secondary-dark rounded-full bg-secondary-light bg-opacity-70 px-6 py-1 my-2" onClick={this.handleFormSubmit} type="submit" value="Signup" >Signup</button>
-            <h2 className="text-l font-thin mt-2" >¿Ya tienes una cuenta?</h2>
-            <button className="flex text-2xl font-thin text-secondary-dark  rounded-full px-6 py-1" onClick={this.handleLoginClick} type="submit" value="Signup" >Login</button>
+            <button className="flex  text-lg font-light text-white border border-secondary-dark rounded-full bg-secondary-light bg-opacity-70 px-6 my-1" onClick={this.handleFormSubmit} type="submit" value="Signup" >Signup</button>
+            <h2 className="text-sm font-thin mt-2" >¿Ya tienes una cuenta?</h2>
+            <button className="flex text-lg font-thin text-secondary-dark rounded-full px-6 py-1" onClick={this.handleLoginClick} type="submit" value="Signup" >Login</button>
           </form>
         </div>
       </div>

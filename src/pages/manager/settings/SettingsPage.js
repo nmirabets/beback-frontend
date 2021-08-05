@@ -41,7 +41,7 @@ class SettingsPage extends Component {
   return (
     <>
       <header className= "flex h-14 items-center justify-center border border-gray-600 border-b-1 bg-gray-200">
-        <h1 className="text-2xl font-extralight" >Ajustes</h1>
+        <h1 className="text-lg font-extralight" >Ajustes</h1>
       </header>
       <SectionHeader title={"Restaurantes"} />
       <SettingsBtn title={name} onClick={this.handleRestaurantSelection} />

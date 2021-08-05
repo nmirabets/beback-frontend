@@ -5,12 +5,12 @@ import { ChevronLeftIcon } from '@heroicons/react/outline';
 function BackBtn(props) {
 
 	const { style } = props;
-	const totalStyle = "flex items-center p-2 w-20" + style
+	const totalStyle = "flex items-center" + style
 
 	return (
 		<button className={totalStyle} onClick={props.onClick} >
 			<ChevronLeftIcon className="w-6 h-6 text-secondary"/>
-			<h2 className="text-xl font-light text-secondary ">{props.title}</h2>
+			<h2 className="text-m font-light text-secondary ">{props.title}</h2>
 		</button>		
 	);
 }

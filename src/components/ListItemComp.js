@@ -9,9 +9,9 @@ function ListItemComp(props) {
   }
 
   return (
-    <div className="flex p-3 text-xl justify-between border border-gray-300" onClick={handleOnClick}>
-      <h3 className="font-light mx-2" >{props.name}</h3>
-      <Icon className="w-6 h-6 text-gray-600 mr-2" />
+    <div className="flex items-center p-3 text-base justify-between border-b border-primary-light" onClick={handleOnClick}>
+      <h3 className="font-normal mx-2" >{props.name}</h3>
+      <Icon className="w-4 h-4 text-gray-600 mr-2" />
     </div>
   );
 }

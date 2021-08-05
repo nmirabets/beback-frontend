@@ -102,19 +102,23 @@ class Home extends Component {
         />
         <Spacing/>
         <div className="flex flex-col w-full pt-20 items-center">
-          <h1 className="text-3xl font-thin text-primary-dark" >{restaurant}</h1>
+          <h1 className="text-xl font-thin text-primary-dark" >{restaurant}</h1>
           <div className="flex items-center justify-center">
-            <ChevronLeftIcon 
-              className="flex bg-secondary-light text-white border rounded-full border-secondary-dark ml-10 w-10" 
-              onClick={this.handleClickPrevious}
-            />
+            <div className="w-1/4 flex items-center justify-center">
+              <ChevronLeftIcon 
+                className="flex bg-secondary-light text-white border rounded-full border-secondary-dark w-8" 
+                onClick={this.handleClickPrevious}
+              />
+            </div>
             <div className="flex flex-col items-center w-1/2" onClick={this.handleClickQR}>
               <img src={QRCode} className="" />
             </div>
-            <ChevronRightIcon 
-              className="flex bg-secondary-light text-white border rounded-full border-secondary-dark mr-10 w-10" 
-              onClick={this.handleClickNext} 
-            />
+            <div className="w-1/4 flex items-center justify-center">
+              <ChevronRightIcon 
+                className="flex bg-secondary-light text-white border rounded-full border-secondary-dark w-8" 
+                onClick={this.handleClickNext} 
+              />
+            </div>
           </div>
         </div>
       </div>

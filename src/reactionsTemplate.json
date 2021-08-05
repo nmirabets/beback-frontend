@@ -6,7 +6,7 @@
   },
   {
     "dimension": "servicio",
-    "subdimension": ["Poca atención","Antipático","Mucha espera","Poco conocimiento"],
+    "subdimension": ["Atención","Antipático","Mucha espera","Conocimiento"],
     "isPositive": false
   },
   {

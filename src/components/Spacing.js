@@ -3,7 +3,7 @@ import React from 'react';
 function Spacing() {
 
 	return (
-		<div className="py-8 h-10" ></div>
+		<div className="h-14 py-1" ></div>
 	);
 }
 

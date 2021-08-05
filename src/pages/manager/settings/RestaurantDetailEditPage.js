@@ -7,7 +7,6 @@ import BotNavBar from '../../../components/BotNavBar';
 import HeaderSaveBtn from '../../../components/HeaderSaveBtn';
 import TopNavBar from '../../../components/TopNavBar';
 import BackBtn from '../../../components/BackBtn';
-import ImgUpload from '../../../components/ImgUpload';
 import Spacing from '../../../components/Spacing';
 
 class DetailEditRestaurantPage extends Component {
@@ -73,7 +72,7 @@ class DetailEditRestaurantPage extends Component {
 	};
 
 	render() {
-	const { id, name, logoUrl, isNew } = this.state;
+	const { id, name, isNew } = this.state;
 
 		return (
 			<>
@@ -87,10 +86,9 @@ class DetailEditRestaurantPage extends Component {
 					onClickLeft={this.handleOnClickLeft}
 				/>
 				<Spacing />
-				<div className="flex border border-b-2 border-gray-300">
-					<ImgUpload className="text-blue-300 rounded-full w-20 p-3 my-8 mx-4 " url={logoUrl} />
-					<div className="flex flex-col justify-start w-3/4 font-light mt-5 pr-8" >
-						<label className="text-gray-500" >Nombre</label>
+				<div className="flex flex-col items-center">
+					<div className="flex flex-col font-light w-3/4 my-4" >
+						<label className="text-sm text-gray-500" >Nombre</label>
 						<input className="text-xl font-light border-t border-b py-2 my-1 border-gray-400" type="text" id={id} name="name" defaultValue={name} onChange={this.handleChange} ref={this.nameInput}></input>
 						<h3 className="text-xs font-light text-gray-400" >El nombre se mostrará en el menú QR</h3>
 						<div className="flex justify-end " >

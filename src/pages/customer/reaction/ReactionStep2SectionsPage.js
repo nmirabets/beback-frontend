@@ -39,24 +39,23 @@ class ReactionStep2SectionsPage extends Component {
     const { sections } = this.state;
 
     return (
-      <div className="flex flex-col h-screen" >
-        <div className="flex flex-col items-center mx-auto h-full" >
-          <div className="w-screen">
-            <BackBtn 
-              title="Atrás"
+      <div className="w-screen h-screen mx-auto" >
+          <div className="m-2">
+            <BackBtn
               onClick={this.props.history.goBack}
             />
+          </div>
+          <div className="h-1/3 flex flex-col items-center justify-center">
             <PageHeader 
               name={
                 <ReactionStep2HeaderBuilder 
                   dimension={feedbackReaction[0].dimension} isPositive={feedbackReaction[0].isPositive}
                 />
               }
-              style={"text-2xl"}
+              style={"text-xl"}
             />
             <PageSubheader
               name={"Ahora selecciona el tipo de plato..."}
-              style={"text-xl mb-10"}
             />
           </div>
           <div className="flex flex-col items-center text-3xl font-normal text-yellow-700 mb-28 " >
@@ -74,7 +73,6 @@ class ReactionStep2SectionsPage extends Component {
             </div>
           </div>
           <PoweredByFooter/>
-        </div>
       </div>
     )
   }

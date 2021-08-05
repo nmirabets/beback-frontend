@@ -35,36 +35,32 @@ class MenuSectionsPage extends Component {
     const { sections } = this.state;
 
     return (
-      <div className="flex flex-col h-screen" >
-        <div className="flex flex-col items-center mx-auto h-full" >
-        <div className="w-screen fixed inset-x-0 bg-white">
-          <BackBtn 
-            title="Atrás" 
+      <div className="w-screen h-screen mx-auto" >
+        <div className="m-2">
+          <BackBtn
             onClick={this.props.history.goBack}
           />
+        </div>
+        <div className="h-1/3 flex flex-col items-center justify-center" >
           <PageHeader 
             name={menu.name}
-            style={"text-5xl"}
+            style={"text-3xl"}
           />
         </div>
-          <Spacing />
-          <Spacing />
-          <Spacing />
-          <div className="flex flex-col items-center text-3xl font-normal text-yellow-700 justify-around" >
-            {sections.map((section, index) => {
-              return (
-                <SectionBtn 
-                  key={index}
-                  title={section.name}
-                  onClick={this.handleOnClick}
-                  index={index}
-                />
-              )
-            })}
-          </div>
-          <Spacing />
-          <PoweredByFooter/>
+        <div className="h-1/3 flex flex-col items-center justify-around" >
+          {sections.map((section, index) => {
+            return (
+              <SectionBtn 
+                key={index}
+                title={section.name}
+                onClick={this.handleOnClick}
+                index={index}
+              />
+            )
+          })}
         </div>
+        <Spacing />
+        <PoweredByFooter/>
       </div>
     );
   }

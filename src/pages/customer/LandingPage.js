@@ -27,12 +27,14 @@ class Landing extends Component {
     const { restaurant, menus } = this.props.contextData;
 
     return (
-      <div className="flex flex-col mx-auto items-center h-screen">
-        <RestaurantHeader 
+      <div className="flex flex-col mx-auto items-center h-screen w-screen">
+        <div className="h-1/3 flex flex-col items-center justify-center">
+          <RestaurantHeader 
           name={restaurant.name}
-          style={"my-10 text-5xl"}
+          style={"text-5xl"}
         />
-        <div className="flex flex-col items-center text-3xl font-normal justify-around" >
+        </div>
+        <div className="h-1/3 w-screen flex flex-col items-center justify-center" >
           {menus.map((menu, index) => {
             return (
               <MenuBtn 
@@ -43,6 +45,8 @@ class Landing extends Component {
               />
             )
           })}
+        </div>
+        <div className="h-1/3 flex items-center text-m font-normal " >
           <GiveFeedbackBtn
             title={"¡Dános feedback!"}
             onClick={this.handleClickFeedback}
