@@ -31,10 +31,8 @@ The user can manage (create, edit, delete and activate) restaurants, menus, menu
 - [Frontend project](https://github.com/nmirabets/beback-frontend)
 - [Backend project](https://github.com/nmirabets/beback-backend)
 
-### Deploy links
-
-- [Netlify frontend deploy](https://vy-app.netlify.app/)
-- [Heroku backend deploy](https://dashboard.heroku.com/apps/v-app-y)
+### Deploy link
+https://www.apolloqr.com
 
 ### Presentation
 
